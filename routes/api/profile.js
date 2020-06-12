@@ -5,7 +5,7 @@ const router = express.Router();
 // @desc Register user
 // @access public
 router.get("/", (req, res) => {
-  res.send("house/apt route");
+  res.send("profile route");
 });
 
 module.exports = router;
