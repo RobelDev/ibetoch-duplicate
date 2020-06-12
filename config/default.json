@@ -1,4 +1,7 @@
 {
   "mongoURI": "mongodb+srv://robelk1:robelk1@betoch-i8iiy.mongodb.net/<dbname>?retryWrites=true&w=majority",
-  "jwtSecretKey": "myJWTsecretKey"
+  "jwtSecretKey": "myJWTsecretKey",
+
+  "FACEBOOK_APP_ID": "",
+  "FACEBOOK_APP_SECRET": ""
 }

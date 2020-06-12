@@ -6,7 +6,7 @@ const app = express();
 connectDB();
 
 // initialize body parser mddleware
-app.use(express.json({extended: false}));
+app.use(express.json({ extended: false }));
 
 app.get("/", (req, res) => {
   res.send("APP BETOCH");
