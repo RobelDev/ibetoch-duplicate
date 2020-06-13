@@ -1,11 +1,18 @@
-const express = require("express");
-const router = express.Router();
+// const express = require("express");
+// const router = express.Router();
 
-// @route GET api/posts
-// @desc Register user
-// @access public
-router.get("/", (req, res) => {
-  res.send("users post");
-});
+// const auth = require("../../middleware/auth");
+// const { check, validationResult } = require("express-validator");
+// const User = require("../../model/User");
+// const Profiles = require("../../model/Profile");
+// const gravatar = require("gravatar");
+// const config = require("config");
 
-module.exports = router;
+// // @route POST api/posts
+// // @desc Create a property post[]
+// // @access public
+// router.get("/", (req, res) => {
+//   res.send("users post");
+// });
+
+// module.exports = router;

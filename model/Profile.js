@@ -5,7 +5,23 @@ const ProfileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
+  interests: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",
+      },
+    },
+  ],
 
+  share: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",
+      },
+    },
+  ],
   image: {
     type: Buffer,
     required: true,
@@ -51,10 +67,11 @@ const ProfileSchema = new mongoose.Schema({
   contactInfo: {
     type: String,
   },
-  authority: {
+  sold: {
     type: Boolean,
     default: false,
   },
+
   date: {
     type: Date,
     default: Date.now,

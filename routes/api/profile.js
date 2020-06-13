@@ -11,7 +11,7 @@ const { check, validationResult } = require("express-validator");
 // @access private
 router.get("/property", auth, async (req, res) => {
   try {
-    const profile = await Profile.findOne({
+    const profile = await Profile.find({
       user: req.user.id,
     }).populate("user", ["name", "avatar"]);
 
@@ -60,7 +60,7 @@ router.post(
       purpose,
       visit,
       contactInfo,
-      authority,
+      sold,
     } = req.body;
 
     const propertyFields = {
@@ -77,23 +77,90 @@ router.post(
       purpose,
       visit,
       contactInfo,
-      authority,
+      sold,
     };
     try {
       let profile = await Profile.findOne({ user: req.user.id });
 
-      if (profile) {
-        //update it
-        profile = await Profile.findOneAndUpdate(
-          { user: req.user.id },
-          { $set: propertyFields },
-          { new: true }
-        );
+      profile = new Profile(propertyFields);
 
-        return res.json(profile);
+      //save it to mongo db
+      await profile.save();
+      res.json(profile);
+
+      //   res.json(profile);
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+// @route PUT api/profile
+// @desc Update property profile
+// @access private
+router.put(
+  "/",
+  [
+    auth,
+    [
+      check("image", "image is required").not().isEmpty(),
+      check("price", "price is required with US dollar").isCurrency(),
+      check("yearBuilt", "Year built of property is required").isNumeric(),
+      check("address", "address is required").not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    // Finds the validation errors in this request and wraps them in an object with handy functions
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+    const {
+      image,
+      price,
+      totalSquareFt,
+      yearBuilt,
+      address,
+      company,
+      website,
+      description,
+      homeType,
+      purpose,
+      visit,
+      contactInfo,
+      sold,
+    } = req.body;
+
+    const propertyFields = {
+      user: req.user.id,
+      image,
+      price,
+      totalSquareFt,
+      yearBuilt,
+      address,
+      company,
+      website,
+      description,
+      homeType,
+      purpose,
+      visit,
+      contactInfo,
+      sold,
+    };
+    try {
+      let profile = await Profile.findOne({ user: req.user.id });
+
+      if (!profile) {
+        return res.status(400).json({ msg: "No profiles to update" });
       }
 
-      profile = new Profile(propertyFields);
+      //update it
+      profile = await Profile.findOneAndUpdate(
+        { user: req.user.id },
+        { $set: propertyFields },
+        { new: true }
+      );
 
       //save it to mongo db
       await profile.save();
@@ -112,7 +179,9 @@ router.post(
 // @access Public
 router.get("/", async (req, res) => {
   try {
-    const profiles = await Profile.find().populate("user", ["name", "avatar"]);
+    const profiles = await Profile.find()
+      .populate("user", ["name", "avatar"])
+      .sort({ date: -1 });
 
     if (!profiles) {
       return res.status(400).json({ msg: "No profiles" });
@@ -126,24 +195,25 @@ router.get("/", async (req, res) => {
 });
 
 ////////I dont think i need this one
-// @route GET api/user/:user_id
+// @route GET api/:id
 // @desc property profile by user ID
 // @access Public
-router.get("/user/:user_id", async (req, res) => {
+
+router.get("/:id", async (req, res) => {
   try {
-    const profile = await Profile.findOne({
-      user: req.params.user_id,
+    const profile = await Profile.find({
+      user: req.params.id,
     }).populate("user", ["name", "avatar"]);
 
     if (!profile) {
-      return res.status(400).json({ msg: "No profiles" });
+      return res.status(400).json({ msg: "No profiles found" });
     }
 
     res.json(profile);
   } catch (error) {
     console.error(error.message);
     if (error.kind == "ObjectId") {
-      return res.status(400).json({ msg: "No profiles" });
+      return res.status(400).json({ msg: "No profiles found" });
     }
     res.status(500).send("Server Error");
   }
@@ -153,14 +223,99 @@ router.get("/user/:user_id", async (req, res) => {
 // @route DELETE api/user/:user_id
 // @desc Delete property
 // @access Private
-router.delete("/", auth, async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
   try {
     // DELETE/REMOVE property profiles
-    await Profile.findOneAndRemove({
-      user: req.user.id,
-    });
+
+    const property = await Profile.findById(req.params.id);
+
+    if (!property) {
+      return res.status(400).json({ msg: "Profile not found!" });
+    }
+    if (property.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: "Not Authorized user" });
+    }
+
+    await property.remove();
+    // await Profile.findOneAndRemove({
+    //   user: req.params.user_id,
+    // });
+    //remove user
+    // await User.findOneAndRemove({
+    //   _id: req.user.id,
+    // });
+
+    res.json({ msg: "Property removed!" });
   } catch (error) {
     console.error(error.message);
+    if (error.kind == "ObjectId") {
+      return res.status(400).json({ msg: "Profile not found!" });
+    }
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route PUT api/profile/like/:id
+// @desc save/like a property post
+// @access private
+router.put("/like/:id", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findById(req.params.id);
+
+    if (
+      profile.interests.filter(
+        (interest) => interest.user.toString() === req.user.id
+      ).length > 0
+    ) {
+      return res.status(400).json({ msg: "Profile post aLready liked" });
+    }
+    //otherwise
+
+    profile.interests.push({ user: req.user.id });
+
+    await profile.save();
+
+    res.json(profile.interests);
+  } catch (error) {
+    console.error(error.message);
+    if (error.kind == "ObjectId") {
+      return res.status(400).json({ msg: "Profile not found!" });
+    }
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route PUT api/profile/unlike/:id
+// @desc unlike/dislike a property post
+// @access private
+router.put("/like/:id", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findById(req.params.id);
+
+    if (
+      (profile.interests.filter(
+        (interest) => interest.user.toString() === req.user.id
+      ).length = 0)
+    ) {
+      return res.status(400).json({ msg: "Profile post not liked liked" });
+    }
+    //otherwise
+
+    const interestedIndex = profile.interests
+      .map((interested) => interestded.user.toString())
+      .indexOf(req.user.id);
+
+    profile.interests(InterestedIndex, 1);
+    profile.interests.push({ user: req.user.id });
+
+    await profile.save();
+
+    res.json(profile.interests);
+  } catch (error) {
+    console.error(error.message);
+    if (error.kind == "ObjectId") {
+      return res.status(400).json({ msg: "Profile not found!" });
+    }
     res.status(500).send("Server Error");
   }
 });
