@@ -3,7 +3,6 @@
   "jwtSecretKey": "myJWTsecretKey",
 
   "GOOGLE_MAP_API_KEY": "AIzaSyDO-t4VmJpoxRoXIyRRHasOtV2ESQRn7mQ",
-  
 
   "GOOGLE_CLIENT_ID": "",
   "GOOGLE_CLIENT_SECRET": ""
