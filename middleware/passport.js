@@ -1,16 +1,21 @@
-// const passport = require("passport");
-// const FacebookStrategy = require("passport-facebook").Strategy;
-// const User = require("../model/User")
+const passport = require("passport");
+const User = require("../model/User");
+const config = require("config");
 
-// passport.use(new FacebookStrategy({
-//     clientID: FACEBOOK_APP_ID,
-//     clientSecret: FACEBOOK_APP_SECRET,
-//     callbackURL: "http://www.example.com/auth/facebook/callback"
-//   },
-//   function(accessToken, refreshToken, profile, done) {
-//     User.findOrCreate(..., (err, user) => {
-//       if (err) { return done(err); }
-//       done(null, user);
-//     });
-//   }
-// ))
+var GoogleStrategy = require("passport-google-oauth2").Strategy;
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: GOOGLE_CLIENT_ID,
+      clientSecret: GOOGLE_CLIENT_SECRET,
+      callbackURL: "http://yourdomain:3000/auth/google/callback",
+      passReqToCallback: true,
+    },
+    function (request, accessToken, refreshToken, profile, done) {
+      User.findOrCreate({ googleId: profile.id }, function (err, user) {
+        return done(err, user);
+      });
+    }
+  )
+);

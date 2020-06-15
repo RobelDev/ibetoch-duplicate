@@ -1,12 +1,16 @@
 const express = require("express");
 const connectDB = require("./config/db");
 const app = express();
+const passport = require("passport");
 
 //connect to mongo database
 connectDB();
 
 // initialize body parser mddleware
 app.use(express.json({ extended: false }));
+
+//initialize the passport auth
+//app.use(passport.initialize());
 
 app.get("/", (req, res) => {
   res.send("APP BETOCH");

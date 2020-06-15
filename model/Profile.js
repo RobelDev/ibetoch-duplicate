@@ -9,7 +9,7 @@ const ProfileSchema = new mongoose.Schema({
     {
       user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "users",
+        ref: "user",
       },
     },
   ],
@@ -18,14 +18,27 @@ const ProfileSchema = new mongoose.Schema({
     {
       user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "users",
+        ref: "user",
       },
     },
   ],
-  image: {
-    type: Buffer,
-    required: true,
-  },
+  images: [
+    {
+      image: {
+        type: Object,
+        // value: "",
+      },
+
+      // imageURL: {
+      //   type: String,
+      // },
+    },
+  ],
+
+  // images: {
+  //   type: Object,
+  // },
+
   price: {
     type: String,
     required: true,
@@ -44,6 +57,7 @@ const ProfileSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
   company: {
     type: String,
   },

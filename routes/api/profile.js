@@ -5,6 +5,9 @@ const User = require("../../model/User");
 const config = require("config");
 const auth = require("../../middleware/auth");
 const { check, validationResult } = require("express-validator");
+const fileUpload = require("../../middleware/fileUpload");
+const path = require("path");
+const axios = require("axios");
 
 // @route GET api/profile/property
 // @desc Get property profile
@@ -35,7 +38,6 @@ router.post(
   [
     auth,
     [
-      check("image", "image is required").not().isEmpty(),
       check("price", "price is required with US dollar").isCurrency(),
       check("yearBuilt", "Year built of property is required").isNumeric(),
       check("address", "address is required").not().isEmpty(),
@@ -48,7 +50,6 @@ router.post(
       return res.status(422).json({ errors: errors.array() });
     }
     const {
-      image,
       price,
       totalSquareFt,
       yearBuilt,
@@ -65,7 +66,7 @@ router.post(
 
     const propertyFields = {
       user: req.user.id,
-      image,
+
       price,
       totalSquareFt,
       yearBuilt,
@@ -104,7 +105,6 @@ router.put(
   [
     auth,
     [
-      check("image", "image is required").not().isEmpty(),
       check("price", "price is required with US dollar").isCurrency(),
       check("yearBuilt", "Year built of property is required").isNumeric(),
       check("address", "address is required").not().isEmpty(),
@@ -117,7 +117,6 @@ router.put(
       return res.status(422).json({ errors: errors.array() });
     }
     const {
-      image,
       price,
       totalSquareFt,
       yearBuilt,
@@ -134,7 +133,6 @@ router.put(
 
     const propertyFields = {
       user: req.user.id,
-      image,
       price,
       totalSquareFt,
       yearBuilt,
@@ -180,7 +178,7 @@ router.put(
 router.get("/", async (req, res) => {
   try {
     const profiles = await Profile.find()
-      .populate("user", ["name", "avatar"])
+      .populate("user", ["name"])
       .sort({ date: -1 });
 
     if (!profiles) {
@@ -203,7 +201,7 @@ router.get("/:id", async (req, res) => {
   try {
     const profile = await Profile.find({
       user: req.params.id,
-    }).populate("user", ["name", "avatar"]);
+    }).populate("user", ["name"]);
 
     if (!profile) {
       return res.status(400).json({ msg: "No profiles found" });
@@ -271,7 +269,7 @@ router.put("/like/:id", auth, async (req, res) => {
     }
     //otherwise
 
-    profile.interests.push({ user: req.user.id });
+    profile.interests.unshift({ user: req.user.id });
 
     await profile.save();
 
@@ -288,25 +286,24 @@ router.put("/like/:id", auth, async (req, res) => {
 // @route PUT api/profile/unlike/:id
 // @desc unlike/dislike a property post
 // @access private
-router.put("/like/:id", auth, async (req, res) => {
+router.put("/unlike/:id", auth, async (req, res) => {
   try {
     const profile = await Profile.findById(req.params.id);
 
     if (
-      (profile.interests.filter(
+      profile.interests.filter(
         (interest) => interest.user.toString() === req.user.id
-      ).length = 0)
+      ).length === 0
     ) {
-      return res.status(400).json({ msg: "Profile post not liked liked" });
+      return res.status(400).json({ msg: "Profile post not liked yet" });
     }
     //otherwise
 
     const interestedIndex = profile.interests
-      .map((interested) => interestded.user.toString())
+      .map((interested) => interested.user.toString())
       .indexOf(req.user.id);
 
-    profile.interests(InterestedIndex, 1);
-    profile.interests.push({ user: req.user.id });
+    profile.interests.splice(interestedIndex, 1);
 
     await profile.save();
 
@@ -316,6 +313,115 @@ router.put("/like/:id", auth, async (req, res) => {
     if (error.kind == "ObjectId") {
       return res.status(400).json({ msg: "Profile not found!" });
     }
+    res.status(500).send("Server Error");
+  }
+});
+
+// @route PUT api/profile/images/:profile_id
+// @desc upload a property picture
+// @access private
+router.put(
+  "/images/:profile_id",
+  auth,
+  fileUpload.array("images", 9),
+  async (req, res) => {
+    // //const files = req.files;
+    // const imageField = { image };
+
+    try {
+      const profile = await Profile.findById(req.params.profile_id);
+
+      // if (profile.images) {
+      //   //   //update it
+      //   profile.images = await Profile.images.findOneAndUpdate(
+      //     //     // { user: req.user.id },
+      //     { $set: imageField },
+      //     { new: true }
+      //   );
+
+      //   return res.json(profile.images);
+      // }
+
+      //if not found create a profile
+      //imageField = req.files;
+
+      // const imagePath = path.join(__dirname, "fileUpload/images");
+      // if (!req.files) {
+      //   return res.status(401).json({ msg: "Pick image please" });
+      // }
+
+      //const { image } = req.files;
+      const imageField = { image: req.files };
+
+      //console.log(req.files.file.filename);
+      profile.images.unshift(imageField);
+      //profile.images = new Profile.images(imageField);
+
+      // save it to database
+      await profile.save();
+
+      //send back the profile
+      res.json(profile.images);
+      console.log(req.files);
+    } catch (error) {
+      console.error(error.message);
+      if (error.kind == "ObjectId") {
+        return res.status(400).json({ msg: "Profile not found!" });
+      }
+    }
+  }
+);
+
+// @route DELETE api/profile/image/:image_id
+// @desc Delete image from profile by image id
+// @access Private
+router.delete("/images/:profile_id/:image_id", auth, async (req, res) => {
+  try {
+    // first fetch the profile we want to delete the experience from
+    // const profile = await Profile.findOne({ user: req.user.id });
+    const profile = await Profile.findById(req.params.profile_id);
+
+    if (!profile.images) {
+      return res.status(400).json({ msg: "there is no photo to delete" });
+    }
+
+    //Get remove index
+    const removeIndex = profile.images
+      .map((item) => item._id)
+      .indexOf(req.params.image_id);
+
+    profile.images.splice(removeIndex, 1);
+    await profile.save();
+    res.json(profile.images);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+///google maps
+// @route GET api/profile/google-maps/:address
+// @desc Get google map address for a given address
+// @access public
+router.get("/google-maps/:address", async (req, res) => {
+  try {
+    const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+      req.params.address
+    )}&key=${config.get("GOOGLE_MAP_API_KEY")}
+  `);
+
+    if (!response) {
+      return res
+        .status(422)
+        .json({ msg: "Location not found for the given address" });
+    }
+
+    const coordinates = await response.data.results[0].geometry.location;
+
+    //console.log(coordinates);
+    res.json(coordinates);
+  } catch (error) {
+    console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
