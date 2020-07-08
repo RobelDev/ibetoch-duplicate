@@ -11,17 +11,26 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true,
     unique: true,
+    lowercase: true,
   },
   password: {
     type: String,
     required: true,
   },
-  avatar: {
-    type: String,
+
+  active: {
+    type: Boolean,
+    default: false,
   },
+
+  role: {
+    type: String,
+    default: "subscriber",
+  },
+
   date: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
   },
 });
 
