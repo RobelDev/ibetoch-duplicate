@@ -1,38 +1,260 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #333;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+img {
+  width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Text Styles*/
+.x-large {
+  font-size: 4rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.large {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.lead {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.line {
+  height: 1px;
+  background: #ccc;
+  margin: 1.5rem 0;
+}
+
+/* Overlay background-color: rgba(0, 0, 0, 0.7);*/
+.dark-overlay {
+  opacity: 0.9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Landing Page */
+.landing {
+  position: relative;
+  background: url("./siteImages//betoch.jpg") no-repeat center center/cover;
+  height: 70vh;
+}
+
+.landing-inner {
+  color: #fff;
+  height: 100%;
+  width: 70%;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
+}
+.second-section {
+  position: realative;
+  height: 30vh;
 }
 
-.App-link {
-  color: #61dafb;
+/* .rowHeader {
+  border: "1px solid tranparent";
+  background-color: dimgray;
+} */
+
+.box {
+  max-width: 40em;
+  min-width: 30em;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 2px solid transparent;
+  transform: translate(-50%, -50%);
+  background-color: gray;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.controller {
+  flex: 1;
+  text-align: center;
+  height: 100%;
+  line-height: 3;
+  cursor: pointer;
+  box-shadow: black;
+  background-color: white;
+}
+
+.selected-controller {
+  transition: border 0.4s ease-out;
+  border: 1px solid transparent;
+  background-color: rgb(204, 235, 255);
+  margin: 7px;
+  padding: 2px;
+}
+
+.faqs .faq {
+  margin: 14px;
+  padding: 14px;
+  background-color: #eeeeee;
+  border-radius: 8px;
+  box-shadow: 7px 7px 10px rgb(0, 0, 0, 0.2);
+}
+
+.faqs .faq .faq-question {
+  position: relative;
+  font-size: 21px;
+  padding-right: 75px;
+  transition: all 0.5s ease;
+}
+
+.faqs .faq .faq-answer {
+  opacity: 0;
+  max-height: 0;
+  padding-left: 14px;
+  overflow-y: hidden;
+  transform: all 0.5s ease;
+}
+
+.faqs .faq.show .faq-question {
+  margin-bottom: 14px;
+}
+
+/* .faqs .faq.show .faq-question::after {
+  transform: translateY(-50%) rotate(180deg);
+} */
+
+.faqs .faq.show .faq-answer {
+  opacity: 1;
+  max-height: 400px;
+}
+
+/* .faqs .faq .faq-question::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 1px;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  /* background-image: url(./siteImages/); */
+/* } */
+*/
+
+/* unvisited link */
+Link:link {
+  color: red;
+}
+
+/* visited link */
+link:visited {
+  color: green;
+}
+
+/* mouse over link */
+Link:hover {
+  color: hotpink;
+}
+
+/* selected link */
+Link:active {
+  color: blue;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2.5rem;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+}
+
+#map {
+  height: 100%;
+}
+
+/* unvisited link */
+.nav-item > Link:link {
+  color: green;
+}
+
+/* visited link */
+.nav-item > Link:visited {
+  color: green;
+}
+
+/* mouse over link */
+.nav-link Link:hover {
+  color: red;
+}
+
+/* selected link */
+.nav-link Link:active {
+  color: yellow;
+}
+
+/* Mobile Styles */
+@media (max-width: 975px) {
+  .hide-md {
+    display: none;
   }
-  to {
-    transform: rotate(360deg);
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 700px) {
+  .container {
+    margin-top: 8rem;
+  }
+
+  .hide-sm {
+    display: none;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Text Styles */
+  .x-large {
+    font-size: 3rem;
+  }
+
+  .large {
+    font-size: 2rem;
+  }
+
+  .lead {
+    font-size: 1rem;
   }
 }
