@@ -15,11 +15,11 @@ app.use(morgan("dev"));
 // initialize body parser mddleware
 app.use(express.json({ extended: false }));
 
-app.use(compression());
+// app.use(compression());
 
 //app.use(methodOverride("_method"));
 //initialize the passport auth
-app.use(cors());
+// app.use(cors());
 
 //
 if (process.env.NODE_ENV === "production") {
