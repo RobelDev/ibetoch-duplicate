@@ -1,0 +1,27 @@
+{
+  "mongoURI": "mongodb+srv://robelk1:robelk1@betoch-i8iiy.mongodb.net/<dbname>?retryWrites=true&w=majority",
+  "jwtSecretKey": "myJWTsecretKeyisrandomstuffdoesntmatterihuechgeughnu234561",
+
+  "GOOGLE_MAP_API_KEY": "AIzaSyDO-t4VmJpoxRoXIyRRHasOtV2ESQRn7mQ",
+
+  "FACEBOOK_CLIENT_ID": "627167738008047",
+  "FACEBOOK_CLIENT_SECRET": "6ae64445e8eb27d90c3b106ee7512c37",
+
+  "GOOGLE_OAUTH_CLIENT_ID": "458987910995-e6up20bsk0sunbskslmpb7dt6b7p3kf2.apps.googleusercontent.com",
+  "GOOGLE_OAUTH_SECRET_ID": "0a6_fTq2cFC8DHJvtTKh3oxj",
+  "HTTPS": "true",
+
+  "NODE_ENV": "production",
+  "PORT": "5000",
+
+  "CLIENT_URL": "http://localhost:3000",
+
+  "SENDGRID_API_KEY": "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",
+  "EMAIL_TO": "robelktegegne@gmail.com",
+  "EMAIL_FROM": "noreply@ibetoch.com",
+
+  "AWS_KEY": "AKIAIPJPEGFUKHPS7UAA",
+  "AWS_SECRET": "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",
+  "AWS_BUCKET": "betoch1",
+  "REGION": "us-west-1"
+}
