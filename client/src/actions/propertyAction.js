@@ -147,13 +147,13 @@ export const getProperty = (prop_id) => async (dispatch) => {
     // toast.success(response.data.msg);
   } catch (error) {
     // toast.error(error.response.data.msg);
-    dispatch({
-      type: constants.PROPERTY_ERROR,
-      payload: {
-        msg: error.response.statusText,
-        status: error.response.status,
-      },
-    });
+    // dispatch({
+    //   type: constants.PROPERTY_ERROR,
+    //   payload: {
+    //     msg: error.response.statusText,
+    //     status: error.response.status,
+    //   },
+    // });
     console.error(error);
     //toast.error(error.response.data.msg);
   }
@@ -174,6 +174,7 @@ export const getLikedPropertys = () => async (dispatch) => {
     //toast.success(response.data.msg);
   } catch (error) {
     //toast.error(error.response.data.msg);
+    console.error(error);
     dispatch({
       type: constants.PROPERTY_ERROR,
       payload: {
@@ -181,7 +182,7 @@ export const getLikedPropertys = () => async (dispatch) => {
         status: error.response.status,
       },
     });
-    console.error(error);
+
     //toast.error(response.data.msg);
   }
 };
@@ -221,9 +222,7 @@ export const getSearchedPropertys = (
 //delete a property profile by property id
 export const deleteProperty = (prop_id) => async (dispatch) => {
   try {
-    const response = await axios.delete(
-      `http://localhost:5000/api/property/profile/${prop_id}`
-    );
+    await axios.delete(`http://localhost:5000/api/property/profile/${prop_id}`);
 
     dispatch({ type: constants.DELETE_PROPERTY, payload: prop_id });
     // toast.success(response.data.msg);
