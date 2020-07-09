@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
 //Create a property profile
-export const createProperty = (formData, history) => async (dispatch) => {
+export const createProperty = async (formData, history) => async (dispatch) => {
   //   const userInfo = { formData };
 
   //   const body = JSON.stringify(userInfo);
@@ -75,11 +75,11 @@ export const updateProperty = ({ formData, prop_id, history }) => async (
 };
 
 //get my property profiles by user
-export const getMyPropertys = () => async (dispatch) => {
+export const getMyPropertys = async () => async (dispatch) => {
   try {
     const response = await axios.get(`/api/property/profile/me`);
 
-    dispatch({
+    await dispatch({
       type: constants.GET_MY_PROPERTYS,
       payload: response.data,
     });
@@ -101,11 +101,11 @@ export const getMyPropertys = () => async (dispatch) => {
 };
 
 // get all property profiles
-export const getPropertys = () => async (dispatch) => {
+export const getPropertys = async () => async (dispatch) => {
   try {
     const response = await axios.get("/api/property/profile/all");
 
-    dispatch({
+    await dispatch({
       type: constants.GET_PROPERTYS,
       payload: response.data,
     });
@@ -126,11 +126,11 @@ export const getPropertys = () => async (dispatch) => {
 };
 
 //Get a property by id
-export const getProperty = (prop_id) => async (dispatch) => {
+export const getProperty = async (prop_id) => async (dispatch) => {
   try {
     const response = await axios.get(`/api/property/profile/${prop_id}`);
 
-    dispatch({
+    await dispatch({
       type: constants.GET_PROPERTY,
       payload: response.data,
     });

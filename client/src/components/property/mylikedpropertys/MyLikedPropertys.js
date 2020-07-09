@@ -26,7 +26,7 @@ const MyLikedPropertys = ({
         <h3>My liked list properties</h3>
         <hr />
         <div className="grid-3 ">
-          {!loading && mylikedpropertys.length > 0 ? (
+          {!loading && mylikedpropertys && mylikedpropertys.length > 0 ? (
             mylikedpropertys.map((property) => (
               <PropertysItem key={property._id} property={property} />
             ))
