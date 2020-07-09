@@ -19,8 +19,8 @@ const MapContainer = ({ google, coordinates, price }) => {
         // key={index}
         // id={index}
         position={{
-          lat: coordinates.lat,
-          lng: coordinates.lng,
+          lat: parseFloat(coordinates.lat),
+          lng: parseFloat(coordinates.lng),
         }}
         onClick={() => console.log(`price: ${price} `)}
       />
@@ -31,10 +31,10 @@ const MapContainer = ({ google, coordinates, price }) => {
     <Map
       google={google}
       zoom={8}
-      style={{ width: "100vw", height: "100vh" }}
+      style={{ width: "100%", height: "50rem" }}
       initialCenter={{
-        lat: coordinates.lat,
-        lng: coordinates.lng,
+        lat: parseFloat(coordinates.lat),
+        lng: parseFloat(coordinates.lng),
       }}
     >
       {displayMarkers()}
