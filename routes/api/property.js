@@ -76,7 +76,7 @@ router.post(
 
       //save it to mongo db
       await property.save();
-      res.json({ property, msg: "Property profile created" });
+      res.json(property);
 
       //   res.json(profile);
     } catch (error) {
@@ -159,7 +159,7 @@ router.put(
       //save it to mongo db
       await property.save();
 
-      res.json({ property, msg: "Property profile updated" });
+      res.json(property);
 
       //   res.json(profile);
     } catch (error) {
@@ -187,7 +187,7 @@ router.get("/profile/me", auth, async (req, res) => {
       return res.status(400).json({ msg: "There is no profile" });
     }
 
-    res.json({ propertys, msg: "My property list" });
+    res.json(propertys);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");
@@ -208,7 +208,7 @@ router.get("/profile/all", async (req, res) => {
       return res.status(400).json({ msg: "No profiles" });
     }
 
-    res.json({ propertys, msg: "All propertys" });
+    res.json(propertys);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");
@@ -230,10 +230,7 @@ router.get("/profile/:prop_id", async (req, res) => {
       return res.status(400).json({ msg: "No property found" });
     }
 
-    res.json({
-      property,
-      msg: "Here a property profile for a random property",
-    });
+    res.json(property);
   } catch (error) {
     console.error(error.message);
     if (error.kind == "ObjectId") {
@@ -319,7 +316,7 @@ router.put("/profile/like/:prop_id", auth, async (req, res) => {
     if (error.kind == "ObjectId") {
       return res.status(400).json({ msg: "Profile not found!" });
     }
-    res.status(500).send("Server Error");
+    res.status(500).send("Server Error something not right");
   }
 });
 
@@ -589,13 +586,13 @@ router.get(
       propertys.map((property) => {
         property.address.toLowerCase().indexOf(queryAddress.toLowerCase()) !==
           -1 &&
-        property.purpose.includes(queryPurpose) !== -1 &&
-        property.homeType.includes(queryHomeType) !== -1 &&
-        property.bedroom >= queryBedroom !== -1 &&
-        property.bathroom >= queryBathroom
-          ? arrayPropertys.push(property)
-          : //console.log(singleproperty)
-            "";
+          property.purpose.includes(queryPurpose) !== -1 &&
+          property.homeType.includes(queryHomeType) !== -1 &&
+          property.bedroom >= queryBedroom !== -1 &&
+          property.bathroom >= queryBathroom &&
+          arrayPropertys.push(property);
+        // : //console.log(singleproperty)
+        //   (arrayPropertys = [ msg: "Not found" ]);
       });
 
       res.json(arrayPropertys);
