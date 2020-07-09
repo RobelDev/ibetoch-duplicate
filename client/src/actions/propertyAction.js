@@ -11,7 +11,7 @@ export const createProperty = (formData, history) => async (dispatch) => {
 
   try {
     const response = await axios.post(
-      "https://fathomless-escarpment-92562.herokuapp.com/api/property/profile",
+      "http://localhost:5000/api/property/profile",
       formData
     );
 
@@ -47,7 +47,7 @@ export const updateProperty = ({ formData, prop_id, history }) => async (
 ) => {
   try {
     const response = await axios.put(
-      `https://fathomless-escarpment-92562.herokuapp.com/api/property/profile/${prop_id}`,
+      `http://localhost:5000/api/property/profile/${prop_id}`,
       formData
     );
 
@@ -81,7 +81,7 @@ export const updateProperty = ({ formData, prop_id, history }) => async (
 export const getMyPropertys = () => async (dispatch) => {
   try {
     const response = await axios.get(
-      `https://fathomless-escarpment-92562.herokuapp.com/api/property/profile/me`
+      `http://localhost:5000/api/property/profile/me`
     );
 
     dispatch({
@@ -109,7 +109,7 @@ export const getMyPropertys = () => async (dispatch) => {
 export const getPropertys = () => async (dispatch) => {
   try {
     const response = await axios.get(
-      "https://fathomless-escarpment-92562.herokuapp.com/api/property/profile/all"
+      "http://localhost:5000/api/property/profile/all"
     );
 
     dispatch({
@@ -136,7 +136,7 @@ export const getPropertys = () => async (dispatch) => {
 export const getProperty = (prop_id) => async (dispatch) => {
   try {
     const response = await axios.get(
-      `https://fathomless-escarpment-92562.herokuapp.com/api/property/profile/${prop_id}`
+      `http://localhost:5000/api/property/profile/${prop_id}`
     );
 
     dispatch({
@@ -163,7 +163,7 @@ export const getProperty = (prop_id) => async (dispatch) => {
 export const getLikedPropertys = () => async (dispatch) => {
   try {
     const response = await axios.get(
-      "https://fathomless-escarpment-92562.herokuapp.com/api/property/likedpropertys"
+      "http://localhost:5000/api/property/likedpropertys"
     );
 
     dispatch({
@@ -196,7 +196,7 @@ export const getSearchedPropertys = (
 ) => async (dispatch) => {
   try {
     const response = await axios.get(
-      `https://fathomless-escarpment-92562.herokuapp.com/api/property/search/${address}/${purpose}/${homeType}/${bedroom}/${bathroom}`
+      `http://localhost:5000/api/property/search/${address}/${purpose}/${homeType}/${bedroom}/${bathroom}`
     );
 
     dispatch({
@@ -222,9 +222,7 @@ export const getSearchedPropertys = (
 //delete a property profile by property id
 export const deleteProperty = (prop_id) => async (dispatch) => {
   try {
-    await axios.delete(
-      `https://fathomless-escarpment-92562.herokuapp.com/api/property/profile/${prop_id}`
-    );
+    await axios.delete(`http://localhost:5000/api/property/profile/${prop_id}`);
 
     dispatch({ type: constants.DELETE_PROPERTY, payload: prop_id });
     // toast.success(response.data.msg);
@@ -246,7 +244,7 @@ export const addLike = (prop_id) => async (dispatch) => {
   try {
     ///profile/like/:prop_id
     const response = await axios.put(
-      `https://fathomless-escarpment-92562.herokuapp.com/api/property/profile/like/${prop_id}`
+      `http://localhost:5000/api/property/profile/like/${prop_id}`
     );
 
     dispatch({
@@ -283,7 +281,7 @@ export const addImages = ({ image, prop_id, history }) => async (dispatch) => {
     formData.append("image", image);
 
     const response = await axios.put(
-      `https://fathomless-escarpment-92562.herokuapp.com/api/property/profile/images/${prop_id}`,
+      `http://localhost:5000/api/property/profile/images/${prop_id}`,
       formData
     );
 
@@ -318,7 +316,7 @@ export const deleteImage = ({ prop_id, image_id, history }) => async (
   try {
     // const response =
     await axios.delete(
-      `https://fathomless-escarpment-92562.herokuapp.com/api/property/profile/images/${prop_id}/${image_id}`
+      `http://localhost:5000/api/property/profile/images/${prop_id}/${image_id}`
     );
 
     dispatch({ type: constants.REMOVE_IMAGE, payload: image_id });
@@ -343,7 +341,7 @@ export const deleteImage = ({ prop_id, image_id, history }) => async (
 export const findOnMap = (address) => async (dispatch) => {
   try {
     const response = await axios.get(
-      `https://fathomless-escarpment-92562.herokuapp.com/api/property/google-maps/${address}`
+      `http://localhost:5000/api/property/google-maps/${address}`
     );
 
     dispatch({

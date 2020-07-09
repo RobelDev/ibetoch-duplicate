@@ -14,7 +14,7 @@
   "NODE_ENV": "production",
   "PORT": "5000",
 
-  "CLIENT_URL": "https://fathomless-escarpment-92562.herokuapp.com/",
+  "CLIENT_URL": "http://localhost:3000",
 
   "SENDGRID_API_KEY": "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",
   "EMAIL_TO": "robelktegegne@gmail.com",
