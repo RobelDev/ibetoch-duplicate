@@ -17,7 +17,7 @@ const Propertys = ({ getPropertys, propertyState: { propertys, loading } }) => {
     <Fragment>
       <div className="grid-3 ">
         {" "}
-        {!loading && propertys.length > 0 ? (
+        {!loading && propertys && propertys.length > 0 ? (
           propertys.map((property) => (
             <PropertysItem
               key={property._id}
@@ -42,7 +42,7 @@ const Propertys = ({ getPropertys, propertyState: { propertys, loading } }) => {
 Propertys.propTypes = {
   propertyState: PropTypes.object.isRequired,
   getPropertys: PropTypes.func.isRequired,
-  // propertys: PropTypes.object.isRequired,
+  // propertys: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({

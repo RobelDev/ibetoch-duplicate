@@ -34,7 +34,7 @@ const MyPropertys = ({
         <hr />
 
         <div className="grid-3">
-          {mypropertys.length > 0 ? (
+          {!loading && mypropertys && mypropertys.length > 0 ? (
             mypropertys.map((property) => (
               <MyPropertyItem
                 key={property._id}
@@ -63,6 +63,7 @@ const MyPropertys = ({
 MyPropertys.propTypes = {
   getMyPropertys: PropTypes.func.isRequired,
   propertyState: PropTypes.object.isRequired,
+  // mypropertys: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({

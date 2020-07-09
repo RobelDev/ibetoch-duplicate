@@ -22,7 +22,7 @@ const MySearchedPropertys = ({
   return (
     <Fragment>
       <div className="grid-3 my-4">
-        {!loading && mysearchedpropertys.length > 0 ? (
+        {!loading && mysearchedpropertys && mysearchedpropertys.length > 0 ? (
           mysearchedpropertys.map((property) => (
             <PropertysItem key={property._id} property={property} />
           ))
@@ -37,6 +37,7 @@ const MySearchedPropertys = ({
 MySearchedPropertys.propTypes = {
   propertyState: PropTypes.object.isRequired,
   getSearchedPropertys: PropTypes.func.isRequired,
+  // mysearchedpropertys: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({

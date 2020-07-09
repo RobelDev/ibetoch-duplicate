@@ -196,6 +196,7 @@ ViewProperty.propTypes = {
   findOnMap: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,
   authState: PropTypes.object.isRequired,
+  // property: PropTypes.object.isRequired,
 };
 
 // ViewProperty.defaultProps = {
