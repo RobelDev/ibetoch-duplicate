@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
 //Create a property profile
-export const createProperty = async (formData, history) => async (dispatch) => {
+export const createProperty = (formData, history) => async (dispatch) => {
   //   const userInfo = { formData };
 
   //   const body = JSON.stringify(userInfo);
@@ -75,11 +75,11 @@ export const updateProperty = ({ formData, prop_id, history }) => async (
 };
 
 //get my property profiles by user
-export const getMyPropertys = async () => async (dispatch) => {
+export const getMyPropertys = () => async (dispatch) => {
   try {
     const response = await axios.get(`/api/property/profile/me`);
 
-    await dispatch({
+    dispatch({
       type: constants.GET_MY_PROPERTYS,
       payload: response.data,
     });
@@ -101,11 +101,11 @@ export const getMyPropertys = async () => async (dispatch) => {
 };
 
 // get all property profiles
-export const getPropertys = async () => async (dispatch) => {
+export const getPropertys = () => async (dispatch) => {
   try {
     const response = await axios.get("/api/property/profile/all");
 
-    await dispatch({
+    dispatch({
       type: constants.GET_PROPERTYS,
       payload: response.data,
     });
@@ -126,11 +126,11 @@ export const getPropertys = async () => async (dispatch) => {
 };
 
 //Get a property by id
-export const getProperty = async (prop_id) => async (dispatch) => {
+export const getProperty = (prop_id) => async (dispatch) => {
   try {
     const response = await axios.get(`/api/property/profile/${prop_id}`);
 
-    await dispatch({
+    dispatch({
       type: constants.GET_PROPERTY,
       payload: response.data,
     });
@@ -164,13 +164,13 @@ export const getLikedPropertys = () => async (dispatch) => {
   } catch (error) {
     //toast.error(error.response.data.msg);
     console.error(error);
-    dispatch({
-      type: constants.PROPERTY_ERROR,
-      payload: {
-        msg: error.response.statusText,
-        status: error.response.status,
-      },
-    });
+    // dispatch({
+    //   type: constants.PROPERTY_ERROR,
+    //   payload: {
+    //     msg: error.response.statusText,
+    //     status: error.response.status,
+    //   },
+    // });
 
     //toast.error(response.data.msg);
   }
@@ -239,7 +239,7 @@ export const addLike = (prop_id) => async (dispatch) => {
       payload: { likes: response.data, prop_id },
     });
 
-    toast.success("");
+    toast.success("Image added");
   } catch (error) {
     console.log(error);
     // toast.error(error.response.data.msg);

@@ -22,7 +22,7 @@ export default function (state = initialState, action) {
         mypropertys: [action.payload.property, ...state.mypropertys],
         // propertys: [action.payload.property, ...state.propertys],
         //property: action.payload.property,
-        msg: action.payload.msg,
+        // msg: action.payload.msg,
         loading: false,
       };
 
@@ -42,31 +42,31 @@ export default function (state = initialState, action) {
         //     ? [action.payload.property.property, ...state.propertys]
         //     : property
         // ),
-        msg: action.payload.property.msg,
+        // msg: action.payload.property.msg,
         loading: false,
       };
 
     case constants.GET_MY_PROPERTYS:
       return {
         ...state,
-        mypropertys: action.payload.propertys,
-        msg: action.payload.msg,
+        mypropertys: action.payload,
+        // msg: action.payload.msg,
         loading: false,
       };
 
     case constants.GET_PROPERTYS:
       return {
         ...state,
-        propertys: action.payload.propertys,
-        msg: action.payload.msg,
+        propertys: action.payload,
+        // msg: action.payload.msg,
         loading: false,
       };
 
     case constants.GET_PROPERTY:
       return {
         ...state,
-        property: action.payload.property,
-        msg: action.payload.msg,
+        property: action.payload,
+        // msg: action.payload.msg,
         loading: false,
       };
 
