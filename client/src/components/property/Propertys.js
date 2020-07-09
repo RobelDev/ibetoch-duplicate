@@ -42,7 +42,7 @@ const Propertys = ({ getPropertys, propertyState: { propertys, loading } }) => {
 Propertys.propTypes = {
   propertyState: PropTypes.object.isRequired,
   getPropertys: PropTypes.func.isRequired,
-  // propertys: PropTypes.array.isRequired,
+  propertys: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({

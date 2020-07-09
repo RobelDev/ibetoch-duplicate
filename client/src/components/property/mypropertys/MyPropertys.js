@@ -63,7 +63,7 @@ const MyPropertys = ({
 MyPropertys.propTypes = {
   getMyPropertys: PropTypes.func.isRequired,
   propertyState: PropTypes.object.isRequired,
-  // mypropertys: PropTypes.array.isRequired,
+  mypropertys: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({

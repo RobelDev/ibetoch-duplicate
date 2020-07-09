@@ -42,6 +42,7 @@ const MyLikedPropertys = ({
 MyLikedPropertys.propTypes = {
   getLikedPropertys: PropTypes.func.isRequired,
   propertyState: PropTypes.object.isRequired,
+  mylikedpropertys: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({

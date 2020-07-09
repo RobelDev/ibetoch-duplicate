@@ -37,7 +37,7 @@ const MySearchedPropertys = ({
 MySearchedPropertys.propTypes = {
   propertyState: PropTypes.object.isRequired,
   getSearchedPropertys: PropTypes.func.isRequired,
-  // mysearchedpropertys: PropTypes.array.isRequired,
+  mysearchedpropertys: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({

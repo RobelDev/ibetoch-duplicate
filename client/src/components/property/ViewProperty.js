@@ -191,12 +191,12 @@ const ViewProperty = ({
 ViewProperty.propTypes = {
   getProperty: PropTypes.func.isRequired,
   propertyState: PropTypes.object.isRequired,
-  // coordinates: PropTypes.object.isRequired,
+  coordinates: PropTypes.object,
   deleteImage: PropTypes.func.isRequired,
   findOnMap: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,
   authState: PropTypes.object.isRequired,
-  // property: PropTypes.object.isRequired,
+  property: PropTypes.object,
 };
 
 // ViewProperty.defaultProps = {
