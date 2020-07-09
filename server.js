@@ -4,6 +4,7 @@ const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
 const path = require("path");
+const compression = require("compression");
 //connect to mongo database
 connectDB();
 
@@ -13,6 +14,8 @@ connectDB();
 app.use(morgan("dev"));
 // initialize body parser mddleware
 app.use(express.json({ extended: false }));
+
+app.use(compression());
 
 //app.use(methodOverride("_method"));
 //initialize the passport auth
