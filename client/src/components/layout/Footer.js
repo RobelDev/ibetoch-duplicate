@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 const Footer = () => {
   return (
     <Fragment>
-      <footer class="page-footer indigo">
+      <footer className="page-footer indigo">
         <div
           className="container "
           // style={{ backgroundColor: "rgb(230, 243, 255)", fontSize: "16px" }}

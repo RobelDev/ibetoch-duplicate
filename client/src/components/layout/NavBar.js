@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logout } from "../../actions/authAction";
+import logo from "../../siteImages/android-chrome-512x512.png";
 
 const NavBar = ({ history, authState: { isAuth, loading, user }, logout }) => {
   const isActive = (path) => {
@@ -169,6 +170,7 @@ const NavBar = ({ history, authState: { isAuth, loading, user }, logout }) => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
       <h2 className="navbar-brand ">
         {/* <Link to="/" className="navbar-brand text-primary mb-n2"> */}{" "}
+        <img src={logo} alt="logo" style={{ width: "32px", height: "32px" }} />{" "}
         iBetoch
         {/* </Link> */}
       </h2>
