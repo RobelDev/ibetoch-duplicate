@@ -11,9 +11,7 @@ const HelpItem = ({ faq, index, toggle }) => {
         toggle(index);
 
         if (faq.show) {
-          {
-            setArrow(<i className="fa fa-arrow-up" />);
-          }
+          setArrow(<i className="fa fa-arrow-up" />);
         } else {
           setArrow(<i className="fa fa-arrow-down" />);
         }
@@ -31,6 +29,10 @@ const HelpItem = ({ faq, index, toggle }) => {
   );
 };
 
-HelpItem.propTypes = {};
+HelpItem.propTypes = {
+  faq: PropTypes.object.isRequired,
+  toggle: PropTypes.func.isRequired,
+  // index: PropTypes.number.isRequired,
+};
 
 export default HelpItem;

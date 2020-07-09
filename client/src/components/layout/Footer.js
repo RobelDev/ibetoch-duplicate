@@ -54,31 +54,31 @@ const Footer = () => {
                 <a href="/affilate">Become An Affilate</a>
               </h6>
             </div>
-            |
+            <p className="hide-sm hide-md"> | </p>
             <div className="col-md-2 mx-n4">
               <h6 className="text-uppercase font-weight-bold">
                 <a href="/partners">Partners</a>
               </h6>
             </div>
-            |
+            <p className="hide-sm hide-md"> | </p>
             <div className="col-md-2  mx-n4">
               <h6 className="text-uppercase font-weight-bold">
                 <a href="/help">FAQ</a>
               </h6>
             </div>
-            |
+            <p className="hide-sm hide-md"> | </p>
             <div className="col-md-2  mx-n4">
               <h6 className="text-uppercase font-weight-bold">
                 <a href="/contactus">Contact Us</a>
               </h6>
             </div>
-            |
+            <p className="hide-sm hide-md"> | </p>
             <div className="col-md-2  mx-n4 ">
               <h6 className="text-uppercase font-weight-bold">
                 <a href="/terms">Terms & Conditions</a>
               </h6>
             </div>
-            |
+            <p className="hide-sm hide-md"> | </p>
             <div className="col-md-2  mx-n4">
               <h6 className="text-uppercase font-weight-bold">
                 <a href="/privacypolicy">Privacy Policy</a>

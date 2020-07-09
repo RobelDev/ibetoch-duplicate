@@ -2,8 +2,8 @@ import React from "react";
 
 const Contactus = () => {
   return (
-    <div>
-      <h1>Contact us</h1>
+    <div className="container">
+      <h1>Contact Us. This page will be updated soon</h1>
     </div>
   );
 };

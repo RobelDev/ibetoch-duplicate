@@ -2,8 +2,8 @@ import React from "react";
 
 const Affilate = () => {
   return (
-    <div>
-      <h1>Affilate</h1>
+    <div className="container">
+      <h1>Become an Affilate. This page will be updated soon</h1>
     </div>
   );
 };

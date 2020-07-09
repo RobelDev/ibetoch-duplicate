@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-const terms = () => {
-    return (
-        <div>
-            <h1>Terms and conditions</h1>
-        </div>
-    )
-}
+const Terms = () => {
+  return (
+    <div className="container">
+      <h1>Terms and Conditions page. This page will be updated soon</h1>
+    </div>
+  );
+};
 
-export default terms
+export default Terms;

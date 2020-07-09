@@ -80,12 +80,13 @@ const CardItems = () => {
       </p>
       <hr />
       <h5 className="text-center">
-        Contact or Follow the creator of this web application at{" "}
+        Contact or Follow the creator and owner of this site at{" "}
         <a
           className="li-ic"
           href="https://www.linkedin.com/in/robel-tegegne-93a33b133/"
         >
-          <i className="fab fa-linkedin-in white-text mr-1" />:@
+          <i className="fab fa-linkedin-in white-text mr-1" />
+          :@
           <strong>Robel Kidin Tegegne</strong>{" "}
         </a>
       </h5>

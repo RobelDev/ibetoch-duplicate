@@ -31,19 +31,19 @@ const Help = () => {
       show: false,
     },
     {
-      question: "Who can use iBetoch",
-      answer: "Anyone can use iBetoch.",
+      question: "What is iBetoch's privacy",
+      answer: "please visit privacy and polict on the bottom page.",
       show: false,
     },
     {
-      question: "Is iBetoch safe?",
-      answer: "iBetoch is safe to use. We value users privacy.",
-      show: false,
-    },
-    {
-      question: "What is iBetoch main mission?",
+      question: "How can I report a suspicious property listing or account?",
       answer:
-        "iBetoch is here to make finding your next home easy and handy. No need to waste your time. ",
+        "Please write us an email for the time. With the property id untill report button is updated.",
+      show: false,
+    },
+    {
+      question: "How can I report a bug or issue with the website?",
+      answer: "Please email us so we can take a look at the proplem. ",
       show: false,
     },
   ]);

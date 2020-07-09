@@ -173,6 +173,10 @@ const NavBar = ({ history, authState: { isAuth, loading, user }, logout }) => {
         <img src={logo} alt="logo" style={{ width: "32px", height: "32px" }} />{" "}
         iBetoch
         {/* </Link> */}
+        <p className="text-danger">
+          {" "}
+          <small>NOT OFFICALLY DEPLOYED. UNDER TESTING.</small>
+        </p>
       </h2>
       <button className="navbar-toggler" type="button" onClick={onToggle}>
         {" "}
