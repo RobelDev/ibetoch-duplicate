@@ -10,10 +10,7 @@ export const createProperty = (formData, history) => async (dispatch) => {
   //   const body = JSON.stringify(userInfo);
 
   try {
-    const response = await axios.post(
-      "http://localhost:5000/api/property/profile",
-      formData
-    );
+    const response = await axios.post("/api/property/profile", formData);
 
     dispatch({
       type: constants.CREATE_PROPERTY,
@@ -47,7 +44,7 @@ export const updateProperty = ({ formData, prop_id, history }) => async (
 ) => {
   try {
     const response = await axios.put(
-      `http://localhost:5000/api/property/profile/${prop_id}`,
+      `/api/property/profile/${prop_id}`,
       formData
     );
 
@@ -80,9 +77,7 @@ export const updateProperty = ({ formData, prop_id, history }) => async (
 //get my property profiles by user
 export const getMyPropertys = () => async (dispatch) => {
   try {
-    const response = await axios.get(
-      `http://localhost:5000/api/property/profile/me`
-    );
+    const response = await axios.get(`/api/property/profile/me`);
 
     dispatch({
       type: constants.GET_MY_PROPERTYS,
@@ -108,9 +103,7 @@ export const getMyPropertys = () => async (dispatch) => {
 // get all property profiles
 export const getPropertys = () => async (dispatch) => {
   try {
-    const response = await axios.get(
-      "http://localhost:5000/api/property/profile/all"
-    );
+    const response = await axios.get("/api/property/profile/all");
 
     dispatch({
       type: constants.GET_PROPERTYS,
@@ -135,9 +128,7 @@ export const getPropertys = () => async (dispatch) => {
 //Get a property by id
 export const getProperty = (prop_id) => async (dispatch) => {
   try {
-    const response = await axios.get(
-      `http://localhost:5000/api/property/profile/${prop_id}`
-    );
+    const response = await axios.get(`/api/property/profile/${prop_id}`);
 
     dispatch({
       type: constants.GET_PROPERTY,
@@ -162,9 +153,7 @@ export const getProperty = (prop_id) => async (dispatch) => {
 // get all liked property profiles
 export const getLikedPropertys = () => async (dispatch) => {
   try {
-    const response = await axios.get(
-      "http://localhost:5000/api/property/likedpropertys"
-    );
+    const response = await axios.get("/api/property/likedpropertys");
 
     dispatch({
       type: constants.GET_LIKED_LISTS,
@@ -196,7 +185,7 @@ export const getSearchedPropertys = (
 ) => async (dispatch) => {
   try {
     const response = await axios.get(
-      `http://localhost:5000/api/property/search/${address}/${purpose}/${homeType}/${bedroom}/${bathroom}`
+      `/api/property/search/${address}/${purpose}/${homeType}/${bedroom}/${bathroom}`
     );
 
     dispatch({
@@ -222,7 +211,7 @@ export const getSearchedPropertys = (
 //delete a property profile by property id
 export const deleteProperty = (prop_id) => async (dispatch) => {
   try {
-    await axios.delete(`http://localhost:5000/api/property/profile/${prop_id}`);
+    await axios.delete(`/api/property/profile/${prop_id}`);
 
     dispatch({ type: constants.DELETE_PROPERTY, payload: prop_id });
     // toast.success(response.data.msg);
@@ -243,9 +232,7 @@ export const deleteProperty = (prop_id) => async (dispatch) => {
 export const addLike = (prop_id) => async (dispatch) => {
   try {
     ///profile/like/:prop_id
-    const response = await axios.put(
-      `http://localhost:5000/api/property/profile/like/${prop_id}`
-    );
+    const response = await axios.put(`/api/property/profile/like/${prop_id}`);
 
     dispatch({
       type: constants.ADD_LIKE,
@@ -281,7 +268,7 @@ export const addImages = ({ image, prop_id, history }) => async (dispatch) => {
     formData.append("image", image);
 
     const response = await axios.put(
-      `http://localhost:5000/api/property/profile/images/${prop_id}`,
+      `/api/property/profile/images/${prop_id}`,
       formData
     );
 
@@ -315,9 +302,7 @@ export const deleteImage = ({ prop_id, image_id, history }) => async (
 ) => {
   try {
     // const response =
-    await axios.delete(
-      `http://localhost:5000/api/property/profile/images/${prop_id}/${image_id}`
-    );
+    await axios.delete(`/api/property/profile/images/${prop_id}/${image_id}`);
 
     dispatch({ type: constants.REMOVE_IMAGE, payload: image_id });
     toast.success("Image Removed");
@@ -340,9 +325,7 @@ export const deleteImage = ({ prop_id, image_id, history }) => async (
 // to do:
 export const findOnMap = (address) => async (dispatch) => {
   try {
-    const response = await axios.get(
-      `http://localhost:5000/api/property/google-maps/${address}`
-    );
+    const response = await axios.get(`/api/property/google-maps/${address}`);
 
     dispatch({
       type: constants.GET_MAP,

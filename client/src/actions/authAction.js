@@ -15,11 +15,7 @@ export const register = ({ name, email, password }) => async (dispatch) => {
   const body = JSON.stringify(userInfo);
 
   try {
-    const response = await axios.post(
-      "http://localhost:5000/api/users/register",
-      body,
-      config
-    );
+    const response = await axios.post("/api/users/register", body, config);
 
     dispatch({
       type: constants.REGISTER_SUCCESS,
@@ -45,7 +41,7 @@ export const loadUser = () => async (dispatch) => {
   }
 
   try {
-    const response = await axios.get("http://localhost:5000/api/auth/signin");
+    const response = await axios.get("/api/auth/signin");
 
     //console.log(response.data);
     toast.success(response.data.msg);
@@ -75,11 +71,7 @@ export const activateAccount = (token) => async (dispatch) => {
   const body = JSON.stringify(userInfo);
 
   try {
-    const response = await axios.post(
-      "http://localhost:5000/api/users/activate",
-      body,
-      config
-    );
+    const response = await axios.post("/api/users/activate", body, config);
 
     dispatch({
       type: constants.ACCTIVATE_SUCCESS,
@@ -109,11 +101,7 @@ export const login = ({ email, password }) => async (dispatch) => {
   const body = JSON.stringify(userInfo);
 
   try {
-    const response = await axios.post(
-      "http://localhost:5000/api/auth/signin",
-      body,
-      config
-    );
+    const response = await axios.post("/api/auth/signin", body, config);
 
     dispatch({
       type: constants.LOGIN_SUCCESS,
@@ -145,11 +133,7 @@ export const forgotPassword = ({ email }) => async (dispatch) => {
 
   const body = JSON.stringify(userInfo);
   try {
-    const response = await axios.put(
-      "http://localhost:5000/api/users/forgot",
-      body,
-      config
-    );
+    const response = await axios.put("/api/users/forgot", body, config);
 
     dispatch({
       type: constants.FORGOT_SUCCESS,
@@ -178,11 +162,7 @@ export const resetPassword = ({ newPassword, token }) => async (dispatch) => {
   const body = JSON.stringify(userInfo);
 
   try {
-    const response = await axios.put(
-      "http://localhost:5000/api/users/reset",
-      body,
-      config
-    );
+    const response = await axios.put("/api/users/reset", body, config);
     //console.log(response.data);
 
     dispatch({
@@ -215,11 +195,7 @@ export const googleResponse = (idToken) => async (dispatch) => {
   const body = JSON.stringify(userInfo);
 
   try {
-    const res = await axios.post(
-      "http://localhost:5000/api/auth/google",
-      body,
-      config
-    );
+    const res = await axios.post("/api/auth/google", body, config);
 
     dispatch({ type: constants.GOOGLE_LOGIN_SUCCESS, payload: res.data });
     toast.success(res.data.msg);
@@ -246,11 +222,7 @@ export const facebookResponse = ({ userID, accessToken }) => async (
 
   //console.log(userID, accessToken);
   try {
-    const res = await axios.post(
-      "http://localhost:5000/api/auth/facebook",
-      body,
-      config
-    );
+    const res = await axios.post("/api/auth/facebook", body, config);
     dispatch({ type: constants.FACEBOOK_LOGIN_SUCCESS, payload: res.data });
     toast.success(res.data.msg);
     dispatch(loadUser());
