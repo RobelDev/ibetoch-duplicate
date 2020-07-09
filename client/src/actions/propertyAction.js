@@ -90,8 +90,8 @@ export const getMyPropertys = () => async (dispatch) => {
     dispatch({
       type: constants.PROPERTY_ERROR,
       payload: {
-        msg: error.response.statusText,
-        status: error.response.status,
+        // msg: error.response.statusText,
+        // status: error.response.status,
       },
     });
 
