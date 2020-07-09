@@ -18,9 +18,9 @@ const Search = ({ getSearchedPropertys }) => {
 
   const { address, purpose, bedroom, bathroom, homeType } = searchData;
 
-  useEffect(() => {
-    getSearchedPropertys(address, purpose, bedroom, bathroom, homeType);
-  }, [getSearchedPropertys, address, purpose, bedroom, bathroom, homeType]);
+  // useEffect(() => {
+  //   // getSearchedPropertys(address, purpose, bedroom, bathroom, homeType);
+  // }, [getSearchedPropertys, address, purpose, bedroom, bathroom, homeType]);
 
   // .substr(0, 22)
 
