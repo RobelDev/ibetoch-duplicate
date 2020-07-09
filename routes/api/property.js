@@ -76,7 +76,7 @@ router.post(
 
       //save it to mongo db
       await property.save();
-      res.json({ property, msg: "Property profile created" });
+      res.json(property);
 
       //   res.json(profile);
     } catch (error) {
@@ -159,7 +159,7 @@ router.put(
       //save it to mongo db
       await property.save();
 
-      res.json({ property, msg: "Property profile updated" });
+      res.json(property);
 
       //   res.json(profile);
     } catch (error) {
@@ -187,7 +187,7 @@ router.get("/profile/me", auth, async (req, res) => {
       return res.status(400).json({ msg: "There is no profile" });
     }
 
-    res.json({ propertys, msg: "My property list" });
+    res.json(propertys);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");
@@ -208,7 +208,7 @@ router.get("/profile/all", async (req, res) => {
       return res.status(400).json({ msg: "No profiles" });
     }
 
-    res.json({ propertys, msg: "All propertys" });
+    res.json(propertys);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");
@@ -230,10 +230,7 @@ router.get("/profile/:prop_id", async (req, res) => {
       return res.status(400).json({ msg: "No property found" });
     }
 
-    res.json({
-      property,
-      msg: "Here a property profile for a random property",
-    });
+    res.json(property);
   } catch (error) {
     console.error(error.message);
     if (error.kind == "ObjectId") {
@@ -582,7 +579,7 @@ router.get(
     //get all property
     //loop throught the propertys if they have your user id on their likes array
     try {
-      const arrayPropertys = [];
+      const arrayPropertys = {};
 
       // res.json(filteredPropertys);
 
