@@ -26,9 +26,10 @@ const ViewProperty = ({
     prop_id: "",
     owner: false,
     propAddress: "",
+    coor: null,
   });
 
-  const { prop_id, propAddress } = formData;
+  const { propAddress, coor } = formData;
 
   useEffect(() => {
     let prop_id = match.params.prop_id;
@@ -42,9 +43,9 @@ const ViewProperty = ({
       findOnMap(property.address);
     }
 
-    // if (coordinates) {
-    //   setFormData({ ...formData, coordinates });
-    // }
+    if (coordinates !== null) {
+      setFormData({ ...formData, coor: coordinates });
+    }
 
     // eslint-disable-next-line
   }, [
@@ -54,6 +55,7 @@ const ViewProperty = ({
     deleteImage,
     findOnMap,
     propAddress,
+    coor,
   ]);
 
   if (loading) {
@@ -168,10 +170,13 @@ const ViewProperty = ({
               </ul>
               <hr />
             </div>
+          </div>
 
-            <div style={{ width: "100vw", height: "100vh" }}>
-              <GoogleMap coordinates={coordinates} price={property.price} />
-            </div>
+          <div
+            // className="container"
+            style={{ width: "100%", height: "50rem" }}
+          >
+            <GoogleMap coordinates={coordinates} price={property.price} />
           </div>
 
           {/* <hr /> */}
@@ -192,6 +197,13 @@ ViewProperty.propTypes = {
   addLike: PropTypes.func.isRequired,
   authState: PropTypes.object.isRequired,
 };
+
+// ViewProperty.defaultProps = {
+//   coordinate: {
+//     lat: 34.052235,
+//     lng: -118.243683,
+//   },
+// };
 
 const mapStateToProps = (state) => ({
   propertyState: state.propertyReducer,

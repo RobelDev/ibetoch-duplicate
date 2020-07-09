@@ -31,7 +31,7 @@ const MyLikedPropertys = ({
               <PropertysItem key={property._id} property={property} />
             ))
           ) : (
-            <h4>No Liked propertys yet!</h4>
+            <h4>No Liked properties yet!</h4>
           )}
         </div>
       </div>

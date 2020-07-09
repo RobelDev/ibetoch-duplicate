@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 // import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -87,7 +87,7 @@ const PropertyItem = ({
           </strong>
           <br />
           <strong>
-            Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
+            Posted on <Moment format="MM/DD/YYYY">{date}</Moment>
           </strong>
         </div>
         {/* <div className="card-body"> */}
