@@ -1,8 +1,11 @@
 node_modules/
-/config/default.json
 
-/config
-package-lock.json
+
+config/default
+
+config/production
+
+package-lock
 
 /.pnp
 .pnp.js
