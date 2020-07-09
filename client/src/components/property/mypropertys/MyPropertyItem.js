@@ -170,4 +170,4 @@ export default connect(null, {
   deleteImage,
   updateProperty,
   deleteProperty,
-})(React.memo(MyPropertyItem));
+})(MyPropertyItem);
