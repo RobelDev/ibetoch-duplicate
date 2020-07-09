@@ -16,7 +16,7 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/users/register",
+      "https://fathomless-escarpment-92562.herokuapp.com/api/users/register",
       body,
       config
     );
@@ -45,7 +45,9 @@ export const loadUser = () => async (dispatch) => {
   }
 
   try {
-    const response = await axios.get("http://localhost:5000/api/auth/signin");
+    const response = await axios.get(
+      "https://fathomless-escarpment-92562.herokuapp.com/api/auth/signin"
+    );
 
     //console.log(response.data);
     toast.success(response.data.msg);
@@ -76,7 +78,7 @@ export const activateAccount = (token) => async (dispatch) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/users/activate",
+      "https://fathomless-escarpment-92562.herokuapp.com/api/users/activate",
       body,
       config
     );
@@ -110,7 +112,7 @@ export const login = ({ email, password }) => async (dispatch) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/auth/signin",
+      "https://fathomless-escarpment-92562.herokuapp.com/api/auth/signin",
       body,
       config
     );
@@ -146,7 +148,7 @@ export const forgotPassword = ({ email }) => async (dispatch) => {
   const body = JSON.stringify(userInfo);
   try {
     const response = await axios.put(
-      "http://localhost:5000/api/users/forgot",
+      "https://fathomless-escarpment-92562.herokuapp.com/api/users/forgot",
       body,
       config
     );
@@ -179,7 +181,7 @@ export const resetPassword = ({ newPassword, token }) => async (dispatch) => {
 
   try {
     const response = await axios.put(
-      "http://localhost:5000/api/users/reset",
+      "https://fathomless-escarpment-92562.herokuapp.com/api/users/reset",
       body,
       config
     );
@@ -216,7 +218,7 @@ export const googleResponse = (idToken) => async (dispatch) => {
 
   try {
     const res = await axios.post(
-      "http://localhost:5000/api/auth/google",
+      "https://fathomless-escarpment-92562.herokuapp.com/api/auth/google",
       body,
       config
     );
@@ -247,7 +249,7 @@ export const facebookResponse = ({ userID, accessToken }) => async (
   //console.log(userID, accessToken);
   try {
     const res = await axios.post(
-      "http://localhost:5000/api/auth/facebook",
+      "https://fathomless-escarpment-92562.herokuapp.com/api/auth/facebook",
       body,
       config
     );
