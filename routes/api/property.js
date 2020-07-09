@@ -381,7 +381,6 @@ router.put(
             .json({ msg: "Error occured while uploading to S3 bucket" });
         }
 
-        console.log(data);
         const newLocationUrl = {
           user: req.user.id,
 
@@ -602,7 +601,7 @@ router.get(
       res.json(arrayPropertys);
       // const singleprop = property.map((singleproperty) => singleproperty._id);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       res.status(500).send("Server Error");
     }
   }
