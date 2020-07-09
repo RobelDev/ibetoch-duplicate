@@ -91,7 +91,7 @@ const Login = ({ login, loadUser, authState: { isAuth, msg } }) => {
         </Form.Group>
       </Form>
 
-      <Link exact to="/forgot" className="btn btn-sm btn-outline-danger">
+      <Link to="/forgot" className="btn btn-sm btn-outline-danger">
         Forgot password?
       </Link>
     </Fragment>
