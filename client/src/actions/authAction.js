@@ -28,10 +28,10 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 
     toast.success(response.data.msg);
   } catch (error) {
-    const errList = error.response.data.errors;
-    if (errList) {
-      errList.forEach((err) => toast.error(err.msg));
-    }
+    // const errList = error.response.data.errors;
+    // if (errList) {
+    //   errList.forEach((err) => toast.error(err.msg));
+    // }
 
     dispatch({ type: constants.REGISTER_FAILED });
     //console.error(error.response.data.errors[0].msg);
@@ -89,10 +89,10 @@ export const activateAccount = (token) => async (dispatch) => {
     dispatch(loadUser());
     // console.log(response.data);
   } catch (error) {
-    const errList = error.response.data.errors;
-    if (errList) {
-      errList.forEach((err) => toast.error(err.msg));
-    }
+    // const errList = error.response.data.errors;
+    // if (errList) {
+    //   errList.forEach((err) => toast.error(err.msg));
+    // }
     // toast.error(response.data.msg);
     dispatch({ type: constants.ACCTIVATE_FAILED });
   }
@@ -124,10 +124,11 @@ export const login = ({ email, password }) => async (dispatch) => {
 
     //console.log(res.data);
   } catch (error) {
-    const errList = error.response.data.errors;
-    if (errList) {
-      errList.forEach((err) => toast.error(err.msg));
-    }
+    console.log(error);
+    // const errList = error.response.data.errors;
+    // if (errList) {
+    //   errList.forEach((err) => toast.error(err.msg));
+    // }
 
     dispatch({ type: constants.LOGIN_FAILED });
   }
