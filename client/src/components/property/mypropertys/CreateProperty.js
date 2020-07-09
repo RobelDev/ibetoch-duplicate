@@ -13,11 +13,11 @@ const CreateProperty = ({ createProperty, history }) => {
     totalSquareFt: "",
     yearBuilt: "",
     address: "",
-    company: "",
+    company: "owner",
     website: "",
     description: "",
-    homeType: "",
-    purpose: "",
+    homeType: "house",
+    purpose: "rent",
     contactInfo: "",
     availability: "",
     // sold: false,
@@ -165,7 +165,7 @@ const CreateProperty = ({ createProperty, history }) => {
 
               <Form.Control
                 as="select"
-                defaultValue="homeType"
+                // defaultValue="homeType"
                 name="homeType"
                 value={homeType}
                 onChange={onChange}
@@ -185,7 +185,7 @@ const CreateProperty = ({ createProperty, history }) => {
 
               <Form.Control
                 as="select"
-                defaultValue="owner"
+                // defaultValue="owner"
                 name="company"
                 value={company}
                 onChange={onChange}
@@ -206,7 +206,7 @@ const CreateProperty = ({ createProperty, history }) => {
 
               <Form.Control
                 as="select"
-                defaultValue="rent"
+                // defaultValue="rent"
                 name="purpose"
                 value={purpose}
                 onChange={onChange}
@@ -330,19 +330,23 @@ const CreateProperty = ({ createProperty, history }) => {
             </Col>
           </Form.Group>
 
-          <Form.Group as={Row}>
+          {/* <Form.Group as={Row}>
             <Col sm={{ span: 10, offset: 2 }}>
-              <Link>
+              <Link to="/createproperty">
                 <Button
                   type="reset"
                   value="reset"
                   className="btn btn-danger btn-sm"
+                  // onClick={() => {
+                  //   console.log("reset");
+                  //   setFormData({ ...formData, formData: formData });
+                  // }}
                 >
                   Reset
                 </Button>
               </Link>
             </Col>
-          </Form.Group>
+          </Form.Group> */}
 
           <Form.Group as={Row}>
             <Col sm={{ span: 10, offset: 2 }}>

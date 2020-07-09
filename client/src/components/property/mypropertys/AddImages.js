@@ -53,7 +53,7 @@ const AddImages = ({
 
   return (
     <Fragment>
-      <div className="container shadow p-3 mb-5 bg-white rounded">
+      <div className="container my-5 shadow p-3 mb-5 bg-white rounded">
         <p>
           Upload Images for your property. Please upload jpeg, jpg or png.
           please upload and clear and qaulity image also upload one by one.
@@ -76,7 +76,7 @@ const AddImages = ({
           <button
             type="submit"
             value="addImages"
-            className="btn btn-primary btn-lg"
+            className="btn btn-primary btn-lg m-2"
           >
             {buttonText}
           </button>

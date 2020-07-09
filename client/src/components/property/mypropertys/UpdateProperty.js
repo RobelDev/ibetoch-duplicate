@@ -349,7 +349,7 @@ const UpdateProperty = ({
             </Col>
           </Form.Group>
 
-          <Form.Group as={Row}>
+          {/* <Form.Group as={Row}>
             <Col sm={{ span: 10, offset: 2 }}>
               <Link>
                 <Button
@@ -361,7 +361,7 @@ const UpdateProperty = ({
                 </Button>
               </Link>
             </Col>
-          </Form.Group>
+          </Form.Group> */}
 
           <Form.Group as={Row}>
             <Col sm={{ span: 10, offset: 2 }}>

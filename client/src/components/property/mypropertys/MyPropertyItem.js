@@ -76,7 +76,7 @@ const MyPropertyItem = ({
           </strong>
           <br />
           <strong>
-            Posted on <Moment format="DD/MM/YYYY">{date}</Moment>
+            Posted on <Moment format="MM/DD/YYYY">{date}</Moment>
           </strong>
         </div>
         {/* <div className="card-body"> */}
