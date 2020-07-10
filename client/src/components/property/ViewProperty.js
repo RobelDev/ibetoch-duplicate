@@ -176,7 +176,7 @@ const ViewProperty = ({
             // className="container"
             style={{ width: "100%", height: "50rem" }}
           >
-            {/* <GoogleMap coordinates={coordinates} price={property.price} /> */}
+            <GoogleMap coordinates={coordinates} price={property.price} />
           </div>
 
           {/* <hr /> */}
