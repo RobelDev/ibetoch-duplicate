@@ -9,6 +9,8 @@ import { addLike, findOnMap } from "../../actions/propertyAction";
 import Moment from "react-moment";
 import { withRouter } from "react-router-dom";
 import GoogleMap from "./GoogleMap";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ViewProperty = ({
   history,
@@ -64,6 +66,7 @@ const ViewProperty = ({
 
   return (
     <Fragment>
+      <ToastContainer />
       {property ? (
         <Fragment>
           <div className="container">
@@ -102,16 +105,15 @@ const ViewProperty = ({
                 className="px-2 btn-light text-white float-right"
                 onClick={() => addLike(property._id)}
               >
-                <i
-                  className="fa fa-heart"
-                  style={{ fontSize: "18px", color: "red" }}
-                />
                 <Badge
                   variant="light"
                   className="mx-1"
                   style={{ fontSize: "16px" }}
                 >
-                  {" "}
+                  <i
+                    className="fa fa-heart"
+                    style={{ fontSize: "18px", color: "blue" }}
+                  />{" "}
                   {property.interests.length}
                 </Badge>
                 <span className="sr-only">Number of interests/likes</span>

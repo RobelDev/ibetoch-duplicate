@@ -276,6 +276,13 @@ router.put("/profile/like/:prop_id", auth, async (req, res) => {
   try {
     const property = await Property.findById(req.params.prop_id);
 
+    if (!property) {
+      return res.status(400).json({ msg: "Profile not found!" });
+    }
+    if (property.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: "Not Authorized user" });
+    }
+
     if (
       property.interests.filter(
         (interest) => interest.user.toString() === req.user.id
@@ -492,6 +499,10 @@ router.delete("/profile/images/:prop_id/:image_id", auth, async (req, res) => {
 // @access public
 router.get("/google-maps/:address", async (req, res) => {
   //const {address} = req.body
+
+  if (!req.params.address) {
+    return res.status(404).json({ msg: "No input address" });
+  }
   try {
     const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
       req.params.address
@@ -567,15 +578,15 @@ router.get(
     const queryBathroom = req.params.bathroom;
     const queryHomeType = req.params.homeType;
 
-    // if (
-    //   !queryAddress ||
-    //   !queryPurpose ||
-    //   !queryBedroom ||
-    //   !queryBathroom ||
-    //   !queryHomeType
-    // ) {
-    //   return res.status(400).json({ msg: "Please fill up the search form" });
-    // }
+    if (
+      !queryAddress ||
+      !queryPurpose ||
+      !queryBedroom ||
+      !queryBathroom ||
+      !queryHomeType
+    ) {
+      return res.status(400).json({ msg: "Please fill up the search form" });
+    }
     //get all property
     //loop throught the propertys if they have your user id on their likes array
     try {

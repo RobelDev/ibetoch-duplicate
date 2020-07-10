@@ -167,7 +167,7 @@ export default function (state = initialState, action) {
             ? { ...property, interests: action.payload.likes }
             : property
         ),
-
+        property: { ...state.property, interests: action.payload.likes },
         loading: false,
       };
 

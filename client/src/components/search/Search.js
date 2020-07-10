@@ -47,6 +47,7 @@ const Search = ({ getSearchedPropertys }) => {
             value={address}
             onChange={onChange}
             placeholder="Enter an address, city or ZIP code"
+            required
             className="mt-"
             style={{
               float: "left",

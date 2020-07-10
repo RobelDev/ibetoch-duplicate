@@ -96,8 +96,7 @@ const MyPropertyItem = ({
                 style={{ fontSize: "16px" }}
               >
                 {" "}
-                {like}
-                {interests.length}
+                {like} {interests.length}
               </Badge>
               <span className="sr-only">Number of interests/likes</span>
             </Button>{" "}

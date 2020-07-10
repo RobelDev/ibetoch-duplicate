@@ -189,14 +189,12 @@ const PropertyItem = ({
                   className="px-2 btn-light text-white float-right"
                   onClick={() => addLike(_id)}
                 >
-                  {like}
                   <Badge
                     variant="light"
                     className="mx-1"
                     style={{ fontSize: "16px" }}
                   >
-                    {" "}
-                    {interests.length > 0 && interests.length}
+                    {like} {interests.length > 0 && interests.length}
                   </Badge>
                   <span className="sr-only">Number of interests/likes</span>
                 </Button>{" "}

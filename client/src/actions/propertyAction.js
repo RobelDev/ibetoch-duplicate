@@ -18,7 +18,6 @@ export const createProperty = (formData, history) => async (dispatch) => {
     });
 
     history.push("/mypropertys");
-    toast.success(response.data.msg);
   } catch (error) {
     const errList = error.response.data.errors;
     if (errList) {
@@ -47,6 +46,8 @@ export const updateProperty = ({ formData, prop_id, history }) => async (
       formData
     );
 
+    // toast.success("property update");
+
     dispatch({
       type: constants.UPDATE_PROPERTY,
       payload: { property: response.data, prop_id },
@@ -54,8 +55,6 @@ export const updateProperty = ({ formData, prop_id, history }) => async (
     //dispatch({ type: constants.CLEAR_PROPERTY });
 
     history.push("/mypropertys");
-
-    toast.success(response.data.msg);
   } catch (error) {
     console.log(error);
     const errList = error.response.data.errors;
@@ -186,13 +185,12 @@ export const getSearchedPropertys = (
     const response = await axios.get(
       `/api/property/search/${address}/${purpose}/${homeType}/${bedroom}/${bathroom}`
     );
+    // toast.success(response.data.msg);
 
     dispatch({
       type: constants.GET_SEARCHED_LISTS,
       payload: response.data,
     });
-
-    //toast.success(response.data.msg);
   } catch (error) {
     //toast.error(error.response.data.msg);
     dispatch({
@@ -211,10 +209,10 @@ export const getSearchedPropertys = (
 export const deleteProperty = (prop_id) => async (dispatch) => {
   try {
     await axios.delete(`/api/property/profile/${prop_id}`);
+    toast.success("Property removed");
 
     dispatch({ type: constants.DELETE_PROPERTY, payload: prop_id });
     // toast.success(response.data.msg);
-    toast.success("Property removed");
   } catch (error) {
     console.error(error);
     // toast.error(error.response.data.msg);
@@ -232,15 +230,14 @@ export const addLike = (prop_id) => async (dispatch) => {
   try {
     ///profile/like/:prop_id
     const response = await axios.put(`/api/property/profile/like/${prop_id}`);
-
+    // toast.success("Liked a property ");
     dispatch({
       type: constants.ADD_LIKE,
       payload: { likes: response.data, prop_id },
     });
-
-    toast.success("Image added");
   } catch (error) {
     console.log(error);
+    toast.error("Please sign in first to like/save a property!");
     // toast.error(error.response.data.msg);
     const errList = error.response.data.errors;
     if (errList) {
@@ -276,7 +273,7 @@ export const addImages = ({ image, prop_id, history }) => async (dispatch) => {
       payload: { images: response.data, prop_id },
     });
 
-    toast.success(response.data.msg);
+    // toast.success(response.data.msg);
 
     history.push("/mypropertys");
   } catch (error) {
@@ -332,7 +329,7 @@ export const findOnMap = (address) => async (dispatch) => {
     });
   } catch (error) {
     console.error(error);
-    toast.error(error.response.data.msg);
+    // toast.error(error.response.data.msg);
     dispatch({
       type: constants.PROPERTY_ERROR,
       payload: {
