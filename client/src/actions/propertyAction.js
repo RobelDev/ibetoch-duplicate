@@ -18,7 +18,7 @@ export const createProperty = (formData, history) => async (dispatch) => {
     });
 
     history.push("/mypropertys");
-    // toast.success(response.data.msg);
+    toast.success(response.data.msg);
   } catch (error) {
     const errList = error.response.data.errors;
     if (errList) {
@@ -89,8 +89,8 @@ export const getMyPropertys = () => async (dispatch) => {
     dispatch({
       type: constants.PROPERTY_ERROR,
       payload: {
-        // msg: error.response.statusText,
-        // status: error.response.status,
+        msg: error.response.statusText,
+        status: error.response.status,
       },
     });
 
@@ -112,13 +112,13 @@ export const getPropertys = () => async (dispatch) => {
     //toast.success(response.data.msg);
   } catch (error) {
     //toast.error(error.response.data.msg);
-    // dispatch({
-    //   type: constants.PROPERTY_ERROR,
-    //   payload: {
-    //     msg: error.response.statusText,
-    //     status: error.response.status,
-    //   },
-    // });
+    dispatch({
+      type: constants.PROPERTY_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
     console.error(error);
     //toast.error(response.data.msg);
   }
@@ -137,13 +137,13 @@ export const getProperty = (prop_id) => async (dispatch) => {
     // toast.success(response.data.msg);
   } catch (error) {
     // toast.error(error.response.data.msg);
-    // dispatch({
-    //   type: constants.PROPERTY_ERROR,
-    //   payload: {
-    //     msg: error.response.statusText,
-    //     status: error.response.status,
-    //   },
-    // });
+    dispatch({
+      type: constants.PROPERTY_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
     console.error(error);
     //toast.error(error.response.data.msg);
   }
@@ -163,13 +163,13 @@ export const getLikedPropertys = () => async (dispatch) => {
   } catch (error) {
     //toast.error(error.response.data.msg);
     console.error(error);
-    // dispatch({
-    //   type: constants.PROPERTY_ERROR,
-    //   payload: {
-    //     msg: error.response.statusText,
-    //     status: error.response.status,
-    //   },
-    // });
+    dispatch({
+      type: constants.PROPERTY_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
 
     //toast.error(response.data.msg);
   }
@@ -195,13 +195,13 @@ export const getSearchedPropertys = (
     //toast.success(response.data.msg);
   } catch (error) {
     //toast.error(error.response.data.msg);
-    // dispatch({
-    //   type: constants.PROPERTY_ERROR,
-    //   payload: {
-    //     msg: error.response.statusText,
-    //     status: error.response.status,
-    //   },
-    // });
+    dispatch({
+      type: constants.PROPERTY_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
     console.error(error);
     //toast.error(response.data.msg);
   }
