@@ -13,7 +13,7 @@
 
   "NODE_ENV": "production",
 
-  "CLIENT_URL": "https://nameless-shelf-98985.herokuapp.com/",
+  "CLIENT_URL": "https://nameless-shelf-98985.herokuapp.com",
 
   "SENDGRID_API_KEY": "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",
   "EMAIL_TO": "robelktegegne@gmail.com",

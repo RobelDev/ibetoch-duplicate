@@ -24,7 +24,7 @@ router.get("/signin", auth, async (req, res) => {
     } else if (user && user.active === true) {
       return res.json({
         user,
-        mag: "User Signed in",
+        msg: "User Signed in",
       });
     } else if (!user) {
       res.json({ msg: "User not found" });
