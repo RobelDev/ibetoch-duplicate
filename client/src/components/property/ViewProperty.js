@@ -176,6 +176,9 @@ const ViewProperty = ({
             // className="container"
             style={{ width: "100%", height: "50rem" }}
           >
+            <p className="text-center">
+              Google Map <small>(reload if it didnt display)</small>
+            </p>
             <GoogleMap coordinates={coordinates} price={property.price} />
           </div>
 
