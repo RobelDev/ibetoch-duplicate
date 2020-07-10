@@ -29,13 +29,14 @@ app.use("/api/property", require("./routes/api/property"));
 if (process.env.NODE_ENV === "production") {
   if (req.header["x-forwarded-proto"] !== "https") {
     return res.redirect(["https://", req.get("Host"), req.url].join(""));
-  }
-  // set static foler
-  app.use(express.static("client/build"));
+  } else {
+    // set static foler
+    app.use(express.static("client/build"));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
+    app.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    });
+  }
 }
 
 const PORT = process.env.PORT || 5000;
