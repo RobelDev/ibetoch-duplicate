@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 
 import PropertysItem from "../PropertysItem";
 import Propertys from "../Propertys";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MySearchedPropertys = ({
   getSearchedPropertys,
@@ -21,6 +23,7 @@ const MySearchedPropertys = ({
 
   return (
     <Fragment>
+      <ToastContainer />
       <div className="grid-3 my-4">
         {!loading && mysearchedpropertys && mysearchedpropertys.length > 0 ? (
           mysearchedpropertys.map((property) => (

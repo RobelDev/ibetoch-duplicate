@@ -185,7 +185,7 @@ export const getSearchedPropertys = (
     const response = await axios.get(
       `/api/property/search/${address}/${purpose}/${homeType}/${bedroom}/${bathroom}`
     );
-    // toast.success(response.data.msg);
+    // toast.success(`search result for: ${address}`);
 
     dispatch({
       type: constants.GET_SEARCHED_LISTS,
@@ -193,6 +193,7 @@ export const getSearchedPropertys = (
     });
   } catch (error) {
     //toast.error(error.response.data.msg);
+    toast.error(`Could not find properties`);
     dispatch({
       type: constants.PROPERTY_ERROR,
       payload: {
