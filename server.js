@@ -13,7 +13,7 @@ connectDB();
 //middlewares
 app.use(morgan("dev"));
 // initialize body parser mddleware
-app.use(express.json({ extended: false }));
+app.use(express.json());
 
 // app.use(compression());
 
@@ -31,7 +31,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "client/build/index.html"));
   });
 }
 
