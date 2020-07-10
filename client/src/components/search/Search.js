@@ -33,7 +33,9 @@ const Search = ({ getSearchedPropertys }) => {
   const onSearch = (e) => {
     e.preventDefault();
 
-    getSearchedPropertys(address, purpose, bedroom, bathroom, homeType);
+    if (address !== null) {
+      getSearchedPropertys(address, purpose, bedroom, bathroom, homeType);
+    }
   };
 
   return (
