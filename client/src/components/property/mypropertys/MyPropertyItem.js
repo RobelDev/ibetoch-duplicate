@@ -49,7 +49,7 @@ const MyPropertyItem = ({
 
   return (
     <Fragment>
-      <div className="card" style={{ width: "22rem", height: "29rem" }}>
+      <div className="card" style={{ width: "22rem", height: "28.3rem" }}>
         <div style={{ height: "23rem" }}>
           <Carousel autoPlay infiniteLoop>
             {images && images.length > 0 ? (
