@@ -27,6 +27,9 @@ app.use("/api/property", require("./routes/api/property"));
 
 //
 if (process.env.NODE_ENV === "production") {
+  if (req.header["x-forwarded-proto"] !== "https") {
+    return res.redirect(["https://", req.get("Host"), req.url].join(""));
+  }
   // set static foler
   app.use(express.static("client/build"));
 
