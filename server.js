@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const path = require("path");
 const compression = require("compression");
+var enforce = require("express-sslify");
 //connect to mongo database
 connectDB();
 
@@ -28,12 +29,14 @@ app.use("/api/property", require("./routes/api/property"));
 //
 if (process.env.NODE_ENV === "production") {
   // set static foler
-  app.use(function (req, res, next) {
-    if (req.get("X-Forwarded-Proto") !== "https") {
-      res.redirect("https://" + req.get("Host") + req.url);
-    } else next();
-  });
-  
+
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
+  // app.use(function (req, res, next) {
+  //   if (req.get("X-Forwarded-Proto") !== "https") {
+  //     res.redirect("https://" + req.get("Host") + req.url);
+  //   } else next();
+  // });
+
   app.use(express.static("client/build"));
 
   app.get("*", (req, res) => {
