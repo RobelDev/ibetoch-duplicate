@@ -44,7 +44,7 @@ export const loadUser = () => async (dispatch) => {
     const response = await axios.get("/api/auth/signin");
 
     //console.log(response.data);
-    toast.success(response.data.msg);
+    // toast.success(response.data.msg);
     dispatch({
       type: constants.USER_LOADED,
       payload: response.data,

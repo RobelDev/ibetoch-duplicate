@@ -21,6 +21,10 @@ app.use(express.json({ extended: false }));
 //initialize the passport auth
 app.use(cors());
 
+app.use("/api/users", require("./routes/api/users"));
+app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/property", require("./routes/api/property"));
+
 //
 if (process.env.NODE_ENV === "production") {
   // set static foler
@@ -30,10 +34,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
-
-app.use("/api/users", require("./routes/api/users"));
-app.use("/api/auth", require("./routes/api/auth"));
-app.use("/api/property", require("./routes/api/property"));
 
 const PORT = process.env.PORT || 5000;
 
