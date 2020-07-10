@@ -19,7 +19,7 @@ export default function (state = initialState, action) {
     case constants.CREATE_PROPERTY:
       return {
         ...state,
-        mypropertys: [action.payload.property, ...state.mypropertys],
+        mypropertys: [action.payload, ...state.mypropertys],
         // propertys: [action.payload.property, ...state.propertys],
         //property: action.payload.property,
         // msg: action.payload.msg,

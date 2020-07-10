@@ -17,9 +17,8 @@ export const createProperty = (formData, history) => async (dispatch) => {
       payload: response.data,
     });
 
-    toast.success(response.data.msg);
-
     history.push("/mypropertys");
+    // toast.success(response.data.msg);
   } catch (error) {
     const errList = error.response.data.errors;
     if (errList) {
