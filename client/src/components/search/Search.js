@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 
 import { getSearchedPropertys } from "../../actions/propertyAction";
 
-import { Form, FormControl, Col, Button } from "react-bootstrap";
+import { Form, FormControl, Col, Button, ToastHeader } from "react-bootstrap";
+import { toast } from "react-toastify";
 // import PropertysItem from "../property/PropertysItem";
 
 const Search = ({ getSearchedPropertys }) => {
@@ -33,7 +34,10 @@ const Search = ({ getSearchedPropertys }) => {
   const onSearch = (e) => {
     e.preventDefault();
 
-    if (address !== null) {
+    if (address === "") {
+      toast.error("Please enter an address!");
+      console.log("Enter address please");
+    } else {
       getSearchedPropertys(address, purpose, bedroom, bathroom, homeType);
     }
   };
@@ -44,12 +48,10 @@ const Search = ({ getSearchedPropertys }) => {
         <br />
         <Form>
           <FormControl
-            type="text"
             name="address"
             value={address}
             onChange={onChange}
             placeholder="Enter an address, city or ZIP code"
-            required
             className="mt-"
             style={{
               float: "left",
@@ -59,6 +61,7 @@ const Search = ({ getSearchedPropertys }) => {
               fontSize: "21px",
               color: "black",
             }}
+            required
           />
           {/* <input /> */}
           <br />
