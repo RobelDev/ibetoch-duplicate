@@ -49,19 +49,10 @@ const App = () => {
     store.dispatch(loadUser());
   }, []);
 
-  const head = () => (
-    <Helmet>
-      <meta charSet="utf-8" />
-      <title>I-Betoch</title>
-      <link rel="canonical" href="https://www.ibetoch.com" />
-    </Helmet>
-  );
-
   return (
     <Provider store={store}>
       <Router>
         <Fragment>
-          {head()}
           <NavBar />
           <Route exact path="/" component={Landing} />
           <Switch>
