@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from "react";
+import { Helmet } from "react-helmet";
 //import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -48,10 +49,19 @@ const App = () => {
     store.dispatch(loadUser());
   }, []);
 
+  const head = () => (
+    <Helmet>
+      <meta charSet="utf-8" />
+      <title>I-Betoch</title>
+      <link rel="canonical" href="https://www.ibetoch.com" />
+    </Helmet>
+  );
+
   return (
     <Provider store={store}>
       <Router>
         <Fragment>
+          {head()}
           <NavBar />
           <Route exact path="/" component={Landing} />
           <Switch>
