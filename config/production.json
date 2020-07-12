@@ -18,6 +18,10 @@
   "SENDGRID_API_KEY": "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",
   "EMAIL_TO": "robelktegegne@gmail.com",
   "EMAIL_FROM": "noreply@ibetoch.com",
+  "EMAIL_ISUUE": "issue@ibetoch.com",
+  "EMAIL_BUSINESS": "business@ibetoch.com",
+  "EMAIL_REPORT": "report@ibetoch.com",
+  "iBetochEmail": "team@ibetoch.com",
 
   "AWS_KEY": "AKIAIPJPEGFUKHPS7UAA",
   "AWS_SECRET": "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",

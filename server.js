@@ -25,7 +25,7 @@ app.use(cors());
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/property", require("./routes/api/property"));
-
+app.use("/api/issue", require("./routes/api/issue"));
 //
 if (process.env.NODE_ENV === "production") {
   // set static foler
