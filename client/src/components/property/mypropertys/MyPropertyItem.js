@@ -47,6 +47,8 @@ const MyPropertyItem = ({
     <i className="fa fa-heart" style={{ fontSize: "18px", color: "blue" }} />
   );
 
+ 
+
   return (
     <Fragment>
       <div className="card" style={{ width: "22rem", height: "28.3rem" }}>

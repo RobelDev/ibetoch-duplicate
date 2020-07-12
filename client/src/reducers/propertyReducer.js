@@ -101,6 +101,24 @@ export default function (state = initialState, action) {
         // msg: action.payload.msg,
       };
 
+    case constants.CONTACTUS_SUCCESS:
+    case constants.REPORT_SUCCESS:
+    case constants.AFFILATE_SUCCESS:
+      return {
+        ...state,
+        msg: action.payload,
+        loading: false,
+      };
+
+    case constants.CONTACTUS_FAILED:
+    case constants.REPORT_FAILED:
+    case constants.AFFILATE_FAILED:
+      return {
+        ...state,
+        msg: null,
+        loading: false,
+      };
+
     case constants.CLEAR_PROPERTY:
       return {
         ...state,
@@ -116,6 +134,7 @@ export default function (state = initialState, action) {
         mylikedpropertys: [],
         mysearchedpropertys: [],
         propertys: [],
+        coordinates: {},
         loading: false,
         msg: null,
       };

@@ -39,7 +39,7 @@ const CreateProperty = ({ createProperty, history }) => {
     purpose,
     contactInfo,
     availability,
-    // sold,
+
     bathroom,
     bedroom,
     parking,

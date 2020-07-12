@@ -340,3 +340,103 @@ export const findOnMap = (address) => async (dispatch) => {
     });
   }
 };
+
+export const contactUs = ({ name, email, subject, message }) => async (
+  dispatch
+) => {
+  const userInfo = { name, email, subject, message };
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const body = JSON.stringify(userInfo);
+
+  try {
+    const response = await axios.post("/api/issue/contactus", body, config);
+
+    dispatch({
+      type: constants.CONTACTUS_SUCCESS,
+      payload: response.data,
+    });
+
+    toast.success(response.data.msg);
+  } catch (error) {
+    const errList = error.response.data.errors;
+    if (errList) {
+      errList.forEach((err) => toast.error(err.msg));
+    }
+
+    dispatch({ type: constants.CONTACTUS_FAILED });
+    //console.error(error.response.data.errors[0].msg);
+    //toast.error(error.response.data.errors[0].msg);
+  }
+};
+
+export const affilate = ({ name, email, social, subject, message }) => async (
+  dispatch
+) => {
+  const userInfo = { name, email, social, subject, message };
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const body = JSON.stringify(userInfo);
+
+  try {
+    const response = await axios.post("/api/issue/affilate", body, config);
+
+    dispatch({
+      type: constants.AFFILATE_SUCCESS,
+      payload: response.data,
+    });
+
+    toast.success(response.data.msg);
+  } catch (error) {
+    const errList = error.response.data.errors;
+    if (errList) {
+      errList.forEach((err) => toast.error(err.msg));
+    }
+
+    dispatch({ type: constants.AFFILATE_FAILED });
+    //console.error(error.response.data.errors[0].msg);
+    //toast.error(error.response.data.errors[0].msg);
+  }
+};
+
+export const report = ({ reason, _id }) => async (dispatch) => {
+  const userInfo = { reason, _id };
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const body = JSON.stringify(userInfo);
+
+  try {
+    const response = await axios.post("/api/issue/report", body, config);
+
+    dispatch({
+      type: constants.REPORT_SUCCESS,
+      payload: response.data,
+    });
+
+    toast.success(response.data.msg);
+  } catch (error) {
+    const errList = error.response.data.errors;
+    if (errList) {
+      errList.forEach((err) => toast.error(err.msg));
+    }
+
+    dispatch({ type: constants.REPORT_FAILED });
+    //console.error(error.response.data.errors[0].msg);
+    //toast.error(error.response.data.errors[0].msg);
+  }
+};

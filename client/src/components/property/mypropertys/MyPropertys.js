@@ -24,7 +24,7 @@ const MyPropertys = ({
     <Fragment>
       <div className="container">
         <br />
-        <h3>My Propertyies List</h3>
+        <h3>My Properties List</h3>
 
         <br />
         <Link to={`/createproperty`} className="btn btn-secondary">

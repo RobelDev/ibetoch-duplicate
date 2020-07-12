@@ -1,16 +1,21 @@
 import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Button, Modal, Badge } from "react-bootstrap";
+import { Button, Modal, Badge, Form, Col, Row } from "react-bootstrap";
 import defaultImage from "../../siteImages/defaultImage.png";
 import { Carousel } from "react-responsive-carousel";
-import { addLike } from "../../actions/propertyAction";
+import { addLike, report } from "../../actions/propertyAction";
 import Moment from "react-moment";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+
 // import ViewProperty from "./ViewProperty";
 
 const PropertyItem = ({
   addLike,
+  report,
+  authState: { isAuth },
   property: {
     _id,
     user,
@@ -40,6 +45,40 @@ const PropertyItem = ({
     <i className="fa fa-heart" style={{ fontSize: "18px", color: "blue" }} />
   );
 
+  const [formData, setFormData] = useState({
+    reason: "",
+    // prop_id: "",
+
+    buttonText: "Report",
+  });
+
+  const { reason, buttonText } = formData;
+
+  const onChange = (e) => {
+    e.preventDefault();
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const onSubmitReport = async (e) => {
+    e.preventDefault();
+    //make sure the password match
+    if (!isAuth) {
+      return toast.error("Please sign in first to report a property!");
+    }
+    if (reason === "") {
+      return toast.error("Please pick a reason before submitting!");
+    } else {
+      setFormData({ ...formData, buttonText: "Reporting" });
+
+      report({ reason, _id });
+
+      setFormData({
+        ...formData,
+        buttonText: "Reported",
+      });
+    }
+  };
+
   // const onAddLike = async () => {
   //   // if (interests.map((like) => like._id !== user._id)) {
 
@@ -50,9 +89,13 @@ const PropertyItem = ({
   // };
 
   const [show, setShow] = useState(false);
+  const [reportShow, setReportShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const reportHandleClose = () => setReportShow(false);
+  const reportHandleShow = () => setReportShow(true);
 
   return (
     <Fragment>
@@ -131,6 +174,14 @@ const PropertyItem = ({
             >
               View Property
             </a>
+
+            <Button
+              className="btn btn-danger float-right btn-sm"
+              onClick={reportHandleShow}
+              // onClick={() => console.log("clicked")}
+            >
+              Report
+            </Button>
           </div>
         </div>
       </div>
@@ -223,6 +274,87 @@ const PropertyItem = ({
           </a>
         </Modal.Footer>
       </Modal>
+
+      <Modal show={reportShow} onHide={reportHandleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Report a property</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {" "}
+          <div
+            className="card"
+            // style={{ width: "22rem", height: "28rem" }}
+            onClick={reportHandleShow}
+          >
+            {/* <div className="card-body"> */}
+            {/* <div className="card-body my-n5 mb-1 p-2 float-left"> */}
+            <br />
+            <div className="pl-4">
+              <h6>
+                Report a property by selecting one from the provided list of
+                issues/options. If your issue is not listed, please select
+                other. Thank you for making iBetoch safe environment for users.
+              </h6>{" "}
+              {!isAuth && (
+                <h5>
+                  Please
+                  <Link to="/auth"> Sign in or Join</Link> First to report an
+                  issue.{" "}
+                </h5>
+              )}
+            </div>
+            <Form>
+              <hr />
+              <Form.Row>
+                <Form.Group as={Col} controlId="exampleForm.ControlSelect1">
+                  {/* <Form.Label column sm={2}>
+                    Report
+                  </Form.Label> */}
+
+                  <Form.Control
+                    as="select"
+                    // defaultValue="homeType"
+                    name="reason"
+                    value={reason}
+                    onChange={onChange}
+                    required
+                  >
+                    <option aria-disabled>choose</option>
+                    <option>I own this property</option>
+                    <option>It's spam</option>
+                    <option>It's is inappropriate</option>
+                    <option>Fake property listing</option>
+                    {/* <option>Violates the community standard</option> */}
+                    <option>other</option>
+                  </Form.Control>
+                </Form.Group>
+              </Form.Row>
+            </Form>
+
+            <br />
+            <br />
+            <br />
+          </div>
+          {/* </div> */}
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="secondary" onClick={reportHandleClose}>
+            Close
+          </Button>
+
+          <Button variant="danger" onClick={onSubmitReport}>
+            {buttonText}
+          </Button>
+          {/* <a
+              href={`/property/report`}
+              //variant="primary"
+              className="btn btn-primary"
+            >
+              View
+            </a> */}
+        </Modal.Footer>
+      </Modal>
     </Fragment>
   );
 };
@@ -230,6 +362,7 @@ const PropertyItem = ({
 PropertyItem.propTypes = {
   property: PropTypes.object.isRequired,
   addLike: PropTypes.func.isRequired,
+  report: PropTypes.func.isRequired,
 };
 
 PropertyItem.defaultProps = {
@@ -238,6 +371,7 @@ PropertyItem.defaultProps = {
 
 const mapStateToProps = (state) => ({
   propertyState: state.propertyReducer,
+  authState: state.authReducer,
 });
 
-export default connect(mapStateToProps, { addLike })(PropertyItem);
+export default connect(mapStateToProps, { addLike, report })(PropertyItem);
