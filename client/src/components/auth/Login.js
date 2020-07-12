@@ -13,7 +13,7 @@ const Login = ({ login, loadUser, authState: { isAuth, msg } }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    buttonText: "Submit",
+    buttonText: "Sign in",
   });
 
   const { email, password, buttonText } = formData;
@@ -76,11 +76,11 @@ const Login = ({ login, loadUser, authState: { isAuth, msg } }) => {
           </Col>
         </Form.Group>
 
-        <Form.Group as={Row} controlId="formHorizontalCheck">
+        {/* <Form.Group as={Row} controlId="formHorizontalCheck">
           <Col sm={{ span: 10, offset: 2 }}>
             <Form.Check label="Remember me" onChange={onChange} />
           </Col>
-        </Form.Group>
+        </Form.Group> */}
 
         <Form.Group as={Row}>
           <Col sm={{ span: 10, offset: 2 }}>

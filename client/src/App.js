@@ -38,6 +38,7 @@ import Terms from "./components/layout/Terms";
 import Affilate from "./components/layout/Affilate";
 import Partners from "./components/layout/Partners";
 import Privacy from "./components/layout/Privacy";
+import Report from "./components/layout/Report";
 
 if (localStorage.token) {
   setAuth(localStorage.token);
@@ -103,6 +104,11 @@ const App = () => {
               path="/addimages/:prop_id"
               component={AddImages}
             />
+            {/* <PrivateRoute
+              exact
+              path="/property/report/:prop_id"
+              component={Report}
+            /> */}
 
             {/* <PrivateRoute exact path="/myList" /> */}
 
