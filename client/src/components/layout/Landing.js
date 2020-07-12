@@ -21,7 +21,7 @@ const Landing = (props) => {
                 Login
               </Link> */}
               <Link to="/propertys" className="btn btn-primary btn-bg">
-                Search, Find and Save Properties Easily{" "}
+                Search, Post and Save Properties Easily{" "}
               </Link>
             </div>
           </div>

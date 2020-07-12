@@ -6,12 +6,12 @@ const Help = () => {
     {
       question: "What is iBetoch?",
       answer:
-        "Betoch is a home finder web application. It is built to be simple and easy for users to search, post properties based on thier interest.",
+        "iBetoch is a home finder web application. It is built to be simple and easy for users to search, post and saveproperties based on thier interest.",
       show: false,
     },
     {
       question: "Is iBetoch Free?",
-      answer: "Yes, Betoch is a free to use. ",
+      answer: "Yes, iBetoch is a free to use. ",
       show: false,
     },
     {
@@ -20,8 +20,26 @@ const Help = () => {
       show: false,
     },
     {
+      question: "Can I be an affilate/work with iBetoch",
+      answer:
+        "Yes, of course. Please visit our affilate or work with iBetoch page.",
+      show: false,
+    },
+    {
+      question: "Can I advertise on iBetoch",
+      answer:
+        "Yes, of course. Please visit our affilate or work with iBetoch page for more information about advertising.",
+      show: false,
+    },
+    {
       question: "Is iBetoch safe?",
-      answer: "iBetoch is safe to use. We value users privacy.",
+      answer:
+        "iBetoch is safe to use. We value users privacy. For more information, read our policy privacy.",
+      show: false,
+    },
+    {
+      question: "What are terms and conditions for iBetoch?",
+      answer: "For more information, read our terms & conditions.",
       show: false,
     },
     {
@@ -38,12 +56,13 @@ const Help = () => {
     {
       question: "How can I report a suspicious property listing or account?",
       answer:
-        "Please write us an email for the time. With the property id untill report button is updated.",
+        "Please report a property by going to the property page and click report and choose your reason. Or contact us by visiting Contact Us page found on the bottom of the page.",
       show: false,
     },
     {
       question: "How can I report a bug or issue with the website?",
-      answer: "Please email us so we can take a look at the proplem. ",
+      answer:
+        "Please visit Contact Us page and fill-out the form. Or write us an email directly to: team@ibetoch.com. ",
       show: false,
     },
   ]);
@@ -64,7 +83,10 @@ const Help = () => {
   return (
     <Fragment>
       <div className="container">
-        <h3 className="text-center mt-2">FAQs </h3>
+        <h3 className="text-center mt-2">
+          {" "}
+          <i className="fa fa-question-circle" /> FAQs{" "}
+        </h3>
 
         <div className="faqs ">
           {FAQs.map((faq, indx) => (

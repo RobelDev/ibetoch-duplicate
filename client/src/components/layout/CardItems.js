@@ -4,15 +4,24 @@ import { Card } from "react-bootstrap";
 
 const CardItems = () => {
   return (
-    <section className="container ">
+    <section className="container text-center">
       <br />
       <br />
       <h3 className="text-center">What is Betoch?</h3>
 
-      <div className="container text-center">
+      <div
+        className="container ml-4"
+        style={{ justifyContent: "center", alignContent: "center" }}
+      >
         <div className="row">
           <div className="col-sm-">
-            <Card style={{ width: "20rem", border: "transparent" }}>
+            <Card
+              className="text-center"
+              style={{
+                width: "20rem",
+                border: "medium solid transparent",
+              }}
+            >
               <Card.Body>
                 <Card.Title>Search</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
@@ -21,7 +30,7 @@ const CardItems = () => {
                 <Card.Text>
                   iBetoch has a list of Houses, Apartments, Condos, Townhouses
                   posted by owners', Agents', or Real-estates. Searching for
-                  houses is easier with Betoch no need to waste your precious
+                  houses is easier with iBetoch no need to waste your precious
                   time.
                 </Card.Text>
                 <Card.Link href="/propertys">Find Properties</Card.Link>
@@ -30,7 +39,8 @@ const CardItems = () => {
           </div>
           <div className="col-sm-">
             <Card
-              style={{ width: "18rem", border: "medium solid transparent" }}
+              className="text-center"
+              style={{ width: "20rem", border: "medium solid transparent" }}
             >
               <Card.Body>
                 <Card.Title>Post </Card.Title>
@@ -48,6 +58,7 @@ const CardItems = () => {
           </div>
           <div className="col-sm-">
             <Card
+              className="text-center"
               style={{ width: "20rem", border: "medium solid transparent" }}
             >
               <Card.Body>
@@ -71,16 +82,16 @@ const CardItems = () => {
       </div>
       <hr />
       <p>
-        iBetoch is Free of any charge to use. We value the security of
-        users("Betochers") carefully. Please report properties that look
-        suspicious to our email address or on report link(
-        <strong> info@ibetoch.com </strong> or{" "}
-        <strong>robikidin1@gmail.com</strong> for the time being) so we can take
-        the appropriate measures to inspect them.
+        iBetoch is Free of any charge to use. We value the security of users
+        carefully. Please report properties that look suspicious by clicking the
+        report button that is found on the bottom on each property's block. Or
+        email us
+        <strong> team@ibetoch.com </strong> so we can take the appropriate
+        measures to inspect them.
       </p>
       <hr />
       <h5 className="text-center">
-        Contact or Follow the creator and owner of this site at{" "}
+        Contact or Follow the creator and owner of this web application at{" "}
         <a
           className="li-ic"
           href="https://www.linkedin.com/in/robel-tegegne-93a33b133/"

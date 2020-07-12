@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 const Footer = () => {
   return (
     <Fragment>
-      <footer className="page-footer indigo">
+      <footer className="page-footer indigo ">
         <div
           className="container "
           // style={{ backgroundColor: "rgb(230, 243, 255)", fontSize: "16px" }}
@@ -54,26 +54,28 @@ const Footer = () => {
                 <a href="/affilate">Become An Affilate</a>
               </h6>
             </div>
-            <p className="hide-sm hide-md"> | </p>
-            <div className="col-md-2 mx-n4">
-              <h6 className="text-uppercase font-weight-bold">
-                <a href="/partners">Partners</a>
-              </h6>
-            </div>
-            <p className="hide-sm hide-md"> | </p>
-            <div className="col-md-2  mx-n4">
-              <h6 className="text-uppercase font-weight-bold">
-                <a href="/help">FAQ</a>
-              </h6>
-            </div>
+
             <p className="hide-sm hide-md"> | </p>
             <div className="col-md-2  mx-n4">
               <h6 className="text-uppercase font-weight-bold">
                 <a href="/contactus">Contact Us</a>
               </h6>
             </div>
+            {/* <p className="hide-sm hide-md"> | </p>
+            <div className="col-md-2 mx-n4">
+              <h6 className="text-uppercase font-weight-bold">
+                <a href="/partners">Partners</a>
+              </h6>
+            </div> */}
             <p className="hide-sm hide-md"> | </p>
-            <div className="col-md-2  mx-n4 ">
+            <div className="col-md-2 mx-n4">
+              <h6 className="text-uppercase font-weight-bold">
+                <a href="/help">FAQ</a>
+              </h6>
+            </div>
+
+            <p className="hide-sm hide-md"> | </p>
+            <div className="col-md-2 mx-n4 ">
               <h6 className="text-uppercase font-weight-bold">
                 <a href="/terms">Terms & Conditions</a>
               </h6>
@@ -88,7 +90,7 @@ const Footer = () => {
 
           <div className="footer-copyright text-center py-3">
             © 2020 Copyright:
-            <a href="https://ibetoch.com/"> ibetoch.com</a>
+            <a href="https://www.ibetoch.com/"> iBetoch.com</a>
           </div>
         </div>
       </footer>

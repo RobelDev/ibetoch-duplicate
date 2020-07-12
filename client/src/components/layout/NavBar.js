@@ -42,6 +42,18 @@ const NavBar = ({ history, authState: { isAuth, loading, user }, logout }) => {
           <i className="fa fa-building " /> Betoch Posts
         </Link>
       </li>
+
+      <li className="nav-item">
+        <Link
+          to="/affilate"
+          className="nav-link mr-3"
+          style={isActive("/affilate")}
+        >
+          {" "}
+          <i className="fa fa-handshake" /> Work with iBetoch
+        </Link>
+      </li>
+
       <li className="nav-item">
         <Link to="/help" className="nav-link mr-3" style={isActive("/help")}>
           {" "}
@@ -120,6 +132,17 @@ const NavBar = ({ history, authState: { isAuth, loading, user }, logout }) => {
         <Link to="/help" className="nav-link mr-3" style={isActive("/help")}>
           {" "}
           <i className="fa fa-question-circle" /> Help
+        </Link>
+      </li>
+
+      <li className="nav-item">
+        <Link
+          to="/affilate"
+          className="nav-link mr-3"
+          style={isActive("/affilate")}
+        >
+          {" "}
+          <i className="fa fa-handshake" /> Work with iBetoch
         </Link>
       </li>
 
