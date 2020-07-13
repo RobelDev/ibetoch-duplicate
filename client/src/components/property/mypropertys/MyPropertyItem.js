@@ -47,8 +47,6 @@ const MyPropertyItem = ({
     <i className="fa fa-heart" style={{ fontSize: "18px", color: "blue" }} />
   );
 
- 
-
   return (
     <Fragment>
       <div className="card" style={{ width: "22rem", height: "28.3rem" }}>
@@ -103,7 +101,9 @@ const MyPropertyItem = ({
               <span className="sr-only">Number of interests/likes</span>
             </Button>{" "}
             <Button className="btn btn-light text-secondary">
-              {bedroom}Bedrooms|{bathroom}Bathrooms|{totalSquareFt}sqft
+              {bedroom} <i className="fa fa-bed" /> Bds<strong> | </strong>
+              {bathroom} <i class="fa fa-bath" /> Ba <strong> | </strong>
+              {totalSquareFt}sqft
             </Button>
           </small>
           <br />

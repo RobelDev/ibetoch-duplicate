@@ -302,7 +302,10 @@ router.put("/profile/like/:prop_id", auth, async (req, res) => {
       //mylistProp.mylist.splice(mylistIndex, 1);
 
       await property.save();
-      res.json(property.interests);
+      res.json({
+        interests: property.interests,
+        msg: "Unliked/unsaved from list",
+      });
     } else {
       property.interests.unshift({ user: req.user.id });
       //mylistProp.populate()
@@ -315,7 +318,7 @@ router.put("/profile/like/:prop_id", auth, async (req, res) => {
       //await mylistProp.save();
       // await mine.save();
 
-      res.json(property.interests);
+      res.json({ interests: property.interests, msg: "Liked/saved to lists" });
       //res.json(mylistProp.mylist);
     }
   } catch (error) {

@@ -122,56 +122,56 @@ const ViewProperty = ({
               </Button>{" "}
               <hr />
               <br />
-              <ul className="list-group center">
-                <li className="list-group-item">
-                  Posted on <Moment format="DD/MM/YYYY">{property.date}</Moment>
-                </li>
-                <li className="list-group-item">
-                  Purpose: {property.purpose}{" "}
-                </li>
-                <li className="list-group-item">
-                  Address: {property.address}{" "}
-                </li>
-                <li className="list-group-item">Price: {property.price}</li>
-                <li className="list-group-item">
-                  Home-Type: {property.homeType}
-                </li>
-                <li className="list-group-item">
-                  Bathroom: {property.bathroom}{" "}
-                </li>
-                <li className="list-group-item">
-                  Bedroom: {property.bedroom}{" "}
-                </li>
-                <li className="list-group-item">
-                  Bedroom: {property.bedroom}{" "}
-                </li>
-                <li className="list-group-item">
-                  Total Square Ft: {property.totalSquareFt}{" "}
-                </li>
+              <div style={{ fontSize: "20px" }}>
+                <ul className="list-group center">
+                  <li className="list-group-item">
+                    Posted on:{" "}
+                    <Moment format="DD/MM/YYYY">{property.date}</Moment>
+                  </li>
+                  <li className="list-group-item">
+                    Purpose: {property.purpose}{" "}
+                  </li>
+                  <li className="list-group-item">
+                    Address: {property.address}{" "}
+                  </li>
+                  <li className="list-group-item">Price: {property.price}</li>
+                  <li className="list-group-item">
+                    Home-Type: {property.homeType}
+                  </li>
+                  <li className="list-group-item">
+                    Bathroom <i class="fa fa-bath" /> : {property.bathroom}{" "}
+                  </li>
 
-                <li className="list-group-item">
-                  {" "}
-                  Year Built:{" "}
-                  <Moment format="DD/MM/YYYY"> {property.yearBuilt}</Moment>
-                </li>
-                <li className="list-group-item"> By: {property.company}</li>
-                <li className="list-group-item">
-                  {" "}
-                  Website: {property.website}{" "}
-                </li>
-                <li className="list-group-item">
-                  {" "}
-                  ContactInfo: {property.contactInfo}{" "}
-                </li>
-                <li className="list-group-item">
-                  {" "}
-                  Availability: {property.availability}{" "}
-                </li>
-                <li className="list-group-item">
-                  {" "}
-                  description: {property.description}{" "}
-                </li>
-              </ul>
+                  <li className="list-group-item">
+                    Bedroom <i className="fa fa-bed" /> : {property.bedroom}{" "}
+                  </li>
+                  <li className="list-group-item">
+                    Total Square Ft: {property.totalSquareFt}{" "}
+                  </li>
+
+                  <li className="list-group-item">
+                    {" "}
+                    Year Built: {property.yearBuilt}
+                  </li>
+                  <li className="list-group-item"> By: {property.company}</li>
+                  <li className="list-group-item">
+                    {" "}
+                    Website: {property.website}{" "}
+                  </li>
+                  <li className="list-group-item">
+                    {" "}
+                    ContactInfo: {property.contactInfo}{" "}
+                  </li>
+                  <li className="list-group-item">
+                    {" "}
+                    Availability: {property.availability}{" "}
+                  </li>
+                  <li className="list-group-item">
+                    {" "}
+                    Description: {property.description}{" "}
+                  </li>
+                </ul>
+              </div>
               <hr />
             </div>
           </div>

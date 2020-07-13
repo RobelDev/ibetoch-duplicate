@@ -15,7 +15,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 const PropertyItem = ({
   addLike,
   report,
-  authState: { isAuth },
+  authState,
   property: {
     _id,
     user,
@@ -38,12 +38,11 @@ const PropertyItem = ({
     date,
   },
 }) => {
-  const [
-    like,
-    //setLike
-  ] = useState(
+  const [like, setLike] = useState(
     <i className="fa fa-heart" style={{ fontSize: "18px", color: "blue" }} />
   );
+
+  let likeBtn;
 
   const [formData, setFormData] = useState({
     reason: "",
@@ -62,7 +61,7 @@ const PropertyItem = ({
   const onSubmitReport = async (e) => {
     e.preventDefault();
     //make sure the password match
-    if (!isAuth) {
+    if (!authState.isAuth) {
       return toast.error("Please sign in first to report a property!");
     }
     if (reason === "") {
@@ -78,15 +77,6 @@ const PropertyItem = ({
       });
     }
   };
-
-  // const onAddLike = async () => {
-  //   // if (interests.map((like) => like._id !== user._id)) {
-
-  //   // setLike(
-  //   //   <i className="fa fa-heart" style={{ fontSize: "20px", color: "blue" }} />
-  //   // );
-  //   addLike(_id);
-  // };
 
   const [show, setShow] = useState(false);
   const [reportShow, setReportShow] = useState(false);
@@ -141,10 +131,7 @@ const PropertyItem = ({
           <small>
             <Button
               className="px-2 btn-light text-white float-right"
-              onClick={(e) => {
-                addLike(_id);
-                // window.location.reload();
-              }}
+              onClick={(e) => addLike(_id)}
             >
               <Badge
                 variant="light"
@@ -156,7 +143,9 @@ const PropertyItem = ({
               <span className="sr-only">Number of interests/likes</span>
             </Button>{" "}
             <Button className="btn btn-light text-secondary">
-              {bedroom}Bedrooms|{bathroom}Bathrooms|{totalSquareFt}sqft
+              {bedroom} <i className="fa fa-bed" /> Bds<strong> | </strong>
+              {bathroom} <i class="fa fa-bath" /> Ba <strong> | </strong>
+              {totalSquareFt}sqft
             </Button>
           </small>
           <br />
@@ -295,7 +284,7 @@ const PropertyItem = ({
                 issues/options. If your issue is not listed, please select
                 other. Thank you for making iBetoch safe environment for users.
               </h6>{" "}
-              {!isAuth && (
+              {!authState.isAuth && (
                 <h5>
                   Please
                   <Link to="/auth"> Sign in or Join</Link> First to report an

@@ -232,6 +232,8 @@ export const addLike = (prop_id) => async (dispatch) => {
     ///profile/like/:prop_id
     const response = await axios.put(`/api/property/profile/like/${prop_id}`);
     // toast.success("Liked a property ");
+    toast.info(response.data.msg);
+
     dispatch({
       type: constants.ADD_LIKE,
       payload: { likes: response.data, prop_id },

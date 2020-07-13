@@ -167,12 +167,12 @@ export default function (state = initialState, action) {
         ...state,
         propertys: state.propertys.map((property) =>
           property._id === action.payload.prop_id
-            ? { ...property, interests: action.payload.likes }
+            ? { ...property, interests: action.payload.likes.interests }
             : property
         ),
         mysearchedpropertys: state.mysearchedpropertys.map((property) =>
           property._id === action.payload.prop_id
-            ? { ...property, interests: action.payload.likes }
+            ? { ...property, interests: action.payload.likes.interests }
             : property
         ),
         mylikedpropertys: state.mylikedpropertys.map((property) =>
