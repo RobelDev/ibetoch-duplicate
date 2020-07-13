@@ -514,14 +514,14 @@ router.get("/google-maps/:address", async (req, res) => {
         .status(422)
         .json({ msg: "Location not found for the given address" });
     }
-
+    //console.log(response.data.results[0].geometry);
     const coordinates = await response.data.results[0].geometry.location;
 
     //console.log(coordinates);
 
-    res.json(coordinates);
+    await res.json(coordinates);
   } catch (error) {
-    console.error(err.message);
+    console.error(error.message);
     res.status(500).send("Server Error");
   }
 });

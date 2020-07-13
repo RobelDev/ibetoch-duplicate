@@ -28,7 +28,7 @@ const ViewProperty = ({
     prop_id: "",
     owner: false,
     propAddress: "",
-    coor: null,
+    coor: "",
   });
 
   const { propAddress, coor } = formData;
@@ -37,12 +37,12 @@ const ViewProperty = ({
     let prop_id = match.params.prop_id;
     if (prop_id) {
       setFormData({ ...formData, prop_id });
+      getProperty(prop_id);
     }
-    getProperty(prop_id);
 
     if (!loading && property && property.address !== null) {
-      // setFormData({ ...formData, propAddress: property.address });
-      findOnMap(property.address);
+      setFormData({ ...formData, propAddress: property.address });
+      findOnMap({ address: property.address });
     }
 
     if (coordinates !== null) {
@@ -61,7 +61,9 @@ const ViewProperty = ({
   ]);
 
   if (loading) {
-    return <Spinner animation="border" variant="primary" className="center" />;
+    return (
+      <Spinner animation="border" variant="primary" className="text-center" />
+    );
   }
 
   return (
@@ -174,15 +176,19 @@ const ViewProperty = ({
             </div>
           </div>
 
-          <div
-            // className="container"
-            style={{ width: "100%", height: "50rem" }}
-          >
-            <p className="text-center">
-              Google Map <small>(reload if it didnt display)</small>
-            </p>
-            <GoogleMap coordinates={coordinates} price={property.price} />
-          </div>
+          {/* <div
+            className=""
+            // style={{ width: "100vw", height: "280px" }}
+          > */}
+          <p className="text-center">
+            Google Map <small>(reload if it didnt display)</small>
+          </p>
+          <GoogleMap
+            // address={property.address}
+            coordinates={coordinates && coordinates}
+            price={property.price}
+          />
+          {/* </div> */}
 
           {/* <hr /> */}
         </Fragment>

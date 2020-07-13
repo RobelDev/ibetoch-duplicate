@@ -320,7 +320,7 @@ export const deleteImage = ({ prop_id, image_id, history }) => async (
 //address stuff goes here
 // this will response with coordinates
 // to do:
-export const findOnMap = (address) => async (dispatch) => {
+export const findOnMap = ({ address }) => async (dispatch) => {
   try {
     const response = await axios.get(`/api/property/google-maps/${address}`);
 
