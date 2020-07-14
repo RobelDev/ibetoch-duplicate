@@ -18,7 +18,7 @@ const CarouselSlide = () => {
             <img src={slide4} alt="" />
             {/* <p className="legend">A house </p> */}
           </div>
-          <div style={{ height: "100%", width: "100&" }}>
+          <div style={{ height: "100%", width: "100%" }}>
             <img src={slide5} alt="" />
           </div>
           <div style={{ height: "100%", width: "100%" }}>

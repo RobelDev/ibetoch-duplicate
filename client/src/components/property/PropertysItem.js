@@ -321,7 +321,7 @@ const PropertyItem = ({
                 </li>
 
                 <li className="list-group-item d-flex justify-content-between align-items-center">
-                  Year Built: <span className="">{yearBuilt}</span>
+                  Year Built: <span> {yearBuilt}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center">
                   By:

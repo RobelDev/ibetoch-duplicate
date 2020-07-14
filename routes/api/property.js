@@ -22,7 +22,7 @@ router.post(
     auth,
     [
       check("price", "price is required with US dollar").isCurrency(),
-      check("yearBuilt", "Year built of property is required").isNumeric(),
+      check("yearBuilt", "Year built of property is required").not().isEmpty(),
       check("address", "address is required").not().isEmpty(),
     ],
   ],
@@ -108,7 +108,7 @@ router.put(
     auth,
     [
       check("price", "price is required with US dollar").isCurrency(),
-      check("yearBuilt", "Year built of property is required").isNumeric(),
+      check("yearBuilt", "Year built of property is required").not().isEmpty(),
       check("address", "address is required").not().isEmpty(),
     ],
   ],

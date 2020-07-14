@@ -46,7 +46,7 @@ const PropertySchema = new mongoose.Schema({
   },
 
   yearBuilt: {
-    type: Date,
+    type: String,
     required: true,
   },
   address: {

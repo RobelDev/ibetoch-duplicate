@@ -20,13 +20,16 @@ const Landing = (props) => {
               {/* <Link to="/login" className="btn btn-primary">
                 Login
               </Link> */}
-              <Link to="/propertys" className="btn btn-primary btn-bg">
+              <Link to="/propertys" className="btn btn-primary btn-lg">
                 Rent, Buy and Sell properties in Ethiopia{" "}
               </Link>
             </div>
           </div>
         </div>
       </section>
+      <br />
+      <br />
+      <br />
 
       <CardItems />
 
