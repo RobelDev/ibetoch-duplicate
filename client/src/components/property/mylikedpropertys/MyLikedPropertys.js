@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { getLikedPropertys } from "../../../actions/propertyAction";
 import PropertysItem from "../PropertysItem";
 import { Spinner } from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MyLikedPropertys = ({
   getLikedPropertys,
@@ -21,6 +23,7 @@ const MyLikedPropertys = ({
 
   return (
     <Fragment>
+      <ToastContainer />
       <div className="container">
         <br />
         <h3>My liked list properties</h3>

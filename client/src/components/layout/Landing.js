@@ -21,7 +21,7 @@ const Landing = (props) => {
                 Login
               </Link> */}
               <Link to="/propertys" className="btn btn-primary btn-bg">
-                Rent, Buy and Sell properties easily{" "}
+                Rent, Buy and Sell properties in Ethiopia{" "}
               </Link>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -9,13 +9,17 @@ import { addLike, report } from "../../actions/propertyAction";
 import Moment from "react-moment";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import smallLogo from "../../siteImages/xsmallLogo.png";
+import GoogleMap from "./GoogleMap";
 
 // import ViewProperty from "./ViewProperty";
 
 const PropertyItem = ({
   addLike,
+  // findOnMap,
   report,
   authState,
+  // propertyState: { loading, coordinates },
   property: {
     _id,
     user,
@@ -36,18 +40,17 @@ const PropertyItem = ({
     images,
     interests,
     date,
+    coordinates,
   },
 }) => {
   const [like, setLike] = useState(
     <i className="fa fa-heart" style={{ fontSize: "18px", color: "blue" }} />
   );
 
-  let likeBtn;
-
   const [formData, setFormData] = useState({
     reason: "",
-    // prop_id: "",
-
+    // coor: "",
+    // prop_address: "",
     buttonText: "Report",
   });
 
@@ -91,7 +94,7 @@ const PropertyItem = ({
     <Fragment>
       <div
         className="card"
-        style={{ width: "22rem", height: "28.3rem" }}
+        style={{ width: "22rem", height: "29.7rem" }}
         onDoubleClick={handleShow}
       >
         <div style={{ height: "23rem" }}>
@@ -128,6 +131,10 @@ const PropertyItem = ({
           <strong>
             <Button className="btn btn-light text-primary">${price}</Button>{" "}
           </strong>{" "}
+          <br />
+          <Badge variant="light" className="mx-1" style={{ fontSize: "13px" }}>
+            iBetoch Est: {}
+          </Badge>
           <small>
             <Button
               className="px-2 btn-light text-white float-right"
@@ -144,7 +151,7 @@ const PropertyItem = ({
             </Button>{" "}
             <Button className="btn btn-light text-secondary">
               {bedroom} <i className="fa fa-bed" /> Bds<strong> | </strong>
-              {bathroom} <i class="fa fa-bath" /> Ba <strong> | </strong>
+              {bathroom} <i className="fa fa-bath" /> Ba <strong> | </strong>
               {totalSquareFt}sqft
             </Button>
           </small>
@@ -156,28 +163,31 @@ const PropertyItem = ({
           </small>
           <br />
           <div className="mb-2 my-n0 btn-block text-center">
-            <a
-              href={`/propertys/viewproperty/${_id}`}
-              className="btn btn-primary"
-              // onClick={() => console.log("clicked")}
-            >
-              View Property
-            </a>
-
             <Button
+              // href={`/propertys/viewproperty/${_id}`}
+              className="btn btn-primary"
+              onClick={handleShow}
+            >
+              View
+            </Button>
+
+            {/* <Button
               className="btn btn-danger float-right btn-sm"
               onClick={reportHandleShow}
               // onClick={() => console.log("clicked")}
             >
-              Report
-            </Button>
+              View
+            </Button> */}
           </div>
         </div>
       </div>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} size="lg" centered>
         <Modal.Header closeButton>
           <Modal.Title>
+            <Button variant="light" className="btn-block" disabled>
+              <h2>iBetoch Listing </h2>
+            </Button>
             {homeType.charAt(0).toUpperCase().concat(homeType.substr(1))} for{" "}
             {purpose.charAt(0).toUpperCase().concat(purpose.substr(1))} at{" "}
             {address.charAt(0).toUpperCase().concat(address.substr(1))}
@@ -194,7 +204,7 @@ const PropertyItem = ({
               <Carousel autoPlay infiniteLoop>
                 {images.length > 0 ? (
                   images.map((image) => (
-                    <div key={image._id} style={{ height: "200px" }}>
+                    <div key={image._id}>
                       <img src={image.locationUrl} alt="" />
                     </div>
                   ))
@@ -242,25 +252,125 @@ const PropertyItem = ({
                 <Button className="btn btn-light text-secondary">
                   {bedroom}Bedrooms|{bathroom}Bathrooms|{totalSquareFt}sqft
                 </Button>
+                <br />
+                <Badge
+                  variant="secondary"
+                  className="mx-1"
+                  style={{ fontSize: "14px" }}
+                >
+                  iBetoch Estimate: {}
+                </Badge>
               </small>
               <br />
+              <Button
+                className="btn btn-danger float-right"
+                onClick={reportHandleShow}
+                // onClick={() => console.log("clicked")}
+              >
+                Report
+              </Button>
               <br />
               <br />
             </div>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
+          <br />
+          <h3>
+            {" "}
+            <i className="fa fa-key"></i> Key details <br />
+          </h3>
+          <div className="" style={{ fontSize: "18px" }}>
+            <div>
+              <ul className="list-group ">
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  Posted on:
+                  <Moment format="DD/MM/YYYY">{date}</Moment>
+                </li>
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  Purpose:
+                  <span className="">{purpose}</span>
+                </li>
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  Address:
+                  {/* <i className="fa fa-map-marker" /> */}
+                  <span className="">{address}</span>
+                </li>
 
-          <a
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  Price:
+                  <span className="">{price}</span>
+                </li>
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  Home-Type:
+                  <span className="">{homeType}</span>{" "}
+                </li>
+
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  {/* <i className="fa fa-bath" />  */}
+                  Bathroom:
+                  <span className="">{bathroom}</span>
+                </li>
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  Bedroom:
+                  {/* <i className="fa fa-bed" /> */}
+                  <span className=""> {bedroom}</span>
+                </li>
+
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  Total Square Ft:
+                  <span className="">{totalSquareFt}</span>{" "}
+                </li>
+
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  Year Built: <span className="">{yearBuilt}</span>
+                </li>
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  By:
+                  <span className="primary"> {company}</span>
+                </li>
+              </ul>
+            </div>{" "}
+            <i className="fa fa-angle-right" />
+            <i className="fa fa-angle-right" />
+            <i className="fa fa-angle-right" />
+            <div>
+              <h3>Additional Informtion</h3>
+              <ul>
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  {" "}
+                  Website: {website}{" "}
+                </li>
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  {" "}
+                  ContactInfo: {contactInfo}{" "}
+                </li>
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  {" "}
+                  Availability: {availability}{" "}
+                </li>
+                <li className="list-group-item">
+                  {" "}
+                  Description: {description}{" "}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="ml-n3" style={{ width: "100%", height: "35rem" }}>
+            <GoogleMap coordinates={coordinates} price={price} />
+          </div>
+        </Modal.Body>
+
+        <Modal.Footer>
+          {/* <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button> */}
+
+          {/* <a
             href={`/propertys/viewproperty/${_id}`}
             //variant="primary"
             className="btn btn-primary"
           >
             View
-          </a>
+          </a> */}
         </Modal.Footer>
       </Modal>
 

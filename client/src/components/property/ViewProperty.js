@@ -77,23 +77,25 @@ const ViewProperty = ({
                 {property.images.length > 0 ? (
                   property.images.map((image) => (
                     <div key={image._id}>
-                      <img src={image.locationUrl} alt="property"></img>
-
-                      {user && property && property.user._id === user._id && (
-                        <button
-                          className="btn btn-danger float-right"
-                          type="button"
-                          onClick={() =>
-                            deleteImage({
-                              prop_id: property._id,
-                              image_id: image._id,
-                              history,
-                            })
-                          }
-                        >
-                          Remove an Image
-                        </button>
-                      )}
+                      <div>
+                        <img src={image.locationUrl} alt="property"></img>{" "}
+                      </div>
+                      <div>
+                        {user && property && property.user._id === user._id && (
+                          <Badge
+                            className="btn btn-danger btn-sm float-right "
+                            onClick={() =>
+                              deleteImage({
+                                prop_id: property._id,
+                                image_id: image._id,
+                                history,
+                              })
+                            }
+                          >
+                            Remove an Image
+                          </Badge>
+                        )}
+                      </div>
                     </div>
                   ))
                 ) : (
@@ -102,7 +104,7 @@ const ViewProperty = ({
               </Carousel>
             </div>
 
-            <div className="shadow p-3 mb-5 bg-white rounded">
+            <div className="shadow=lg p-3 mb-5 bg-white rounded">
               <Button
                 className="px-2 btn-light text-white float-right"
                 onClick={() => addLike(property._id)}
@@ -120,16 +122,22 @@ const ViewProperty = ({
                 </Badge>
                 <span className="sr-only">Number of interests/likes</span>
               </Button>{" "}
+              <p>
+                To delete an image please click it at the bottom of the red box
+              </p>
               <hr />
               <br />
-              <div style={{ fontSize: "20px" }}>
-                <ul className="list-group center">
+              <div style={{ fontSize: "18px" }}>
+                <p></p>
+                <h3> Key details </h3>
+
+                <ul className="list-group ">
                   <li className="list-group-item">
-                    Posted on:{" "}
+                    Posted on:
                     <Moment format="DD/MM/YYYY">{property.date}</Moment>
                   </li>
                   <li className="list-group-item">
-                    Purpose: {property.purpose}{" "}
+                    Purpose: {property.purpose}
                   </li>
                   <li className="list-group-item">
                     Address: {property.address}{" "}
@@ -145,15 +153,19 @@ const ViewProperty = ({
                   <li className="list-group-item">
                     Bedroom <i className="fa fa-bed" /> : {property.bedroom}{" "}
                   </li>
+
                   <li className="list-group-item">
                     Total Square Ft: {property.totalSquareFt}{" "}
                   </li>
-
                   <li className="list-group-item">
                     {" "}
                     Year Built: {property.yearBuilt}
                   </li>
                   <li className="list-group-item"> By: {property.company}</li>
+                </ul>
+                <br />
+                <h3>Additional Informtion</h3>
+                <ul>
                   <li className="list-group-item">
                     {" "}
                     Website: {property.website}{" "}
@@ -174,20 +186,21 @@ const ViewProperty = ({
               </div>
               <hr />
             </div>
+            <div className="text-center center">
+              <p className="text-center">Google Map</p>
+              <GoogleMap
+                // address={property.address}
+                coordinates={property.coordinates}
+                price={property.price}
+              />
+            </div>
           </div>
 
           {/* <div
             className=""
             // style={{ width: "100vw", height: "280px" }}
           > */}
-          <p className="text-center">
-            Google Map <small>(reload if it didnt display)</small>
-          </p>
-          <GoogleMap
-            // address={property.address}
-            coordinates={coordinates && coordinates}
-            price={property.price}
-          />
+
           {/* </div> */}
 
           {/* <hr /> */}
@@ -202,7 +215,6 @@ const ViewProperty = ({
 ViewProperty.propTypes = {
   getProperty: PropTypes.func.isRequired,
   propertyState: PropTypes.object.isRequired,
-  coordinates: PropTypes.object,
   deleteImage: PropTypes.func.isRequired,
   findOnMap: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,

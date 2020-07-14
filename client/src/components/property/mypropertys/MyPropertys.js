@@ -7,6 +7,8 @@ import { getMyPropertys } from "../../../actions/propertyAction";
 import { Spinner } from "react-bootstrap";
 import MyPropertyItem from "./MyPropertyItem";
 // import ViewProperty from "../ViewProperty";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const MyPropertys = ({
   propertyState: { mypropertys, loading },
@@ -22,6 +24,7 @@ const MyPropertys = ({
 
   return (
     <Fragment>
+      <ToastContainer />
       <div className="container">
         <br />
         <h3>My Properties List</h3>

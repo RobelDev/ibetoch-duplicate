@@ -91,6 +91,10 @@ const PropertySchema = new mongoose.Schema({
     type: String,
   },
 
+  coordinates: {
+    type: Object,
+  },
+
   date: {
     type: Date,
     default: Date.now,

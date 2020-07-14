@@ -177,17 +177,21 @@ export default function (state = initialState, action) {
         ),
         mylikedpropertys: state.mylikedpropertys.map((property) =>
           property._id === action.payload.prop_id
-            ? { ...property, interests: action.payload.likes }
+            ? { ...property, interests: action.payload.likes.interests }
             : property
         ),
 
         mypropertys: state.mypropertys.map((property) =>
           property._id === action.payload.prop_id
-            ? { ...property, interests: action.payload.likes }
+            ? { ...property, interests: action.payload.likes.interests }
             : property
         ),
-        property: { ...state.property, interests: action.payload.likes },
+        property: {
+          ...state.property,
+          interests: action.payload.likes.interests,
+        },
         loading: false,
+        msg: action.payload.msg,
       };
 
     case constants.PROPERTY_ERROR:

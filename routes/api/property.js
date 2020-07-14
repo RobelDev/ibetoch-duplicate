@@ -74,6 +74,19 @@ router.post(
 
       const property = new Property(propertyFields);
 
+      const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+        address
+      )}&key=${config.get("GOOGLE_MAP_API_KEY")}
+  `);
+
+      if (!response) {
+        return res
+          .status(422)
+          .json({ msg: "Location not found for the given address" });
+      }
+      //console.log(response.data.results[0].geometry);
+      property.coordinates = await response.data.results[0].geometry.location;
+
       //save it to mongo db
       await property.save();
       res.json(property);
@@ -155,6 +168,19 @@ router.put(
       }
 
       await property.updateOne({ $set: propertyFields }, { new: true });
+
+      const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+        address
+      )}&key=${config.get("GOOGLE_MAP_API_KEY")}
+  `);
+
+      if (!response) {
+        return res
+          .status(422)
+          .json({ msg: "Location not found for the given address" });
+      }
+      //console.log(response.data.results[0].geometry);
+      property.coordinates = await response.data.results[0].geometry.location;
 
       //save it to mongo db
       await property.save();
