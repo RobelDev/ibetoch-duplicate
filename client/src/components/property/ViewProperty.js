@@ -123,11 +123,11 @@ const ViewProperty = ({
                 <span className="sr-only">Number of interests/likes</span>
               </Button>{" "}
               <p>
-                To delete an image please click it at the bottom of the red box
+                To delete an image please click it at the bottom(border line of)
+                of the red box
               </p>
               <hr />
-              <br />
-              <div style={{ fontSize: "18px" }}>
+              {/* <div style={{ fontSize: "18px" }}>
                 <p></p>
                 <h3> Key details </h3>
 
@@ -183,18 +183,18 @@ const ViewProperty = ({
                     Description: {property.description}{" "}
                   </li>
                 </ul>
-              </div>
-              <hr />
-            </div>
-            <div className="text-center center">
-              <p className="text-center">Google Map</p>
-              <GoogleMap
-                // address={property.address}
-                coordinates={property.coordinates}
-                price={property.price}
-              />
+              </div> */}
             </div>
           </div>
+
+          {/* <div className="">
+            <p className="text-center">Google Map</p>
+            <GoogleMap
+              // address={property.address}
+              coordinates={property.coordinates}
+              price={property.price}
+            />
+          </div> */}
 
           {/* <div
             className=""

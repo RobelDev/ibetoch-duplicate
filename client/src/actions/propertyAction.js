@@ -210,7 +210,6 @@ export const getSearchedPropertys = (
 export const deleteProperty = (prop_id) => async (dispatch) => {
   try {
     await axios.delete(`/api/property/profile/${prop_id}`);
-
     dispatch({ type: constants.DELETE_PROPERTY, payload: prop_id });
     toast.warning("Succesfully deleted an image");
   } catch (error) {

@@ -112,8 +112,8 @@ const MyPropertyItem = ({
               </Badge>
               <span className="sr-only">Number of interests/likes</span>
             </Button>{" "}
-            <Button className="btn btn-light text-secondary">
-              {bedroom} <i className="fa fa-bed" /> Bds<strong> | </strong>
+            <Button className="btn btn-light text-primary">
+              {bedroom} <i className="fa fa-bed" /> Bds <strong> | </strong>
               {bathroom} <i className="fa fa-bath" /> Ba <strong> | </strong>
               {totalSquareFt}sqft
             </Button>
@@ -121,18 +121,22 @@ const MyPropertyItem = ({
           <br />
           <small>
             <Button className="btn btn-light text-body">
-              <small> {address} </small>
+              <small>
+                {" "}
+                <i className="fa fa-map-marker" style={{ color: "red" }} />{" "}
+                {address}{" "}
+              </small>
             </Button>
           </small>
           <br />
           <div className="">
             <a
               href={`/propertys/viewproperty/${_id}`}
-              className="btn btn-primary"
+              className="btn btn-light text-danger"
 
               // onClick={() => console.log("clicked")}
             >
-              View
+              Imgs
             </a>
 
             <a href={`/addimages/${_id}`} className="btn btn-light text-danger">
@@ -165,12 +169,19 @@ const MyPropertyItem = ({
       <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>
-            <Button variant="light" className="btn-block" disabled>
-              <h2> My iBetoch Listing </h2>
+            <Button variant="light" className="btn " disabled>
+              <h3>My iBetoch Listing </h3>
             </Button>
-            {homeType.charAt(0).toUpperCase().concat(homeType.substr(1))} for{" "}
-            {purpose.charAt(0).toUpperCase().concat(purpose.substr(1))} at{" "}
-            {address.charAt(0).toUpperCase().concat(address.substr(1))}
+            {/* <p style={{ color: "#209CEE" }}>
+              ETB {price}/{purpose === "rent" ? "month" : "once"} <br />
+              {homeType
+                .charAt(0)
+                .toUpperCase()
+                .concat(homeType.substr(1))} for{" "}
+              {purpose.charAt(0).toUpperCase().concat(purpose.substr(1))}
+            </p>
+
+            {address.charAt(0).toUpperCase().concat(address.substr(1))} */}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -211,13 +222,15 @@ const MyPropertyItem = ({
             </div>
             {/* <div className="card-body"> */}
             <div className="card-body my-n5 mb-1 p-2 float-left">
-              <strong>
-                <Button className="btn btn-light text-primary">${price}</Button>{" "}
-              </strong>{" "}
+              <>
+                <Button className="btn btn-light text-primary btn-lg">
+                  ETB {price}/{purpose === "rent" ? "month" : "once"}
+                </Button>{" "}
+              </>{" "}
               <small>
                 <Button
                   className="px-2 btn-light text-white float-right"
-                  onClick={(e) => addLike(_id)}
+                  onClick={() => addLike(_id)}
                 >
                   <Badge
                     variant="light"
@@ -229,22 +242,28 @@ const MyPropertyItem = ({
                   <span className="sr-only">Number of interests/likes</span>
                 </Button>{" "}
                 <br />
-                <Button className="btn btn-light text-secondary">
-                  {bedroom}Bedrooms|{bathroom}Bathrooms|{totalSquareFt}sqft
+                <Button className="btn btn-light text-primary">
+                  {bedroom} <i className="fa fa-bed" /> Bedrooms | {bathroom}{" "}
+                  <i className="fa fa-bath" /> Bathrooms | {totalSquareFt}sqft
                 </Button>
                 <br />
-                <Badge
-                  variant="secondary"
+                {/* <Badge
+                  variant="light"
                   className="mx-1"
                   style={{ fontSize: "14px" }}
                 >
                   iBetoch Estimate: {}
-                </Badge>
+                </Badge>{" "}
+                <br /> */}
+                <Button className="btn btn-light text-primary">
+                  <i className="fa fa-map-marker" style={{ color: "red" }} />{" "}
+                  {address}
+                </Button>
               </small>
               <br />
               {/* <Button
                 className="btn btn-danger float-right"
-                onClick={reportHandleShow}
+                onClick={handleShow}
                 // onClick={() => console.log("clicked")}
               >
                 Report
@@ -254,16 +273,21 @@ const MyPropertyItem = ({
             </div>
           </div>
           <br />
-          <h3>
+          <h3 className="mx-1">
             {" "}
-            <i className="fa fa-key"></i> Key details <br />
+            <i className="fa fa-key" style={{ color: "#009933" }} /> Key details{" "}
+            <br />
           </h3>
-          <div className="" style={{ fontSize: "18px" }}>
+          <div className="mx-1" style={{ fontSize: "20px", color: "#209CEE" }}>
             <div>
               <ul className="list-group ">
                 <li className="list-group-item d-flex justify-content-between align-items-center">
                   Posted on:
-                  <Moment format="DD/MM/YYYY">{date}</Moment>
+                  <Moment format="DD/MM/YYYY">{date}</Moment>{" "}
+                </li>
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  Home-Type:
+                  <span className="">{homeType}</span>{" "}
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center">
                   Purpose:
@@ -278,10 +302,6 @@ const MyPropertyItem = ({
                 <li className="list-group-item d-flex justify-content-between align-items-center">
                   Price:
                   <span className="">{price}</span>
-                </li>
-                <li className="list-group-item d-flex justify-content-between align-items-center">
-                  Home-Type:
-                  <span className="">{homeType}</span>{" "}
                 </li>
 
                 <li className="list-group-item d-flex justify-content-between align-items-center">
@@ -301,49 +321,64 @@ const MyPropertyItem = ({
                 </li>
 
                 <li className="list-group-item d-flex justify-content-between align-items-center">
-                  Year Built: <span className="">{yearBuilt}</span>
-                </li>
-                <li className="list-group-item d-flex justify-content-between align-items-center">
-                  By:
-                  <span className="primary"> {company}</span>
+                  Year Built: <span> {yearBuilt}</span>
                 </li>
               </ul>
             </div>{" "}
-            <i className="fa fa-angle-right" />
-            <i className="fa fa-angle-right" />
-            <i className="fa fa-angle-right" />
-            <div>
-              <h3>Additional Informtion</h3>
-              <ul>
-                <li className="list-group-item d-flex justify-content-between align-items-center">
-                  {" "}
-                  Website: {website}{" "}
-                </li>
-                <li className="list-group-item d-flex justify-content-between align-items-center">
-                  {" "}
-                  ContactInfo: {contactInfo}{" "}
-                </li>
-                <li className="list-group-item d-flex justify-content-between align-items-center">
-                  {" "}
-                  Availability: {availability}{" "}
-                </li>
-                <li className="list-group-item">
-                  {" "}
-                  Description: {description}{" "}
-                </li>
-              </ul>
-            </div>
           </div>
-          <div style={{ width: "100", height: "35rem" }}>
+          <br />
+          <h3 className="mx-1">
+            {" "}
+            <i className="fa fa-angle-right" style={{ color: "#ffcc00" }} />
+            <i className="fa fa-angle-right" style={{ color: "#ffcc00" }} />
+            <i
+              className="fa fa-angle-right"
+              style={{ color: "#ffcc00" }}
+            />{" "}
+            Additional Description
+          </h3>
+          <div className="mx-1" style={{ fontSize: "20px", color: "#209CEE" }}>
+            <ul>
+              <li className="list-group-item d-flex justify-content-between align-items-center">
+                {" "}
+                Availability: {availability}{" "}
+              </li>
+              <li className="list-group-item"> Description: {description} </li>
+            </ul>
+          </div>
+          <h3 className="mx-1">
+            <i className="fa fa-user-plus" style={{ color: "#0033cc" }} />{" "}
+            Contact Owner{" "}
+          </h3>
+          <div className="mx-1" style={{ fontSize: "20px", color: "#209CEE" }}>
+            <ul>
+              <li className="list-group-item d-flex justify-content-between align-items-center">
+                Posted By:
+                <span className="primary"> {company}</span>
+              </li>
+              <li className="list-group-item d-flex justify-content-between align-items-center">
+                {" "}
+                Website: {website}{" "}
+              </li>
+              <li className="list-group-item d-flex justify-content-between align-items-center">
+                {" "}
+                ContactInfo: {contactInfo}{" "}
+              </li>
+            </ul>
+          </div>
+          <h3 className="mx-2">
+            <i className="fa fa-map-marker " style={{ color: "red" }} /> Google
+            Map{" "}
+          </h3>
+          <div className="ml-n3" style={{ width: "100%", height: "35rem" }}>
             <GoogleMap coordinates={coordinates} price={price} />
           </div>
-          <hr />
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          {/* <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
+          </Button> */}
 
           {/* <a
             href={`/propertys/viewproperty/${_id}`}

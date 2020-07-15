@@ -9,9 +9,9 @@ const PropertysBoard = (props) => {
     <Fragment>
       <div className=" container ">
         <Search />
-        <div>
-          <MySearchedPropertys />
-        </div>
+      </div>
+      <div className="ml-3 ">
+        <MySearchedPropertys />
       </div>
 
       {/* <div className="row">
