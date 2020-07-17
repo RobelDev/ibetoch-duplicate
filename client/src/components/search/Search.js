@@ -44,121 +44,118 @@ const Search = ({ getSearchedPropertys }) => {
 
   return (
     <Fragment>
-      <div>
+      <Form className="ml-5 mt-3">
+        <FormControl
+          name="address"
+          value={address}
+          onChange={onChange}
+          placeholder="Enter an address or a city"
+          className="mt- "
+          style={{
+            float: "",
+            width: "320px",
+
+            border: "1px solid transparent",
+            fontSize: "21px",
+            color: "black",
+          }}
+          required
+        />
+        {/* <input /> */}
         <br />
-        <Form>
-          <FormControl
-            name="address"
-            value={address}
-            onChange={onChange}
-            placeholder="Enter an address, city or ZIP code"
-            className="mt-"
-            style={{
-              float: "left",
-              width: "340px",
+        <br />
+        <Form.Row>
+          <Form.Group as={Col} controlId="exampleForm.ControlSelect1">
+            <Form.Label column sm={2}>
+              HomeType:
+            </Form.Label>
+            {/* <Col sm={10}> */}
+            <Form.Control
+              size="sm"
+              as="select"
+              // defaultValue="house"
+              name="homeType"
+              value={homeType}
+              onChange={onChange}
+              required
+            >
+              <option>house</option>
+              <option>apartment</option>
+              <option>condo</option>
+              <option>townhouses</option>
+              <option>other</option>
+            </Form.Control>
+            {/* </Col> */}
+          </Form.Group>
 
-              border: "1px solid transparent",
-              fontSize: "21px",
-              color: "black",
-            }}
-            required
-          />
-          {/* <input /> */}
-          <br />
-          <br />
-          <Form.Row>
-            <Form.Group as={Col} controlId="exampleForm.ControlSelect1">
-              <Form.Label column sm={2}>
-                HomeType:
-              </Form.Label>
-              {/* <Col sm={10}> */}
+          <Form.Group as={Col} controlId="exampleForm.ControlSelect1">
+            <Form.Label column sm={1}>
+              Purpose
+            </Form.Label>
+            {/* <Col sm={10}> */}
+            <Form.Control
+              size="sm"
+              as="select"
+              // defaultValue="rent"
+              name="purpose"
+              value={purpose}
+              onChange={onChange}
+              required
+            >
+              <option>rent</option>
+              <option>sell</option>
+            </Form.Control>
+            {/* </Col> */}
+          </Form.Group>
+          {/* </Form.Row> */}
+
+          {/* <Form.Row> */}
+          <Form.Group as={Col}>
+            <Form.Label column sm={1}>
+              BedRoom
+            </Form.Label>
+            <Col sm={6}>
               <Form.Control
                 size="sm"
-                as="select"
-                // defaultValue="house"
-                name="homeType"
-                value={homeType}
+                type="number"
+                name="bedroom"
+                value={bedroom}
+                placeholder=""
                 onChange={onChange}
-                required
-              >
-                <option>house</option>
-                <option>apartment</option>
-                <option>condo</option>
-                <option>townhouses</option>
-                <option>other</option>
-              </Form.Control>
-              {/* </Col> */}
-            </Form.Group>
+              />
+            </Col>
+          </Form.Group>
 
-            <Form.Group as={Col} controlId="exampleForm.ControlSelect1">
-              <Form.Label column sm={1}>
-                Purpose
-              </Form.Label>
-              {/* <Col sm={10}> */}
+          <Form.Group as={Col}>
+            <Form.Label column sm={1}>
+              BathRoom
+            </Form.Label>
+            <Col sm={6}>
               <Form.Control
                 size="sm"
-                as="select"
-                // defaultValue="rent"
-                name="purpose"
-                value={purpose}
+                type="number"
+                name="bathroom"
+                value={bathroom}
+                placeholder=""
                 onChange={onChange}
-                required
-              >
-                <option>rent</option>
-                <option>sell</option>
-              </Form.Control>
-              {/* </Col> */}
-            </Form.Group>
-            {/* </Form.Row> */}
+              />
+            </Col>
+          </Form.Group>
+        </Form.Row>
 
-            {/* <Form.Row> */}
-            <Form.Group as={Col}>
-              <Form.Label column sm={1}>
-                BedRoom
-              </Form.Label>
-              <Col sm={6}>
-                <Form.Control
-                  size="sm"
-                  type="number"
-                  name="bedroom"
-                  value={bedroom}
-                  placeholder=""
-                  onChange={onChange}
-                />
-              </Col>
-            </Form.Group>
-
-            <Form.Group as={Col}>
-              <Form.Label column sm={1}>
-                BathRoom
-              </Form.Label>
-              <Col sm={6}>
-                <Form.Control
-                  size="sm"
-                  type="number"
-                  name="bathroom"
-                  value={bathroom}
-                  placeholder=""
-                  onChange={onChange}
-                />
-              </Col>
-            </Form.Group>
-          </Form.Row>
-
-          <Button
-            // type="submit"
-            className="btn btn-light text-primary"
-            onClick={onSearch}
-            style={{
-              fontSize: "18px",
-              width: "10rem",
-            }}
-          >
-            <i className="fas fa-search" /> search
-          </Button>
-        </Form>
-        {/* </Form> */}
-      </div>
+        <Button
+          // type="submit"
+          className="btn btn-light text-primary"
+          onClick={onSearch}
+          style={{
+            fontSize: "18px",
+            width: "10rem",
+          }}
+        >
+          <i className="fas fa-search" /> search
+        </Button>
+      </Form>
+      {/* </Form> */}
     </Fragment>
   );
 };

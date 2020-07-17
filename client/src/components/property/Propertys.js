@@ -19,17 +19,12 @@ const Propertys = ({ getPropertys, propertyState: { propertys, loading } }) => {
     <Fragment>
       <ToastContainer />
       <div className="grid-3 ">
-        {" "}
         {
           !loading &&
             propertys &&
             propertys.length > 0 &&
             propertys.map((property) => (
-              <PropertysItem
-                key={property._id}
-                // prop_id={property._id}
-                property={property}
-              />
+              <PropertysItem key={property._id} property={property} />
             ))
           // : (
           //   <h3>No propertys found</h3>
