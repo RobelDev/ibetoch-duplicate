@@ -36,7 +36,7 @@ const MyPropertys = ({
         <br />
         <hr />
 
-        <div className="grid-3">
+        <div className="grid-3 ">
           {!loading && mypropertys && mypropertys.length > 0 ? (
             mypropertys.map((property) => (
               <MyPropertyItem

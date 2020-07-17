@@ -129,7 +129,7 @@ const PropertyItem = ({
         {/* <div className="card-body"> */}
         <div className="card-body my-n5  p-2 float-left">
           <strong>
-            <Button className="btn btn-light text-primary">${price}</Button>{" "}
+            <Button className="btn btn-light text-primary">ETB {price}</Button>{" "}
           </strong>{" "}
           <small>
             <Button

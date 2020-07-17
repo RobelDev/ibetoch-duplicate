@@ -18,7 +18,7 @@ const Propertys = ({ getPropertys, propertyState: { propertys, loading } }) => {
   return (
     <Fragment>
       <ToastContainer />
-      <div className="grid-4 ">
+      <div className="grid-4">
         {
           !loading &&
             propertys &&

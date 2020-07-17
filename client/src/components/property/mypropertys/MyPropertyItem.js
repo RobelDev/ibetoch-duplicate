@@ -94,7 +94,7 @@ const MyPropertyItem = ({
         {/* <div className="card-body"> */}
         <div className="card-body my-n5  p-2 float-left">
           <strong>
-            <Button className="btn btn-light text-primary">${price}</Button>{" "}
+            <Button className="btn btn-light text-primary">ETB {price}</Button>{" "}
           </strong>{" "}
           <small>
             <Button
@@ -223,7 +223,7 @@ const MyPropertyItem = ({
             {/* <div className="card-body"> */}
             <div className="card-body my-n5 mb-1 p-2 float-left">
               <>
-                <Button className="btn btn-light text-primary btn-lg">
+                <Button className="btn btn-light text-primary btn">
                   ETB {price}/{purpose === "rent" ? "month" : "once"}
                 </Button>{" "}
               </>{" "}

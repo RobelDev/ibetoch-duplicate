@@ -8,7 +8,7 @@
   "FACEBOOK_CLIENT_SECRET": "6ae64445e8eb27d90c3b106ee7512c37",
 
   "GOOGLE_OAUTH_CLIENT_ID": "458987910995-e6up20bsk0sunbskslmpb7dt6b7p3kf2.apps.googleusercontent.com",
-  "GOOGLE_OAUTH_SECRET_ID": "0a6_fTq2cFC8DHJvtTKh3oxj",
+  "GOOGLE_OAUTH_SECRET_ID": "9tSZtR1Tm5TpsoU_qJ6Wvr-e",
   "HTTPS": "true",
 
   "NODE_ENV": "production",
