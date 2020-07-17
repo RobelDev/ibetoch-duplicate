@@ -7,12 +7,13 @@ import MySearchedPropertys from "./mysearchedpropertys/MySearchedPropertys";
 const PropertysBoard = (props) => {
   return (
     <Fragment>
-      <div className=" container ">
+      <div className="container ">
         <Search />
-      </div>
-      <div className="ml-3 ">
         <MySearchedPropertys />
       </div>
+      {/* <div className="ml-3 ">
+        
+      </div> */}
 
       {/* <div className="row">
           <div className="col hide-sm hide-md">

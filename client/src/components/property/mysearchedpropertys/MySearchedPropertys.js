@@ -24,7 +24,7 @@ const MySearchedPropertys = ({
   return (
     <Fragment>
       <ToastContainer />
-      <div className="grid-4 my-4">
+      <div className="grid-3 my-4">
         {!loading && mysearchedpropertys && mysearchedpropertys.length > 0 ? (
           mysearchedpropertys.map((property) => (
             <PropertysItem key={property._id} property={property} />
