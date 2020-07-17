@@ -73,7 +73,7 @@ const CreateProperty = ({ createProperty, history }) => {
         <Form onSubmit={onSubmit}>
           <Form.Group as={Row} controlId="formHorizontalTotalSF">
             <Form.Label column sm={2}>
-              Total SquareFt:
+              Total Square m:
             </Form.Label>
             <Col sm={5}>
               <Form.Control
@@ -84,7 +84,7 @@ const CreateProperty = ({ createProperty, history }) => {
                 onChange={onChange}
                 required
               />
-              <small>In square feet. Ex: 1450</small>
+              <small>In square meter. Ex: 1450</small>
             </Col>
           </Form.Group>
 

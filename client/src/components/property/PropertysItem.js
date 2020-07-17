@@ -148,7 +148,7 @@ const PropertyItem = ({
             <Button className="btn btn-light text-primary">
               {bedroom} <i className="fa fa-bed" /> Bds<strong> | </strong>
               {bathroom} <i className="fa fa-bath" /> Ba <strong> | </strong>
-              {totalSquareFt}sqft
+              {totalSquareFt}sqm
             </Button>
           </small>
           <br />
@@ -262,8 +262,8 @@ const PropertyItem = ({
                 </Button>{" "}
                 <br />
                 <Button className="btn btn-light text-primary">
-                  {bedroom} <i className="fa fa-bed" /> Bedrooms | {bathroom}{" "}
-                  <i className="fa fa-bath" /> Bathrooms | {totalSquareFt}sqft
+                  {bedroom} <i className="fa fa-bed" /> Bds | {bathroom}{" "}
+                  <i className="fa fa-bath" /> Ba | {totalSquareFt}sqm
                 </Button>
                 <br />
                 {/* <Badge
@@ -320,22 +320,27 @@ const PropertyItem = ({
 
                 <li className="list-group-item d-flex justify-content-between align-items-center">
                   Price:
-                  <span className="">{price}</span>
+                  <span className="">ETB:{price}</span>
+                </li>
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  Bedrooms:
+                  {/* <i className="fa fa-bed" /> */}
+                  <span className=""> {bedroom}</span>
+                </li>
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  {/* <i className="fa fa-bath" />  */}
+                  Bathrooms:
+                  <span className="">{bathroom}</span>
                 </li>
 
                 <li className="list-group-item d-flex justify-content-between align-items-center">
                   {/* <i className="fa fa-bath" />  */}
-                  Bathroom:
-                  <span className="">{bathroom}</span>
-                </li>
-                <li className="list-group-item d-flex justify-content-between align-items-center">
-                  Bedroom:
-                  {/* <i className="fa fa-bed" /> */}
-                  <span className=""> {bedroom}</span>
+                  Parking:
+                  <span className="">{parking}</span>
                 </li>
 
                 <li className="list-group-item d-flex justify-content-between align-items-center">
-                  Total Square Ft:
+                  Total Square meters:
                   <span className="">{totalSquareFt}</span>{" "}
                 </li>
 
@@ -372,8 +377,12 @@ const PropertyItem = ({
           <div className="mx-1" style={{ fontSize: "20px", color: "#209CEE" }}>
             <ul>
               <li className="list-group-item d-flex justify-content-between align-items-center">
-                Posted By:
+                Owner Type:
                 <span className="primary"> {company}</span>
+              </li>
+              <li className="list-group-item d-flex justify-content-between align-items-center">
+                Posted By:
+                <span className="primary"> {user.name}</span>
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center">
                 {" "}

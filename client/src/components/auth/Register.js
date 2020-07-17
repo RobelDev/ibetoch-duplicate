@@ -57,7 +57,7 @@ const Register = ({ register, isAuth }) => {
             <Col sm={7}>
               <Form.Control
                 type="text"
-                name="name"
+                name="name or company name"
                 value={name}
                 placeholder="Name"
                 onChange={onChange}

@@ -15,7 +15,6 @@ const UpdateProperty = ({
   propertyState: { property, loading },
 }) => {
   const [formData, setFormData] = useState({
-    prop_id: "",
     price: "",
     totalSquareFt: "",
     yearBuilt: "",
@@ -27,6 +26,7 @@ const UpdateProperty = ({
     purpose: "",
     contactInfo: "",
     availability: "",
+    // sold: false,
     bathroom: "",
     bedroom: "",
     parking: "",
@@ -105,7 +105,7 @@ const UpdateProperty = ({
         <Form onSubmit={onSubmit}>
           <Form.Group as={Row} controlId="formHorizontalTotalSF">
             <Form.Label column sm={2}>
-              Total SquareFt:
+              Total Square m:
             </Form.Label>
             <Col sm={5}>
               <Form.Control
@@ -116,7 +116,7 @@ const UpdateProperty = ({
                 onChange={onChange}
                 required
               />
-              <small>In square feet. Ex: 1450</small>
+              <small>In square meter. Ex: 1450</small>
             </Col>
           </Form.Group>
 
@@ -181,7 +181,6 @@ const UpdateProperty = ({
 
               <Form.Control
                 as="select"
-                defaultValue="homeType"
                 name="homeType"
                 value={homeType}
                 onChange={onChange}
@@ -201,7 +200,6 @@ const UpdateProperty = ({
 
               <Form.Control
                 as="select"
-                defaultValue="owner"
                 name="company"
                 value={company}
                 onChange={onChange}
@@ -222,7 +220,6 @@ const UpdateProperty = ({
 
               <Form.Control
                 as="select"
-                defaultValue="rent"
                 name="purpose"
                 value={purpose}
                 onChange={onChange}
