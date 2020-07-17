@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 import PropertysItem from "../PropertysItem";
 import Propertys from "../Propertys";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const MySearchedPropertys = ({

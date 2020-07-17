@@ -80,14 +80,9 @@ const CardItems = () => {
           </div>
         </div>
       </div>
-      <hr />
+
       <p>
-        iBetoch is Free of any charge to use. We value the security of users
-        carefully. Please report properties that look suspicious by clicking the
-        report button that is found on the bottom on each property's block. Or
-        email us
-        <strong> team@ibetoch.com </strong> so we can take the appropriate
-        measures to inspect them.
+        <strong> Rent, Buy and Sell properties</strong>
       </p>
       <hr />
       <h5 className="text-center">

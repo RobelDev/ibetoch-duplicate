@@ -1,15 +1,15 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Button, Modal, Badge, Form, Col, Row } from "react-bootstrap";
+import { Button, Modal, Badge, Form, Col } from "react-bootstrap";
 import defaultImage from "../../siteImages/defaultImage.png";
 import { Carousel } from "react-responsive-carousel";
 import { addLike, report } from "../../actions/propertyAction";
 import Moment from "react-moment";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import smallLogo from "../../siteImages/xsmallLogo.png";
+// import smallLogo from "../../siteImages/xsmallLogo.png";
 import GoogleMap from "./GoogleMap";
 
 // import ViewProperty from "./ViewProperty";
@@ -43,7 +43,7 @@ const PropertyItem = ({
     coordinates,
   },
 }) => {
-  const [like, setLike] = useState(
+  const [like] = useState(
     <i className="fa fa-heart" style={{ fontSize: "18px", color: "blue" }} />
   );
 
@@ -492,8 +492,6 @@ const PropertyItem = ({
     </Fragment>
   );
 };
-
-const itemStyle = {};
 
 PropertyItem.propTypes = {
   property: PropTypes.object.isRequired,

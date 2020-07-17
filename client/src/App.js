@@ -38,7 +38,7 @@ import Terms from "./components/layout/Terms";
 import Affilate from "./components/layout/Affilate";
 import Partners from "./components/layout/Partners";
 import Privacy from "./components/layout/Privacy";
-import Report from "./components/layout/Report";
+// import Report from "./components/layout/Report";
 
 if (localStorage.token) {
   setAuth(localStorage.token);
@@ -74,7 +74,7 @@ const App = () => {
             <Route exact path="/privacypolicy" component={Privacy} />
 
             <Route exact path="/propertys" component={PropertysBoard} />
-            <Route
+            <PrivateRoute
               exact
               path="/propertys/viewproperty/:prop_id"
               component={ViewProperty}

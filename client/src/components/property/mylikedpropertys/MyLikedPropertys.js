@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { getLikedPropertys } from "../../../actions/propertyAction";
 import PropertysItem from "../PropertysItem";
 import { Spinner } from "react-bootstrap";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const MyLikedPropertys = ({

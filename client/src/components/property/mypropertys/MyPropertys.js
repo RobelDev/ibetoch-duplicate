@@ -7,7 +7,7 @@ import { getMyPropertys } from "../../../actions/propertyAction";
 import { Spinner } from "react-bootstrap";
 import MyPropertyItem from "./MyPropertyItem";
 // import ViewProperty from "../ViewProperty";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const MyPropertys = ({

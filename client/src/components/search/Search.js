@@ -1,10 +1,10 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { getSearchedPropertys } from "../../actions/propertyAction";
 
-import { Form, FormControl, Col, Button, ToastHeader } from "react-bootstrap";
+import { Form, FormControl, Col, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 // import PropertysItem from "../property/PropertysItem";
 

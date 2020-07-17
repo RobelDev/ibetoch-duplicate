@@ -6,10 +6,10 @@ import { Spinner, Button, Badge } from "react-bootstrap";
 import defaultImage from "../../siteImages/defaultImage.png";
 import { Carousel } from "react-responsive-carousel";
 import { addLike, findOnMap } from "../../actions/propertyAction";
-import Moment from "react-moment";
+
 import { withRouter } from "react-router-dom";
-import GoogleMap from "./GoogleMap";
-import { ToastContainer, toast } from "react-toastify";
+// import GoogleMap from "./GoogleMap";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ViewProperty = ({

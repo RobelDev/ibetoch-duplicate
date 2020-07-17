@@ -4,7 +4,7 @@ import { Spinner } from "react-bootstrap";
 import { getPropertys } from "../../actions/propertyAction";
 import { connect } from "react-redux";
 import PropertysItem from "./PropertysItem";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Propertys = ({ getPropertys, propertyState: { propertys, loading } }) => {

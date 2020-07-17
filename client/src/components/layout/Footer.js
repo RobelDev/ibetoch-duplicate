@@ -49,39 +49,39 @@ const Footer = () => {
           <hr />
           {/* <div className="row d-flex text-center justify-content-center mb-md-0"> */}
           <div className="row text-center d-flex justify-content-center mb-md-0">
-            <div className="col-md-2  mx-n4">
+            <div className="col-md-2  mx-n1">
               <h6 className="text-uppercase font-weight-bold">
                 <a href="/affilate">Work with iBetoch</a>
               </h6>
             </div>
 
-            <p className="hide-sm hide-md"> | </p>
-            <div className="col-md-2  mx-n4">
+            <p className="hide-sm "> | </p>
+            <div className="col-md-2  mx-n1">
               <h6 className="text-uppercase font-weight-bold">
                 <a href="/contactus">Contact Us</a>
               </h6>
             </div>
-            {/* <p className="hide-sm hide-md"> | </p>
+            {/* <p className="hide-sm "> | </p>
             <div className="col-md-2 mx-n4">
               <h6 className="text-uppercase font-weight-bold">
                 <a href="/partners">Partners</a>
               </h6>
             </div> */}
-            <p className="hide-sm hide-md"> | </p>
-            <div className="col-md-2 mx-n4">
+            <p className="hide-sm "> | </p>
+            <div className="col-md-2 mx-n1">
               <h6 className="text-uppercase font-weight-bold">
                 <a href="/help">FAQ</a>
               </h6>
             </div>
 
-            <p className="hide-sm hide-md"> | </p>
-            <div className="col-md-2 mx-n4 ">
+            <p className="hide-sm "> | </p>
+            <div className="col-md-2 ">
               <h6 className="text-uppercase font-weight-bold">
                 <a href="/terms">Terms & Conditions</a>
               </h6>
             </div>
-            <p className="hide-sm hide-md"> | </p>
-            <div className="col-md-2  mx-n4">
+            <p className="hide-sm "> | </p>
+            <div className="col-md-2  mx-n1">
               <h6 className="text-uppercase font-weight-bold">
                 <a href="/privacypolicy">Privacy Policy</a>
               </h6>
