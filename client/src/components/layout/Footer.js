@@ -51,7 +51,7 @@ const Footer = () => {
           <div className="row text-center d-flex justify-content-center mb-md-0">
             <div className="col-md-2  mx-n4">
               <h6 className="text-uppercase font-weight-bold">
-                <a href="/affilate">Become An Affilate</a>
+                <a href="/affilate">Work with iBetoch</a>
               </h6>
             </div>
 

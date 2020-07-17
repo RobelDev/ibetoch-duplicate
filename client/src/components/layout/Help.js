@@ -6,7 +6,7 @@ const Help = () => {
     {
       question: "What is iBetoch?",
       answer:
-        "iBetoch is a home finder web application. It is built to be simple and easy for users to search, post and saveproperties based on thier interest.",
+        "iBetoch is a home finder web application. It is built to be simple and easy for users to search, post and save properties based on thier interest.",
       show: false,
     },
     {
@@ -15,26 +15,32 @@ const Help = () => {
       show: false,
     },
     {
-      question: "Who can use iBetoch",
-      answer: "Anyone can use iBetoch.",
+      question: "How can I post my property",
+      answer:
+        "Create an account first > go to My Properties > click create property.",
+      show: false,
+    },
+    {
+      question: "How can I update, add images, delete images, delete property",
+      answer:
+        "Go to My Properties > use the buttons found on each property. Click Imgs to view the images and to choose which image to remove. Click Add Image to add an image. Click Update to update/edit your property listing. Click Delete to delete property.",
       show: false,
     },
     {
       question: "Can I be an affilate/work with iBetoch",
-      answer:
-        "Yes, of course. Please visit our affilate or work with iBetoch page.",
+      answer: "Yes, of course. Please visit our Work with iBetoch page.",
       show: false,
     },
     {
       question: "Can I advertise on iBetoch",
       answer:
-        "Yes, of course. Please visit our affilate or work with iBetoch page for more information about advertising.",
+        "Yes, of course. Please visit our Work with iBetoch page for more information about advertising.",
       show: false,
     },
     {
       question: "Is iBetoch safe?",
       answer:
-        "iBetoch is safe to use. We value users privacy. For more information, read our policy privacy.",
+        "iBetoch is safe to use. We value users privacy. For more information, read our privacy policy.",
       show: false,
     },
     {
@@ -50,13 +56,13 @@ const Help = () => {
     },
     {
       question: "What is iBetoch's privacy",
-      answer: "please visit privacy and polict on the bottom page.",
+      answer: "Please visit privacy and polict on the bottom page.",
       show: false,
     },
     {
       question: "How can I report a suspicious property listing or account?",
       answer:
-        "Please report a property by going to the property page and click report and choose your reason. Or contact us by visiting Contact Us page found on the bottom of the page.",
+        "We value the security of users. We work hard to make iBetoch save environment for users. To report suspicious listing, Double Click on a property > click report button on the bottom of the corner. OR Contact us by visting the Contact Us page or email us team@ibetoch.com so we can take the appropriate measures to inspect them.",
       show: false,
     },
     {

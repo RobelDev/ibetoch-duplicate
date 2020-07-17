@@ -219,20 +219,42 @@ Link:active {
   color: yellow;
 }
 
-/* Mobile Styles */
-@media (max-width: 975px) {
+@media (max-width: 1139px) {
+  .container {
+    margin-top: 1rem;
+  }
   .hide-md {
     display: none;
   }
-  .grid-2,
-  .grid-3,
+
   .grid-4 {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
   }
 }
+@media (max-width: 950px) {
+  .container {
+    margin-top: 1rem;
+  }
+
+  .hide-md {
+    display: none;
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2.5rem;
+    margin-right: 4rem;
+  }
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2.5rem;
+  }
+}
+
 @media (max-width: 700px) {
   .container {
-    margin-top: 8rem;
+    margin-top: 5rem;
   }
 
   .hide-sm {
