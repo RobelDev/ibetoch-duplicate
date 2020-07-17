@@ -24,7 +24,7 @@ const MyLikedPropertys = ({
   return (
     <Fragment>
       <ToastContainer />
-      <div className="container">
+      <div className="container ">
         <br />
         <h3>My liked list properties</h3>
         <hr />
@@ -37,6 +37,7 @@ const MyLikedPropertys = ({
             <h4>No Liked properties yet!</h4>
           )}
         </div>
+        <hr />
       </div>
     </Fragment>
   );

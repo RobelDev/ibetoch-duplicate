@@ -25,7 +25,7 @@ const MyPropertys = ({
   return (
     <Fragment>
       <ToastContainer />
-      <div className="container">
+      <div className="container ">
         <br />
         <h3>My Properties List</h3>
 
@@ -52,6 +52,7 @@ const MyPropertys = ({
             </Fragment>
           )}
         </div>
+        <hr />
       </div>
     </Fragment>
   );

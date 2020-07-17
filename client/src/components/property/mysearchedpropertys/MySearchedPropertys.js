@@ -33,6 +33,7 @@ const MySearchedPropertys = ({
           <Propertys />
         )}
       </div>
+      
     </Fragment>
   );
 };

@@ -44,17 +44,16 @@ const Search = ({ getSearchedPropertys }) => {
 
   return (
     <Fragment>
-      <Form className="ml-5 mt-3">
+      <Form className="ml- mt-3">
         <FormControl
           name="address"
           value={address}
           onChange={onChange}
-          placeholder="Enter an address or a city"
+          placeholder="Enter an address or a city here"
           className="mt- "
           style={{
             float: "",
-            width: "320px",
-
+            width: "310px",
             border: "1px solid transparent",
             fontSize: "21px",
             color: "black",

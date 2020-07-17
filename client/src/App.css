@@ -145,38 +145,6 @@ img {
   max-height: 400px;
 }
 
-/* .faqs .faq .faq-question::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 1px;
-  transform: translateY(-50%);
-  width: 28px;
-  height: 28px;
-  /* background-image: url(./siteImages/); */
-/* } */
-*/
-
-/* unvisited link */
-Link:link {
-  color: red;
-}
-
-/* visited link */
-link:visited {
-  color: green;
-}
-
-/* mouse over link */
-Link:hover {
-  color: hotpink;
-}
-
-/* selected link */
-Link:active {
-  color: blue;
-}
-
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -199,27 +167,7 @@ Link:active {
   height: 100%;
 }
 
-/* unvisited link */
-.nav-item > Link:link {
-  color: green;
-}
-
-/* visited link */
-.nav-item > Link:visited {
-  color: green;
-}
-
-/* mouse over link */
-.nav-link Link:hover {
-  color: red;
-}
-
-/* selected link */
-.nav-link Link:active {
-  color: yellow;
-}
-
-@media (max-width: 1139px) {
+@media (max-width: 1300px) {
   .container {
     margin-top: 1rem;
   }
@@ -229,10 +177,10 @@ Link:active {
 
   .grid-4 {
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2rem;
+    grid-gap: 1rem;
   }
 }
-@media (max-width: 950px) {
+@media (max-width: 1070px) {
   .container {
     margin-top: 1rem;
   }
@@ -243,16 +191,17 @@ Link:active {
 
   .grid-4 {
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 2.5rem;
-    margin-right: 4rem;
+    grid-gap: 1rem;
+    margin-right: 8rem;
   }
   .grid-3 {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 2.5rem;
+    margin-right: 8rem;
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 720px) {
   .container {
     margin-top: 5rem;
   }
@@ -262,11 +211,17 @@ Link:active {
   }
 
   .grid-2,
-  .grid-3,
   .grid-4 {
     grid-template-columns: 1fr;
+
+    margin-left: 0.5rem;
   }
 
+  .grid-3 {
+    grid-template-columns: 1fr;
+
+    grid-gap: 2.5rem;
+  }
   /* Text Styles */
   .x-large {
     font-size: 3rem;

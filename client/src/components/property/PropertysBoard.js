@@ -12,6 +12,7 @@ const PropertysBoard = (props) => {
       </div>
       <div className="m-1">
         <MySearchedPropertys />
+        <hr />
       </div>
 
       {/* <div className="row">
