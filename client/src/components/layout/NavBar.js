@@ -198,7 +198,9 @@ const NavBar = ({ history, authState: { isAuth, loading, user }, logout }) => {
         {/* </Link> */}
         <p className="text-danger">
           {" "}
-          <small>Official release Aug 2020. </small>
+          <small>
+            Official release Aug 2020. <br /> Sample/test data/properties.
+          </small>
         </p>
       </h2>
       <button className="navbar-toggler" type="button" onClick={onToggle}>
