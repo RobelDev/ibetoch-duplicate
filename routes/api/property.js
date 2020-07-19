@@ -305,9 +305,9 @@ router.put("/profile/like/:prop_id", auth, async (req, res) => {
     if (!property) {
       return res.status(400).json({ msg: "Profile not found!" });
     }
-    if (property.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: "Not Authorized user" });
-    }
+    // if (property.user.toString() !== req.user.id) {
+    //   return res.status(401).json({ msg: "Not Authorized user" });
+    // }
 
     if (
       property.interests.filter(

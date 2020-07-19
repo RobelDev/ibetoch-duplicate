@@ -462,7 +462,7 @@ const PropertyItem = ({
                     onChange={onChange}
                     required
                   >
-                    <option aria-disabled>choose</option>
+                    <option disabled>choose</option>
                     <option>I own this property</option>
                     <option>It's spam</option>
                     <option>It's is inappropriate</option>
