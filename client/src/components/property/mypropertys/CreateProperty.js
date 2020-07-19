@@ -230,6 +230,7 @@ const CreateProperty = ({ createProperty, history }) => {
                   value={bedroom}
                   placeholder=""
                   onChange={onChange}
+                  required
                 />
               </Col>
             </Form.Group>
@@ -245,6 +246,7 @@ const CreateProperty = ({ createProperty, history }) => {
                   value={bathroom}
                   placeholder=""
                   onChange={onChange}
+                  required
                 />
               </Col>
             </Form.Group>
@@ -260,6 +262,7 @@ const CreateProperty = ({ createProperty, history }) => {
                   value={parking}
                   placeholder=""
                   onChange={onChange}
+                  required
                 />
               </Col>
             </Form.Group>
@@ -292,6 +295,7 @@ const CreateProperty = ({ createProperty, history }) => {
                 value={contactInfo}
                 placeholder="put some contact informations"
                 onChange={onChange}
+                required
               />
             </Col>
           </Form.Group>

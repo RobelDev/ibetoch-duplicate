@@ -24,6 +24,15 @@ router.post(
       check("price", "price is required with US dollar").isCurrency(),
       check("yearBuilt", "Year built of property is required").not().isEmpty(),
       check("address", "address is required").not().isEmpty(),
+      check("totalSquareFt", "totalSquareFt is required").not().isEmpty(),
+      check("company", "company is required").not().isEmpty(),
+      check("homeType", "homeType is required").not().isEmpty(),
+      check("purpose", "purpose is required").not().isEmpty(),
+      check("contactInfo", "contactInfo is required").not().isEmpty(),
+      check("bathroom", "bathroom is required").not().isEmpty(),
+      check("bedroom", "bedroom is required").not().isEmpty(),
+      check("contactInfo", "contactInfo is required").not().isEmpty(),
+      check("description", "description is required").not().isEmpty(),
     ],
   ],
   async (req, res) => {
@@ -52,7 +61,6 @@ router.post(
 
     const propertyFields = {
       user: req.user.id,
-
       price,
       totalSquareFt,
       yearBuilt,
@@ -70,9 +78,11 @@ router.post(
       parking,
     };
     try {
-      // let profile = await Profile.findOne({ user: req.user.id });
+      //
 
       const property = new Property(propertyFields);
+
+      // populate("user", ["name"]);
 
       const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
         address
@@ -110,6 +120,15 @@ router.put(
       check("price", "price is required with US dollar").isCurrency(),
       check("yearBuilt", "Year built of property is required").not().isEmpty(),
       check("address", "address is required").not().isEmpty(),
+      check("totalSquareFt", "totalSquareFt is required").not().isEmpty(),
+      check("company", "company is required").not().isEmpty(),
+      check("homeType", "homeType is required").not().isEmpty(),
+      check("purpose", "purpose is required").not().isEmpty(),
+      check("contactInfo", "contactInfo is required").not().isEmpty(),
+      check("bathroom", "bathroom is required").not().isEmpty(),
+      check("bedroom", "bedroom is required").not().isEmpty(),
+      check("contactInfo", "contactInfo is required").not().isEmpty(),
+      check("description", "description is required").not().isEmpty(),
     ],
   ],
   async (req, res) => {

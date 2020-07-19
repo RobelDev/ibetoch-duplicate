@@ -362,7 +362,7 @@ const MyPropertyItem = ({
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center">
                 Posted By:
-                <span className="primary"> {user.name}</span>
+                <span className="primary"> {user && user.name}</span>
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center">
                 {" "}
