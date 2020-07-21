@@ -5,6 +5,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { connect } from "react-redux";
 import { register } from "../../actions/authAction";
+import Google from "./Google";
+import Facebook from "./Facebook";
 
 const Register = ({ register, isAuth }) => {
   const [formData, setFormData] = useState({
@@ -25,16 +27,24 @@ const Register = ({ register, isAuth }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     //make sure the password match
+
     if (password !== passwordConfirm) {
       toast.error("Passwords do not match!");
     } else {
-      setFormData({ ...formData, buttonText: "Submitting" });
-      register({ name, email, password });
+      let allowSubmit = true;
+      if (allowSubmit) {
+        setFormData({ ...formData, buttonText: "Submitting" });
+        register({ name, email, password });
 
-      setFormData({
-        ...formData,
-        buttonText: "Register/Signup Submitted",
-      });
+        setFormData({
+          ...formData,
+          buttonText: "Registering...",
+        });
+
+        allowSubmit = false;
+      } else {
+        return false;
+      }
     }
   };
 
@@ -49,6 +59,12 @@ const Register = ({ register, isAuth }) => {
         <p className="lead">
           <i className="fas fa-user" /> Create an Account
         </p>
+        <div className="text-center">
+          <Google status="Register with Google" />
+          <Facebook status="Register with Facebook" />
+          {/* <Facebook /> */}
+        </div>
+        <hr />
         <Form onSubmit={onSubmit}>
           <Form.Group as={Row} controlId="formHorizontalName">
             <Form.Label column sm={2}>
@@ -61,6 +77,7 @@ const Register = ({ register, isAuth }) => {
                 value={name}
                 placeholder="Name or company name"
                 onChange={onChange}
+                required
               />
             </Col>
           </Form.Group>
@@ -75,6 +92,7 @@ const Register = ({ register, isAuth }) => {
                 value={email}
                 placeholder="Email"
                 onChange={onChange}
+                required
               />
             </Col>
           </Form.Group>
@@ -91,6 +109,7 @@ const Register = ({ register, isAuth }) => {
                 placeholder="Password"
                 onChange={onChange}
                 minLength="6"
+                required
               />
             </Col>
           </Form.Group>

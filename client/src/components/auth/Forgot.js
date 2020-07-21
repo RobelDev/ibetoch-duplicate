@@ -26,7 +26,7 @@ const Forgot = ({ forgotPassword }) => {
     //loadUser();
     setForgotData({
       ...forgotData,
-      buttonText: "Request password reset link",
+      buttonText: "Password reset link sent",
     });
   };
 
@@ -54,6 +54,7 @@ const Forgot = ({ forgotPassword }) => {
                 value={email}
                 placeholder="Email"
                 onChange={onChange}
+                required
               />
             </Col>
           </Form.Group>

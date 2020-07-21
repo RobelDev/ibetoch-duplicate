@@ -38,7 +38,7 @@ const Activate = ({ authState: { isAuth }, match, activateAccount }) => {
       <div className="col-md-6 offset-md-3">
         <ToastContainer />
         <div className="text-center">
-          <h2 className="p-3 "> Welcome to Ibetoch! Activate Your Account</h2>
+          <h2 className="p-3 "> Welcome to iBetoch! Activate Your Account</h2>
           <button className="btn btn-outline-primary" onClick={onSubmit}>
             Activate/Verify Account
           </button>

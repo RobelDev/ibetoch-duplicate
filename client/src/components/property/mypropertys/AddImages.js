@@ -33,6 +33,7 @@ const AddImages = ({
   const onChange = (e) => {
     // if (e.target.files.length === 1) {
     // console.log(e.target.files[0]);
+
     setFormData({ ...formData, image: e.target.files[0] });
     //setImage(e.target.files[0]);
     //console.log(image);
@@ -45,10 +46,15 @@ const AddImages = ({
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    let allowSubmit = true;
+    if (allowSubmit) {
+      addImages({ image, history, prop_id });
 
-    addImages({ image, history, prop_id });
-
-    setFormData({ ...formData, buttonText: "Upload again" });
+      setFormData({ ...formData, buttonText: "Uploading..." });
+      allowSubmit = false;
+    } else {
+      return false;
+    }
   };
 
   return (

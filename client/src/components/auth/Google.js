@@ -5,7 +5,7 @@ import { GoogleLogin } from "react-google-login";
 import { googleResponse } from "../../actions/authAction";
 import { connect } from "react-redux";
 
-const Google = ({ googleResponse }) => {
+const Google = ({ googleResponse, status }) => {
   const responseGoogle = (response) => {
     const idToken = response.tokenId;
     googleResponse(idToken);
@@ -20,7 +20,7 @@ const Google = ({ googleResponse }) => {
             disabled={renderProps.disabled}
             className="btn btn-danger btn-lg btn-block"
           >
-            <i className="fab fa-google pr-2" /> Login with Google
+            <i className="fab fa-google pr-2" />{status}
           </button>
         )}
         buttonText="Login with Google"

@@ -131,22 +131,24 @@ const MyPropertyItem = ({
           <br />
           <div className="">
             <a
-              href={`/propertys/viewproperty/${_id}`}
-              className="btn btn-light text-danger"
-
-              // onClick={() => console.log("clicked")}
+              href={`/addimages/${_id}`}
+              className="btn btn-light text-success"
             >
-              Imgs
-            </a>
-
-            <a href={`/addimages/${_id}`} className="btn btn-light text-danger">
-              Add Image
+              +Image
             </a>
             <a
               href={`/updateproperty/${_id}`}
               className="btn btn-light text-primary mr-2"
             >
               Update
+            </a>
+            <a
+              href={`/propertys/viewproperty/${_id}`}
+              className="btn btn-light text-danger"
+
+              // onClick={() => console.log("clicked")}
+            >
+              -Image
             </a>
             <Button
               className="btn-danger"

@@ -65,6 +65,7 @@ const Reset = ({ authState: { isAuth, user }, match, resetPassword }) => {
                 placeholder="Password"
                 onChange={onChange}
                 minLength="6"
+                required
               />
             </Col>
           </Form.Group>

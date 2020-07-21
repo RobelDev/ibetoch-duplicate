@@ -26,17 +26,17 @@ const Footer = () => {
                   <i className="fab fa-facebook-f white-text mr-4" />
                 </a>
 
-                <a className="tw-ic" href="#!">
+                {/* <a className="tw-ic" href="#!">
                   <i className="fab fa-twitter white-text mr-4"> </i>
                 </a>
 
-                <a className="gplus-ic" href="#!">
+                <a className="gplus-ic" href="https://www.gmail.com/">
                   <i className="fab fa-google-plus-g white-text mr-4"> </i>
                 </a>
 
                 <a className="li-ic" href="#!">
                   <i className="fab fa-linkedin-in white-text mr-4"> </i>
-                </a>
+                </a> */}
 
                 <a className="ins-ic" href="https://www.instagram.com/ibetoch/">
                   <i className="fab fa-instagram white-text" />

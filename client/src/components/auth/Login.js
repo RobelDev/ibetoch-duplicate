@@ -40,8 +40,8 @@ const Login = ({ login, loadUser, authState: { isAuth, msg } }) => {
       </p>
 
       <div className="text-center">
-        <Google />
-        <Facebook />
+        <Google status=" Login with Google" />
+        <Facebook status="Login with Facebook" />
         {/* <Facebook /> */}
       </div>
       <hr />
@@ -57,6 +57,7 @@ const Login = ({ login, loadUser, authState: { isAuth, msg } }) => {
               value={email}
               placeholder="Email"
               onChange={onChange}
+              required
             />
           </Col>
         </Form.Group>
@@ -72,6 +73,7 @@ const Login = ({ login, loadUser, authState: { isAuth, msg } }) => {
               value={password}
               placeholder="Password"
               onChange={onChange}
+              required
             />
           </Col>
         </Form.Group>

@@ -5,7 +5,7 @@ import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props
 import { facebookResponse } from "../../actions/authAction";
 import { connect } from "react-redux";
 
-const Facebook = ({ facebookResponse }) => {
+const Facebook = ({ facebookResponse, status }) => {
   const responseFacebook = (response) => {
     const userID = response.userID;
     const accessToken = response.accessToken;
@@ -22,7 +22,7 @@ const Facebook = ({ facebookResponse }) => {
             onClick={renderProps.onClick}
             className="btn btn-primary btn-lg btn-block"
           >
-            <i className="fab fa-facebook pr-2" /> Login with Facebook
+            <i className="fab fa-facebook pr-2" /> {status}
           </button>
         )}
       />
