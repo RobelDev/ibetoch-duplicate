@@ -5,6 +5,9 @@ const PropertySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
+  name: {
+    type: String,
+  },
   interests: [
     {
       user: {
@@ -36,17 +39,18 @@ const PropertySchema = new mongoose.Schema({
   ],
 
   price: {
-    type: String,
+    type: Number,
     required: true,
     trim: true,
   },
 
   totalSquareFt: {
-    type: String,
+    type: Number,
+    required: true,
   },
 
   yearBuilt: {
-    type: String,
+    type: Number,
     required: true,
   },
   address: {
@@ -56,6 +60,7 @@ const PropertySchema = new mongoose.Schema({
 
   company: {
     type: String,
+    required: true,
   },
   website: {
     type: String,
@@ -65,14 +70,13 @@ const PropertySchema = new mongoose.Schema({
   },
   homeType: {
     type: String,
+    required: true,
   },
   purpose: {
     type: String,
-    default: "sale",
+    default: "sell",
   },
-  contactInfo: {
-    type: String,
-  },
+
   availability: {
     type: Date,
   },
@@ -82,17 +86,23 @@ const PropertySchema = new mongoose.Schema({
     default: false,
   },
   bathroom: {
-    type: String,
+    type: Number,
   },
   bedroom: {
-    type: String,
+    type: Number,
   },
   parking: {
-    type: String,
+    type: Number,
   },
 
   coordinates: {
     type: Object,
+  },
+  contactPhone: {
+    type: String,
+  },
+  contactEmail: {
+    type: String,
   },
 
   date: {

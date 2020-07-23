@@ -1,6 +1,8 @@
 {
   "mongoURI": "mongodb+srv://robelk1:robelk1@betoch-i8iiy.mongodb.net/<dbname>?retryWrites=true&w=majority",
   "jwtSecretKey": "myJWTsecretKeyisrandomstuffdoesntmatterihuechgeughnu234561",
+  "jwtSecretKeyRegister": "cuiabugnjsjhjhvnjsdhvjsdvskva",
+  "jwtSecretKeyForgot": "jwtforgotkeykjkbcjnsnkgushjghs",
 
   "GOOGLE_MAP_API_KEY": "AIzaSyDO-t4VmJpoxRoXIyRRHasOtV2ESQRn7mQ",
 

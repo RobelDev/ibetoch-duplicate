@@ -6,9 +6,7 @@ const config = require("config");
 const auth = require("../../middleware/auth");
 const { check, validationResult } = require("express-validator");
 const fileUpload = require("../../middleware/fileUpload");
-const path = require("path");
 const axios = require("axios");
-const fs = require("fs");
 const sharp = require("sharp");
 
 const aws = require("aws-sdk");
@@ -21,18 +19,18 @@ router.post(
   [
     auth,
     [
-      check("price", "price is required with US dollar").isCurrency(),
-      check("yearBuilt", "Year built of property is required").not().isEmpty(),
+      check("price", "price is required in number only").isNumeric(),
+      check(
+        "yearBuilt",
+        "Year built of property is required in number only"
+      ).isNumeric(),
       check("address", "address is required").not().isEmpty(),
-      check("totalSquareFt", "totalSquareFt is required").not().isEmpty(),
+      check(
+        "totalSquareFt",
+        "totalSquareFt is required in number only"
+      ).isNumeric(),
       check("company", "company is required").not().isEmpty(),
       check("homeType", "homeType is required").not().isEmpty(),
-      check("purpose", "purpose is required").not().isEmpty(),
-      check("contactInfo", "contactInfo is required").not().isEmpty(),
-      check("bathroom", "bathroom is required").not().isEmpty(),
-      check("bedroom", "bedroom is required").not().isEmpty(),
-      check("contactInfo", "contactInfo is required").not().isEmpty(),
-      check("description", "description is required").not().isEmpty(),
     ],
   ],
   async (req, res) => {
@@ -41,8 +39,12 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
+
+    const user = await User.findById(req.user.id).select("-password");
+
     const {
       price,
+      name,
       totalSquareFt,
       yearBuilt,
       address,
@@ -51,7 +53,8 @@ router.post(
       description,
       homeType,
       purpose,
-      contactInfo,
+      contactPhone,
+      contactEmail,
       availability,
       sold,
       bathroom,
@@ -61,6 +64,7 @@ router.post(
 
     const propertyFields = {
       user: req.user.id,
+      name: user.name,
       price,
       totalSquareFt,
       yearBuilt,
@@ -70,7 +74,8 @@ router.post(
       description,
       homeType,
       purpose,
-      contactInfo,
+      contactPhone,
+      contactEmail,
       availability,
       sold,
       bathroom,
@@ -117,18 +122,18 @@ router.put(
   [
     auth,
     [
-      check("price", "price is required with US dollar").isCurrency(),
-      check("yearBuilt", "Year built of property is required").not().isEmpty(),
+      check("price", "price is required in number only").isNumeric(),
+      check(
+        "yearBuilt",
+        "Year built of property is required in number only"
+      ).isNumeric(),
       check("address", "address is required").not().isEmpty(),
-      check("totalSquareFt", "totalSquareFt is required").not().isEmpty(),
+      check(
+        "totalSquareFt",
+        "totalSquareFt is required in number only"
+      ).isNumeric(),
       check("company", "company is required").not().isEmpty(),
       check("homeType", "homeType is required").not().isEmpty(),
-      check("purpose", "purpose is required").not().isEmpty(),
-      check("contactInfo", "contactInfo is required").not().isEmpty(),
-      check("bathroom", "bathroom is required").not().isEmpty(),
-      check("bedroom", "bedroom is required").not().isEmpty(),
-      check("contactInfo", "contactInfo is required").not().isEmpty(),
-      check("description", "description is required").not().isEmpty(),
     ],
   ],
   async (req, res) => {
@@ -139,6 +144,7 @@ router.put(
     }
     const {
       price,
+
       totalSquareFt,
       yearBuilt,
       address,
@@ -147,7 +153,8 @@ router.put(
       description,
       homeType,
       purpose,
-      contactInfo,
+      contactPhone,
+      contactEmail,
       availability,
       sold,
       bathroom,
@@ -157,6 +164,7 @@ router.put(
 
     const propertyFields = {
       user: req.user.id,
+
       price,
       totalSquareFt,
       yearBuilt,
@@ -166,7 +174,8 @@ router.put(
       description,
       homeType,
       purpose,
-      contactInfo,
+      contactPhone,
+      contactEmail,
       availability,
       sold,
       bathroom,

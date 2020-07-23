@@ -44,8 +44,6 @@ router.post(
 
         user.name = name;
 
-        //user = await updateMany({ name, active: true });
-
         //save user to database
         await user.save();
 
@@ -56,9 +54,13 @@ router.post(
         };
         //2nd sign it
         //const token
-        const token = jwt.sign(payload, config.get("jwtSecretKey"), {
-          expiresIn: "1d",
-        });
+        const token = await jwt.sign(
+          payload,
+          config.get("jwtSecretKeyRegister"),
+          {
+            expiresIn: "1d",
+          }
+        );
 
         // (error, token) => {
         //   if (error) throw error;
@@ -71,18 +73,19 @@ router.post(
           subject: `New Acount Activation Link`,
 
           html: `
-        <p> Find your next home at Ibetoch </p> <br /> <p> Please use this link to verify your email to activate your new account </p>
+        <p> <strong>Welcome to iBetoch...</strong> Find your next home at Ibetoch </p> <br /> 
+        <p> Please use this link to verify your email to activate your new account </p>
         <p> This link will expire in 24 hours </p>
-        <strong>click the link here to verify </strong>
-        <br />
-        <h4> ${config.get("CLIENT_URL")}/api/users/activate/${token} </h4>
+              
+        <h4><a href=${config.get(
+          "CLIENT_URL"
+        )}/api/users/activate/${token}> Click here to Activate Account </a> </h4>
         <hr />
-
-          <p> For more information, Visit Ibetoch.com </p>
-        <br />
-        
-        <p> This email may have a sensetive content<p>
-        <p>${config.get("CLIENT_URL")}</p>
+        <hr />
+          <p> For more information, Visit ${config.get(
+            "CLIENT_URL"
+          )} </p>        
+        <p> This email may contain sensitive information. </p>
         `,
         };
 
@@ -119,33 +122,26 @@ router.post(
         };
         //2nd sign it
         //const token
-        const token = jwt.sign(payload, config.get("jwtSecretKey"), {
+        const token = jwt.sign(payload, config.get("jwtSecretKeyRegister"), {
           expiresIn: "1d",
         });
-
-        // (error, token) => {
-        //   if (error) throw error;
-        //   //return res.json({ token });
-        // }
 
         const verificationEmailData = {
           from: config.get("EMAIL_FROM"),
           to: email,
-          subject: `New Acount Activation Link`,
+          subject: `New iBetoch Acount Activation Link`,
 
           html: `
-        <p> Find your next home at Ibetoch </p> <br /> <p> Please use this link to verify your email to activate your new account </p>
+        <p> <strong>Welcome to iBetoch...</strong>  Find your next home at Ibetoch </p> <br /> <p> Please use this link to verify your email to activate your new account </p>
         <p> This link will expire in 24 hours </p>
         <strong>click the link here to verify </strong>
-        <br />
-        <h4> ${config.get("CLIENT_URL")}/api/users/activate/${token} </h4>
+        <h4><a href=${config.get(
+          "CLIENT_URL"
+        )}/api/users/activate/${token}> Activate Account </a> </h4>
         <hr />
-
-          <p> For more information, Visit Ibetoch.com </p>
-        <br />
-        
-        <p> This email may have a sensetive content<p>
-        <p>${config.get("CLIENT_URL")}</p>
+        <hr />
+        <p> For more information, Visit ${config.get("CLIENT_URL")} </p>        
+      <p> This email may contain sensitive information. </p>
         `,
         };
 
@@ -183,42 +179,33 @@ router.post("/activate", async (req, res) => {
       });
     }
 
-    const verifiedToken = await jwt.verify(
+    await jwt.verify(
       token,
-      config.get("jwtSecretKey")
-      // (err, verifiedToken) => {
-      //   //return res.json({ verifiedToken });msg: "Link expired or wrong token. Please register again!"
-      // }
+      config.get("jwtSecretKeyRegister"),
+      async (err, decoded) => {
+        if (err) {
+          return res.json({
+            msg: "Link expired or wrong token. Please register again!",
+          });
+        }
+
+        const user = await User.findById(decoded.user.id);
+        if (!user) {
+          return res
+            .status(400)
+            .json({ msg: "No user or Token is already activated" });
+        }
+        //return res.send("hello");
+        user.active = true;
+        //await User.updateOne({ active: true });
+        //save user to database
+        await user.save();
+        res.json({
+          token,
+          msg: "Successfully signed up! please sign in to continue...",
+        });
+      }
     );
-
-    const decoded = await jwt.decode(token);
-
-    const user = await User.findById(decoded.user.id);
-
-    if (!user) {
-      return res
-        .status(400)
-        .json({ msg: "No user or Token is already activated" });
-    }
-    //return res.send("hello");
-
-    user.active = true;
-    //await User.updateOne({ active: true });
-
-    //await User.deleteMany({ active: false });
-    //save user to database
-    await user.save();
-
-    //@todo-
-    //and delete users at some specific time if they are not verified
-    // which is if active is false
-    //User.deleteMany({ active: "false" });
-
-    res.json({
-      token,
-      // user,
-      msg: "Successfully signed up! please sign in to continue...",
-    });
   } catch (error) {
     console.error(error);
     if (error.response) {
@@ -259,7 +246,7 @@ router.put(
       };
       //2nd sign it
       //const token
-      const token = jwt.sign(payload, config.get("jwtSecretKey"), {
+      const token = jwt.sign(payload, config.get("jwtSecretKeyForgot"), {
         expiresIn: "1d",
       });
 
@@ -273,18 +260,17 @@ router.put(
         subject: `Reset Password Link`,
 
         html: `
-        <p> Find your next home at Ibetoch </p> <br /> <p> Please use this link to reset your password. </p>
+        <p> <strong>Welcome to iBetoch...</strong>  Find your next home at Ibetoch </p> <br />
+         <p> Please use this link to reset your password. </p>
         <p> This link will expire in 24 hours </p>
-        <strong>click the link down here to verify </strong>
-        <br />
-        <h4> ${config.get("CLIENT_URL")}/api/users/reset/${token} </h4>
+       
+        <h4><a href=${config.get(
+          "CLIENT_URL"
+        )}/api/users/reset/${token}> Click here to reset password </a> </h4>
         <hr />
-
-          <p> For more information, Visit Ibetoch.com </p>
-        <br />
-        
-        <p> This email may have a sensetive content<p>
-        <p>${config.get("CLIENT_URL")}</p>
+        <hr />
+        <p> For more information, Visit ${config.get("CLIENT_URL")} </p>        
+        <p> This email may contain sensitive information. </p>
         `,
       };
 
@@ -328,35 +314,44 @@ router.put(
     const { newPassword, token } = req.body;
 
     try {
-      if (!token || token.length < 25) {
+      if (!token) {
         return res
-          .status(401)
+          .status(400)
           .json({ errors: [{ msg: "There is no valid reset link token!" }] });
       }
 
-      const verifiedToken = await jwt.verify(token, config.get("jwtSecretKey"));
+      await jwt.verify(
+        token,
+        config.get("jwtSecretKeyForgot"),
+        async (err, decoded) => {
+          if (err) {
+            return res.json({
+              msg: "Link expired or wrong token. Please register again!",
+            });
+          }
+          //check if user already exists
+          let user = await User.findById(decoded.user.id);
 
-      const decoded = await jwt.decode(token);
+          // this if block is non-important
+          if (!user || user.active === false) {
+            return res.status(400).json({
+              errors: [{ msg: "No user with thhis email. Please register!" }],
+            });
+          }
 
-      //check if user already exists
-      let user = await User.findById(decoded.user.id);
+          //then hash the new password and save it instead of the new one
+          //Encrypt password
+          const salt = await bcryptjs.genSalt(10);
 
-      // this if block is non-important
-      if (!user || user.active === false) {
-        return res.status(400).json({
-          errors: [{ msg: "No user with thhis email. Please register!" }],
-        });
-      }
+          user.password = await bcryptjs.hash(newPassword, salt);
 
-      //then hash the new password and save it instead of the new one
-      //Encrypt password
-      const salt = await bcryptjs.genSalt(10);
+          await user.save();
 
-      user.password = await bcryptjs.hash(newPassword, salt);
+          res.json({ token, msg: "Succesfully password reset." });
+        }
+      );
 
-      await user.save();
-
-      res.json({ token, msg: "Succesfully password reset." });
+      // const decoded = await jwt.decode(token);
     } catch (error) {
       console.error(error);
 

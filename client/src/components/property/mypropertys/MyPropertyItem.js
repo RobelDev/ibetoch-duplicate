@@ -22,8 +22,8 @@ const MyPropertyItem = ({
   deleteProperty,
   property: {
     _id,
+    name,
     purpose,
-    user,
     price,
     totalSquareFt,
     yearBuilt,
@@ -32,7 +32,8 @@ const MyPropertyItem = ({
     website,
     description,
     homeType,
-    contactInfo,
+    contactPhone,
+    contactEmail,
     availability,
     bathroom,
     bedroom,
@@ -364,7 +365,7 @@ const MyPropertyItem = ({
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center">
                 Posted By:
-                <span className="primary"> {user && user.name}</span>
+                <span className="primary"> {name}</span>
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center">
                 {" "}
@@ -372,7 +373,12 @@ const MyPropertyItem = ({
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center">
                 {" "}
-                ContactInfo: {contactInfo}{" "}
+                Contact Phone: {contactPhone}{" "}
+              </li>
+
+              <li className="list-group-item d-flex justify-content-between align-items-center">
+                {" "}
+                Contact Email: {contactEmail}{" "}
               </li>
             </ul>
           </div>

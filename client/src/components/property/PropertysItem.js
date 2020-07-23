@@ -22,7 +22,7 @@ const PropertyItem = ({
   // propertyState: { loading, coordinates },
   property: {
     _id,
-    user,
+    name,
     purpose,
     price,
     totalSquareFt,
@@ -32,7 +32,8 @@ const PropertyItem = ({
     website,
     description,
     homeType,
-    contactInfo,
+    contactPhone,
+    contactEmail,
     availability,
     bathroom,
     bedroom,
@@ -382,7 +383,7 @@ const PropertyItem = ({
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center">
                 Posted By:
-                <span className="primary"> {user && user.name}</span>
+                <span className="primary"> {name}</span>
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center">
                 {" "}
@@ -390,7 +391,12 @@ const PropertyItem = ({
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center">
                 {" "}
-                ContactInfo: {contactInfo}{" "}
+                Contact Phone: {contactPhone}{" "}
+              </li>
+
+              <li className="list-group-item d-flex justify-content-between align-items-center">
+                {" "}
+                Contact Email: {contactEmail}{" "}
               </li>
             </ul>
           </div>

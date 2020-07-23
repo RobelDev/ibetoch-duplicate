@@ -24,7 +24,8 @@ const UpdateProperty = ({
     description: "",
     homeType: "",
     purpose: "",
-    contactInfo: "",
+    contactPhone: "",
+    contactEmail: "",
     availability: "",
     // sold: false,
     bathroom: "",
@@ -44,7 +45,8 @@ const UpdateProperty = ({
     description,
     homeType,
     purpose,
-    contactInfo,
+    contactPhone,
+    contactEmail,
     availability,
     bathroom,
     bedroom,
@@ -297,16 +299,31 @@ const UpdateProperty = ({
 
           <Form.Group as={Row} controlId="formHorizontalContactinfo">
             <Form.Label column sm={2}>
-              Contact Info
+              Contact Phone
             </Form.Label>
             <Col sm={5}>
               <Form.Control
                 as="textarea"
-                row="3"
                 type="text"
-                name="contactInfo"
-                value={contactInfo}
-                placeholder="put some contact informations"
+                name="contactPhone"
+                value={contactPhone}
+                placeholder="+251911111111"
+                onChange={onChange}
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formHorizontalContactinfo">
+            <Form.Label column sm={2}>
+              Contact Email
+            </Form.Label>
+            <Col sm={5}>
+              <Form.Control
+                as="textarea"
+                type="text"
+                name="contactEmail"
+                value={contactEmail}
+                placeholder="email"
                 onChange={onChange}
               />
             </Col>

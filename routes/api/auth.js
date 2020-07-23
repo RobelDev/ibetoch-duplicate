@@ -20,7 +20,7 @@ router.get("/signin", auth, async (req, res) => {
     if (user && user.active === false) {
       return res
         .status(400)
-        .json({ msg: "Email not verified, please verify email" });
+        .json({ errors: [{ msg: "Email not verified, please verify email" }] });
     } else if (user && user.active === true) {
       return res.json({
         user,
