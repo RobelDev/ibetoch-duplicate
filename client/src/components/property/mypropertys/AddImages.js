@@ -84,7 +84,7 @@ const AddImages = ({
             value="addImages"
             className="btn btn-primary btn-lg m-2"
           >
-            {buttonText}
+            <i className="fa fa-upload" /> {buttonText}
           </button>
         </form>
       </div>

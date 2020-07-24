@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { Form, Col, Row, Button } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import NumberFormat from "react-number-format";
 
 const UpdateProperty = ({
   updateProperty,
@@ -31,7 +32,7 @@ const UpdateProperty = ({
     bathroom: "",
     bedroom: "",
     parking: "",
-    buttonText: "Submit",
+    buttonText: "Update",
   });
 
   const {
@@ -127,15 +128,17 @@ const UpdateProperty = ({
               Year Built:
             </Form.Label>
             <Col sm={5}>
-              <Form.Control
-                type="number"
+              <NumberFormat
+                format="##/####"
+                placeholder="MM/YYYY"
+                mask={["M", "M", "Y", "Y", "Y", "Y"]}
                 name="yearBuilt"
                 value={yearBuilt}
-                placeholder="Enter property year built"
                 onChange={onChange}
                 required
               />
-              <small>Ex: 2010</small>
+              <br />
+              <small>Ex: 05/2010</small>
             </Col>
           </Form.Group>
 
@@ -144,17 +147,26 @@ const UpdateProperty = ({
               Price:
             </Form.Label>
             <Col sm={5}>
-              <Form.Control
+              {/* <Form.Control
                 type="number"
                 name="price"
                 value={price}
                 placeholder="Enter a price value"
                 onChange={onChange}
                 required
+              /> */}
+              <NumberFormat
+                thousandSeparator={true}
+                prefix={"ETB "}
+                value={price}
+                name="price"
+                onChange={onChange}
+                required
               />
+              <br />
               <small>
-                In US dollar. If for rent put a monthly price. If for sell put a
-                total price value.{" "}
+                If for rent put a monthly price. If for sell put a total price
+                value.{" "}
               </small>
             </Col>
           </Form.Group>
@@ -302,14 +314,24 @@ const UpdateProperty = ({
               Contact Phone
             </Form.Label>
             <Col sm={5}>
-              <Form.Control
-                as="textarea"
+              {/* <Form.Control
                 type="text"
                 name="contactPhone"
                 value={contactPhone}
                 placeholder="+251911111111"
                 onChange={onChange}
+                maxLength="13"
+              /> */}
+              <NumberFormat
+                format="+(###) ### ###-###"
+                allowEmptyFormatting
+                mask="_"
+                name="contactPhone"
+                value={contactPhone}
+                onChange={onChange}
               />
+              <br />
+              <small>ex. +251911 111-111</small>
             </Col>
           </Form.Group>
 
@@ -319,8 +341,7 @@ const UpdateProperty = ({
             </Form.Label>
             <Col sm={5}>
               <Form.Control
-                as="textarea"
-                type="text"
+                type="email"
                 name="contactEmail"
                 value={contactEmail}
                 placeholder="email"
@@ -398,7 +419,7 @@ const UpdateProperty = ({
                 value="register"
                 className="btn btn-primary btn-lg"
               >
-                {buttonText}
+                <i className="fas fa-sync" /> {buttonText}
               </Button>
             </Col>
           </Form.Group>

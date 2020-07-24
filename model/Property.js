@@ -39,7 +39,7 @@ const PropertySchema = new mongoose.Schema({
   ],
 
   price: {
-    type: Number,
+    type: String,
     required: true,
     trim: true,
   },
@@ -50,7 +50,7 @@ const PropertySchema = new mongoose.Schema({
   },
 
   yearBuilt: {
-    type: Number,
+    type: String,
     required: true,
   },
   address: {
@@ -78,7 +78,7 @@ const PropertySchema = new mongoose.Schema({
   },
 
   availability: {
-    type: Date,
+    type: String,
   },
 
   sold: {

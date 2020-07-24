@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { Form, Col, Row, Button } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import NumberFormat from "react-number-format";
 
 const CreateProperty = ({ createProperty, history }) => {
   const [formData, setFormData] = useState({
@@ -25,7 +26,7 @@ const CreateProperty = ({ createProperty, history }) => {
     bathroom: "",
     bedroom: "",
     parking: "",
-    buttonText: "Submit",
+    buttonText: "Create",
   });
 
   const {
@@ -95,15 +96,25 @@ const CreateProperty = ({ createProperty, history }) => {
               Year Built:
             </Form.Label>
             <Col sm={5}>
-              <Form.Control
+              {/* <Form.Control
                 type="number"
                 name="yearBuilt"
                 value={yearBuilt}
                 placeholder="Enter property year built"
                 onChange={onChange}
                 required
+              /> */}
+              <NumberFormat
+                format="##/####"
+                placeholder="MM/YYYY"
+                mask={["M", "M", "Y", "Y", "Y", "Y"]}
+                name="yearBuilt"
+                value={yearBuilt}
+                onChange={onChange}
+                required
               />
-              <small>Ex: 2010</small>
+              <br />
+              <small>Ex: 05/2010</small>
             </Col>
           </Form.Group>
 
@@ -112,17 +123,26 @@ const CreateProperty = ({ createProperty, history }) => {
               Price:
             </Form.Label>
             <Col sm={5}>
-              <Form.Control
+              {/* <Form.Control
                 type="number"
                 name="price"
                 value={price}
                 placeholder="Enter a price value"
                 onChange={onChange}
                 required
+              /> */}
+              <NumberFormat
+                thousandSeparator={true}
+                prefix={"ETB "}
+                value={price}
+                name="price"
+                onChange={onChange}
+                required
               />
+              <br />
               <small>
-                In US dollar. If for rent put a monthly price. If for sell put a
-                total price value.{" "}
+                If for rent put a monthly price. If for sell put a total price
+                value.{" "}
               </small>
             </Col>
           </Form.Group>
@@ -289,15 +309,24 @@ const CreateProperty = ({ createProperty, history }) => {
               Contact Phone
             </Form.Label>
             <Col sm={5}>
-              <Form.Control
-                as="textarea"
+              {/* <Form.Control
                 type="text"
                 name="contactPhone"
                 value={contactPhone}
                 placeholder="+251911111111"
                 onChange={onChange}
-                
+                maxLength="13"
+              /> */}
+              <NumberFormat
+                format="+(###) ### ###-###"
+                allowEmptyFormatting
+                mask="_"
+                name="contactPhone"
+                value={contactPhone}
+                onChange={onChange}
               />
+              <br />
+              <small>ex. +251911 111-111</small>
             </Col>
           </Form.Group>
 
@@ -307,13 +336,11 @@ const CreateProperty = ({ createProperty, history }) => {
             </Form.Label>
             <Col sm={5}>
               <Form.Control
-                as="textarea"
-                type="text"
+                type="email"
                 name="contactEmail"
                 value={contactEmail}
                 placeholder="email"
                 onChange={onChange}
-                
               />
             </Col>
           </Form.Group>
@@ -391,7 +418,7 @@ const CreateProperty = ({ createProperty, history }) => {
                 value="register"
                 className="btn btn-primary btn-lg"
               >
-                {buttonText}
+                <i className="fas fa-plus-circle" /> {buttonText}
               </Button>
             </Col>
           </Form.Group>

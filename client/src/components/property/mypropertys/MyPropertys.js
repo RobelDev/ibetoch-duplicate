@@ -30,8 +30,8 @@ const MyPropertys = ({
         <h3>My Properties List</h3>
 
         <br />
-        <Link to={`/createproperty`} className="btn btn-secondary">
-          Create a new Property
+        <Link to={`/createproperty`} className="btn btn-primary">
+          <i className="fas fa-plus-circle" /> Create a new Property
         </Link>
         <br />
         <hr />

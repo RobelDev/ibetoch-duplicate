@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
-// import { Link } from "react-router-dom";
-// import { withRouter } from "react-router-dom";
+import NumberFormat from "react-number-format";
 import { connect } from "react-redux";
 import Moment from "react-moment";
 import { Button, Modal, Badge } from "react-bootstrap";
@@ -95,7 +94,9 @@ const MyPropertyItem = ({
         {/* <div className="card-body"> */}
         <div className="card-body my-n5  p-2 float-left">
           <strong>
-            <Button className="btn btn-light text-primary">ETB {price}</Button>{" "}
+            <Button className="btn btn-light text-primary">
+              {price}/{purpose === "rent" ? "month" : "once"}
+            </Button>{" "}
           </strong>{" "}
           <small>
             <Button
@@ -135,24 +136,24 @@ const MyPropertyItem = ({
               href={`/addimages/${_id}`}
               className="btn btn-light text-success"
             >
-              +Image
+              <i className="fa fa-plus-circle" /> <small>Image</small>
             </a>
             <a
               href={`/updateproperty/${_id}`}
-              className="btn btn-light text-primary mr-2"
+              className="btn btn-light text-primary"
             >
-              Update
+              <i className="fas fa-sync" /> <small> Update </small>
             </a>
             <a
               href={`/propertys/viewproperty/${_id}`}
-              className="btn btn-light text-danger"
+              className="btn btn-light text-danger mr-2"
 
               // onClick={() => console.log("clicked")}
             >
-              -Image
+              <i className="fa fa-minus-circle" /> <small> Image</small>
             </a>
             <Button
-              className="btn-danger"
+              className="btn btn-danger"
               onClick={(e) => {
                 if (
                   window.confirm(
@@ -163,7 +164,7 @@ const MyPropertyItem = ({
                 }
               }}
             >
-              Delete
+              <i className="fa fa-times" /> All
             </Button>
           </div>
         </div>
@@ -285,50 +286,83 @@ const MyPropertyItem = ({
             <div>
               <ul className="list-group ">
                 <li className="list-group-item d-flex justify-content-between align-items-center">
-                  Posted on:
-                  <Moment format="DD/MM/YYYY">{date}</Moment>{" "}
+                  <span>
+                    <i className="far fa-calendar" /> Posted on:{" "}
+                  </span>
+                  <span>
+                    {" "}
+                    <Moment format="MM/DD/YYYY">{date}</Moment>{" "}
+                  </span>{" "}
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center">
-                  Home-Type:
+                  <span>
+                    <i className="fa fa-home" /> Home-Type:
+                  </span>
                   <span className="">{homeType}</span>{" "}
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center">
-                  Purpose:
+                  <span>
+                    <i className="fa fa-bullseye " style={{ color: "red" }} />{" "}
+                    Purpose:{" "}
+                  </span>
+
                   <span className="">{purpose}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center">
-                  Address:
-                  {/* <i className="fa fa-map-marker" /> */}
-                  <span className="">{address}</span>
+                  <span>
+                    <i className="fa fa-map-marker" style={{ color: "red" }} />{" "}
+                    Address:
+                  </span>
+                  <small> {address} </small>
                 </li>
 
                 <li className="list-group-item d-flex justify-content-between align-items-center">
-                  Price:
-                  <span className="">ETB:{price}</span>
+                  <span>
+                    {/* <i className="fa fa-money" style={{ color: "green" }} /> */}
+                    <strong> ETB </strong> /
+                    {purpose === "rent" ? "month" : "once"}:
+                  </span>{" "}
+                  <span className="">{price}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center">
-                  Bedrooms:
+                  <span>
+                    <i className="fa fa-bed" /> Bedrooms:
+                  </span>
+
                   {/* <i className="fa fa-bed" /> */}
                   <span className=""> {bedroom}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center">
                   {/* <i className="fa fa-bath" />  */}
-                  Bathrooms:
+                  <span>
+                    <i className="fa fa-bath" /> Bathrooms:
+                  </span>
+
                   <span className="">{bathroom}</span>
                 </li>
+
                 <li className="list-group-item d-flex justify-content-between align-items-center">
+                  <span>
+                    <i className="fa fa-parking" style={{ color: "blue" }} />{" "}
+                    Parking:{" "}
+                  </span>
                   {/* <i className="fa fa-bath" />  */}
-                  Parking:
+
                   <span className="">{parking}</span>
                 </li>
 
                 <li className="list-group-item d-flex justify-content-between align-items-center">
-                  Total Square meters:
+                  <span>
+                    <i className="fa fa-cube" /> Total Square meters:{" "}
+                  </span>
                   <span className="">{totalSquareFt}</span>{" "}
                 </li>
 
                 <li className="list-group-item d-flex justify-content-between align-items-center">
-                  Year Built: <span> {yearBuilt}</span>
+                  <span>
+                    <i className="far fa-calendar" /> Year Built:{" "}
+                  </span>
+                  <span> {yearBuilt}</span>
                 </li>
               </ul>
             </div>{" "}
@@ -342,15 +376,23 @@ const MyPropertyItem = ({
               className="fa fa-angle-right"
               style={{ color: "#ffcc00" }}
             />{" "}
-            Additional Description
+            Additional Info
           </h3>
           <div className="mx-1" style={{ fontSize: "20px", color: "#209CEE" }}>
             <ul>
               <li className="list-group-item d-flex justify-content-between align-items-center">
-                {" "}
-                Availability: {availability}{" "}
+                <span>
+                  <i className="far fa-calendar" /> Availabile from:{" "}
+                </span>
+                <span className="primary">{availability}</span>{" "}
               </li>
-              <li className="list-group-item"> Description: {description} </li>
+
+              <li className="list-group-item">
+                <span>
+                  <i className="fa fa-info" /> Description:{" "}
+                </span>
+                {description}
+              </li>
             </ul>
           </div>
           <h3 className="mx-1">
@@ -360,25 +402,39 @@ const MyPropertyItem = ({
           <div className="mx-1" style={{ fontSize: "20px", color: "#209CEE" }}>
             <ul>
               <li className="list-group-item d-flex justify-content-between align-items-center">
-                Owner Type:
+                <span>
+                  <i className="fa fa-tag" /> Owner Type:{" "}
+                </span>
                 <span className="primary"> {company}</span>
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center">
-                Posted By:
+                <span>
+                  <i className="fa fa-user-circle" /> Posted By:{" "}
+                </span>
+
                 <span className="primary"> {name}</span>
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center">
-                {" "}
-                Website: {website}{" "}
+                <span>
+                  <i className="fa fa-arrow-right" /> Website:{" "}
+                </span>
+                {website}{" "}
               </li>
               <li className="list-group-item d-flex justify-content-between align-items-center">
-                {" "}
-                Contact Phone: {contactPhone}{" "}
+                <span>
+                  <i className="fa fa-phone" />{" "}
+                  <i className="fab fa-whatsapp" style={{ color: "#4FCE5D" }} />{" "}
+                  <i className="fab fa-telegram" style={{ color: "#0088cc" }} />{" "}
+                  <i className="fab fa-viber" style={{ color: "#8f5db7" }} />{" "}
+                </span>
+                {contactPhone}{" "}
               </li>
 
               <li className="list-group-item d-flex justify-content-between align-items-center">
-                {" "}
-                Contact Email: {contactEmail}{" "}
+                <span>
+                  <i className="fa fa-envelope" style={{ color: "red" }} />{" "}
+                </span>
+                {contactEmail}{" "}
               </li>
             </ul>
           </div>

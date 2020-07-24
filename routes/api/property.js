@@ -19,11 +19,10 @@ router.post(
   [
     auth,
     [
-      check("price", "price is required in number only").isNumeric(),
-      check(
-        "yearBuilt",
-        "Year built of property is required in number only"
-      ).isNumeric(),
+      check("price", "price is required in number only").not().isEmpty(),
+      check("yearBuilt", "Year built of property is required in number only")
+        .not()
+        .isEmpty(),
       check("address", "address is required").not().isEmpty(),
       check(
         "totalSquareFt",
@@ -122,11 +121,10 @@ router.put(
   [
     auth,
     [
-      check("price", "price is required in number only").isNumeric(),
-      check(
-        "yearBuilt",
-        "Year built of property is required in number only"
-      ).isNumeric(),
+      check("price", "price is required in number only").not().isEmpty(),
+      check("yearBuilt", "Year built of property is required in number only")
+        .not()
+        .isEmpty(),
       check("address", "address is required").not().isEmpty(),
       check(
         "totalSquareFt",
@@ -144,7 +142,7 @@ router.put(
     }
     const {
       price,
-
+      name,
       totalSquareFt,
       yearBuilt,
       address,
@@ -162,9 +160,11 @@ router.put(
       parking,
     } = req.body;
 
+    const user = await User.findById(req.user.id).select("-password");
+
     const propertyFields = {
       user: req.user.id,
-
+      name: user.name,
       price,
       totalSquareFt,
       yearBuilt,
