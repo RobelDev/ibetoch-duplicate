@@ -24,10 +24,10 @@ const Forgot = ({ forgotPassword }) => {
     forgotPassword({ email });
 
     //loadUser();
-    setForgotData({
-      ...forgotData,
-      buttonText: "Password reset link sent",
-    });
+    // setForgotData({
+    //   ...forgotData,
+    //   buttonText: "Password reset link sent",
+    // });
   };
 
   return (

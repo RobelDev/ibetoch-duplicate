@@ -1,16 +1,39 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Spinner } from "react-bootstrap";
+import { Spinner, Pagination } from "react-bootstrap";
 import { getPropertys } from "../../actions/propertyAction";
 import { connect } from "react-redux";
 import PropertysItem from "./PropertysItem";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Propertys = ({ getPropertys, propertyState: { propertys, loading } }) => {
+const Propertys = ({
+  getPropertys,
+  propertyState: { propertys, loading, page },
+}) => {
+  const [pageUp, setPage] = useState(1);
   useEffect(() => {
-    getPropertys();
-  }, [getPropertys, loading]);
+    const limit = 4;
+    // const page = 1;
+    getPropertys(pageUp, limit);
+  }, [getPropertys, loading, pageUp]);
+
+  let active = 2;
+  let items = [];
+  for (let number = 1; number <= page.pageNum; number++) {
+    items.push(
+      <Pagination.Item key={number} active={number === active}>
+        {number}
+      </Pagination.Item>
+    );
+  }
+
+  const paginationBasic = (
+    <div>
+      <Pagination>{items}</Pagination>
+      <br />
+    </div>
+  );
 
   if (loading) {
     return <Spinner animation="border" variant="primary" className="center" />;
@@ -18,6 +41,7 @@ const Propertys = ({ getPropertys, propertyState: { propertys, loading } }) => {
   return (
     <Fragment>
       <ToastContainer />
+
       <div className="grid-4">
         {
           !loading &&

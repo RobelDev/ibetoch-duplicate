@@ -13,9 +13,9 @@ const MySearchedPropertys = ({
   getSearchedPropertys,
   propertyState: { mysearchedpropertys, loading },
 }) => {
-  useEffect(() => {
-    getSearchedPropertys();
-  }, [getSearchedPropertys]);
+  // useEffect(() => {
+  //   getSearchedPropertys();
+  // }, [getSearchedPropertys]);
 
   if (loading) {
     return <Spinner animation="border" variant="primary" className="center" />;
@@ -24,13 +24,20 @@ const MySearchedPropertys = ({
   return (
     <Fragment>
       <ToastContainer />
-      <div className="grid-4">
+      <div className="grid-3main">
         {!loading && mysearchedpropertys && mysearchedpropertys.length > 0 ? (
           mysearchedpropertys.map((property) => (
             <PropertysItem key={property._id} property={property} />
           ))
         ) : (
-          <Propertys />
+          <div className="center text-center">
+            {" "}
+            <br />
+            <h6>
+              No found properties for the given address. Please check your
+              spelling or try a describtive city.
+            </h6>{" "}
+          </div>
         )}
       </div>
     </Fragment>

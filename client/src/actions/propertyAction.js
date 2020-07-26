@@ -99,9 +99,11 @@ export const getMyPropertys = () => async (dispatch) => {
 };
 
 // get all property profiles
-export const getPropertys = () => async (dispatch) => {
+export const getPropertys = (page, limit) => async (dispatch) => {
   try {
-    const response = await axios.get("/api/property/profile/all");
+    const response = await axios.get(
+      `/api/property/profile/all?page=${page}&limit=${limit}`
+    );
 
     dispatch({
       type: constants.GET_PROPERTYS,
@@ -179,11 +181,14 @@ export const getSearchedPropertys = (
   purpose,
   bedroom,
   bathroom,
-  homeType
+  homeType,
+  page,
+  limit
 ) => async (dispatch) => {
   try {
     const response = await axios.get(
-      `/api/property/search/${address}/${purpose}/${homeType}/${bedroom}/${bathroom}`
+      // `/api/property/search/${address}/${purpose}/${homeType}/${bedroom}/${bathroom}`
+      `/api/property/search?address=${address}&purpose=${purpose}&homeType=${homeType}&bedroom=${bedroom}&bathroom=${bathroom}&page=${page}&limit=${limit}`
     );
     // toast.success(`search result for: ${address}`);
 
@@ -193,7 +198,7 @@ export const getSearchedPropertys = (
     });
   } catch (error) {
     //toast.error(error.response.data.msg);
-    toast.error(`Could not find properties`);
+    console.log(error);
     dispatch({
       type: constants.PROPERTY_ERROR,
       payload: {

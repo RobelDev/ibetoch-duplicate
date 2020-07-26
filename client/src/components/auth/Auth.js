@@ -17,7 +17,7 @@ const Auth = () => {
   };
   return (
     <Fragment>
-      <section className="col-md-7 offset-md-3">
+      <section className="col-md-7 offset-md-3 mt-5">
         <div>
           <div className="row">
             <div

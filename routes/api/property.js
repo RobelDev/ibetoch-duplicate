@@ -253,16 +253,46 @@ router.get("/profile/me", auth, async (req, res) => {
 // @desc Get all property profiles
 // @access Public
 router.get("/profile/all", async (req, res) => {
+  page = parseInt(req.query.page);
+  limit = parseInt(req.query.limit);
   try {
-    const propertys = await Property.find()
-      .populate("user", ["name"])
-      .sort({ date: -1 });
+    // if (!propertys) {
+    //   return res.status(400).json({ msg: "No profiles" });
+    // }
 
-    if (!propertys) {
-      return res.status(400).json({ msg: "No profiles" });
+    const paginatedPropertys = {};
+
+    // res.json(filteredPropertys)
+
+    startIndex = (page - 1) * limit;
+    endIndex = page * limit;
+
+    let total = await Property.countDocuments().exec();
+
+    if (endIndex < total) {
+      paginatedPropertys.next = {
+        page: page + 1,
+        limit: limit,
+      };
     }
 
-    res.json(propertys);
+    if (startIndex > 0) {
+      paginatedPropertys.prev = {
+        page: page - 1,
+        limit: limit,
+      };
+    }
+
+    paginatedPropertys.total = total;
+    paginatedPropertys.pageNum = Math.ceil(total / limit);
+    paginatedPropertys.propertys = await Property.find()
+      .sort({ date: -1 })
+      .limit(limit)
+      .skip(startIndex)
+      .exec();
+    // propertys.slice(startIndex, endIndex);
+
+    res.json(paginatedPropertys);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");
@@ -623,47 +653,107 @@ router.get("/likedpropertys", auth, async (req, res) => {
 });
 
 router.get(
-  "/search/:address/:purpose/:homeType/:bedroom/:bathroom",
+  "/search",
 
   // ",
   async (req, res) => {
     const propertys = await Property.find();
 
-    const queryAddress = req.params.address;
-    const queryPurpose = req.params.purpose;
-    const queryBedroom = req.params.bedroom;
-    const queryBathroom = req.params.bathroom;
-    const queryHomeType = req.params.homeType;
+    queryAddress = req.query.address;
+    queryPurpose = req.query.purpose;
+    queryBedroom = parseInt(req.query.bedroom);
+    queryBathroom = parseInt(req.query.bathroom);
+    queryPrice = parseInt(req.query.price);
+    queryHomeType = req.query.homeType;
+    page = parseInt(req.query.page);
+    limit = parseInt(req.query.limit);
 
-    if (
-      !queryAddress ||
-      !queryPurpose ||
-      !queryBedroom ||
-      !queryBathroom ||
-      !queryHomeType
-    ) {
-      return res.status(400).json({ msg: "Please fill up the search form" });
-    }
+    // if (
+    //   !queryAddress ||
+    //   !queryPurpose ||
+    //   !queryBedroom ||
+    //   !queryBathroom ||
+    //   !queryHomeType
+    // ) {
+    //   return res.status(400).json({ msg: "Please fill up the search form" });
+    // }
     //get all property
     //loop throught the propertys if they have your user id on their likes array
     try {
-      const arrayPropertys = [];
+      let searchedPropertys = [];
+      const paginatedPropertys = {};
 
+      startIndex = (page - 1) * limit;
+      endIndex = page * limit;
       // res.json(filteredPropertys);
+      if (!queryAddress ) {
+        // startIndex = (page - 1) * limit;
+        // limit = 10;
 
-      propertys.map((property) => {
-        property.address.toLowerCase().indexOf(queryAddress.toLowerCase()) !==
-          -1 &&
-          property.purpose.includes(queryPurpose) !== -1 &&
-          property.homeType.includes(queryHomeType) !== -1 &&
-          property.bedroom >= queryBedroom !== -1 &&
-          property.bathroom >= queryBathroom &&
-          arrayPropertys.push(property);
-        // : //console.log(singleproperty)
-        //   (arrayPropertys = [ msg: "Not found" ]);
-      });
+        // propertys.slice(startIndex, endIndex);
+        let total = await Property.countDocuments();
+        paginatedPropertys.total = total;
+        paginatedPropertys.pageNum = Math.ceil(total / limit);
+        if (endIndex < total) {
+          paginatedPropertys.next = {
+            page: page + 1,
+            limit: limit,
+          };
+        }
 
-      res.json(arrayPropertys);
+        if (startIndex > 0) {
+          paginatedPropertys.prev = {
+            page: page - 1,
+            limit: limit,
+          };
+        }
+        paginatedPropertys.propertys = await Property.find()
+          .sort({ date: -1 })
+          .limit(limit)
+          .skip(startIndex)
+          .exec();
+
+        return res.json(paginatedPropertys);
+      } else {
+        propertys.map((property) => {
+          property.address.toLowerCase().indexOf(queryAddress.toLowerCase()) !==
+            -1 &&
+            property.purpose.includes(queryPurpose) !== -1 &&
+            property.homeType.includes(queryHomeType) !== -1 &&
+            // property.price.includes(queryPrice) &&
+            property.bedroom >= queryBedroom &&
+            property.bathroom >= queryBathroom &&
+            searchedPropertys.unshift(property);
+          // : //console.log(singleproperty)
+          //   (paginated = [ msg: "Not found" ]);
+        });
+
+        let total = searchedPropertys.length;
+
+        if (endIndex < total) {
+          paginatedPropertys.next = {
+            page: page + 1,
+            limit: limit,
+          };
+        }
+
+        if (startIndex > 0) {
+          paginatedPropertys.prev = {
+            page: page - 1,
+            limit: limit,
+          };
+        }
+
+        paginatedPropertys.total = total;
+        paginatedPropertys.pageNum = Math.ceil(total / limit);
+        paginatedPropertys.propertys = await searchedPropertys.slice(
+          startIndex,
+          endIndex
+        );
+
+        res.json(paginatedPropertys);
+      }
+
       // const singleprop = property.map((singleproperty) => singleproperty._id);
     } catch (error) {
       console.error(error);

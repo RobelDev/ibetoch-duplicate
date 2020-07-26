@@ -36,10 +36,10 @@ const Register = ({ register, isAuth }) => {
         setFormData({ ...formData, buttonText: "Submitting" });
         register({ name, email, password });
 
-        setFormData({
-          ...formData,
-          buttonText: "Registering...",
-        });
+        // setFormData({
+        //   ...formData,
+        //   buttonText: "Registering...",
+        // });
 
         allowSubmit = false;
       } else {

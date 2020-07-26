@@ -5,6 +5,7 @@ const initialState = {
   mypropertys: [],
   mylikedpropertys: [],
   mysearchedpropertys: [],
+  page: {},
   coordinates: {},
   loading: true,
 
@@ -57,8 +58,8 @@ export default function (state = initialState, action) {
     case constants.GET_PROPERTYS:
       return {
         ...state,
-        propertys: action.payload,
-        // msg: action.payload.msg,
+        propertys: action.payload.propertys,
+        page: { next: action.payload },
         loading: false,
       };
 
@@ -80,7 +81,8 @@ export default function (state = initialState, action) {
     case constants.GET_SEARCHED_LISTS:
       return {
         ...state,
-        mysearchedpropertys: action.payload,
+        mysearchedpropertys: action.payload.propertys,
+        page: { next: action.payload },
         loading: false,
       };
 

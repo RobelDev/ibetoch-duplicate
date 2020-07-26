@@ -11,7 +11,7 @@ const PropertysBoard = (props) => {
         <Search />
       </div>
       <div className="m-1">
-        <MySearchedPropertys />
+        {/* <MySearchedPropertys /> */}
         <hr />
       </div>
 

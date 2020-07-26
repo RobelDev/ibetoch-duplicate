@@ -157,6 +157,12 @@ img {
   grid-gap: 2.5rem;
 }
 
+.grid-3main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+}
+
 .grid-4 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -199,6 +205,12 @@ img {
     grid-gap: 2.5rem;
     margin-right: 8rem;
   }
+
+  .grid-3main {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    margin-right: 8rem;
+  }
 }
 
 @media (max-width: 720px) {
@@ -221,6 +233,12 @@ img {
     grid-template-columns: 1fr;
 
     grid-gap: 2.5rem;
+  }
+
+  .grid-3main {
+    grid-template-columns: 1fr;
+
+    grid-gap: 1rem;
   }
   /* Text Styles */
   .x-large {
