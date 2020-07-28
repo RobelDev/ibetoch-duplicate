@@ -33,7 +33,7 @@ const Register = ({ register, isAuth }) => {
     } else {
       let allowSubmit = true;
       if (allowSubmit) {
-        setFormData({ ...formData, buttonText: "Submitting" });
+        // setFormData({ ...formData, buttonText: "Submitting" });
         register({ name, email, password });
 
         // setFormData({

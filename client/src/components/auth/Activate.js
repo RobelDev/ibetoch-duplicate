@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,31 +12,37 @@ const Activate = ({ authState: { isAuth }, match, activateAccount }) => {
     // show: true,
   });
 
+  const { token } = activateToken;
   useEffect(() => {
     let token = match.params.token;
 
     if (token) {
       setActivateToken({ ...activateToken, token });
+
+      // activateAccount(match.params.token);
     }
+
     // eslint-disable-next-line
   }, []);
 
-  const { token } = activateToken;
-
   const onSubmit = async (e) => {
     e.preventDefault();
-    activateAccount(token);
+    if (token) {
+      activateAccount({ token });
+    }
     //setActivateToken({ ...activateToken, show: false });
   };
 
   //redirect if AUTHENTICATED in
   if (isAuth) {
+    // history.push("/");
     return <Redirect to="/auth" />;
   }
   return (
     <Fragment>
+      <ToastContainer />
       <div className="col-md-6 offset-md-3">
-        <ToastContainer />
+        {/* <ToastContainer /> */}
         <div className="text-center">
           <h2 className="p-3 "> Welcome to iBetoch! Activate Your Account</h2>
           <button className="btn btn-outline-primary" onClick={onSubmit}>
@@ -50,7 +56,7 @@ const Activate = ({ authState: { isAuth }, match, activateAccount }) => {
 
 Activate.propTypes = {
   activateAccount: PropTypes.func.isRequired,
-  //isAuth: PropTypes.bool.isRequired,
+  authState: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

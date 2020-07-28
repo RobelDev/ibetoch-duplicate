@@ -29,6 +29,7 @@ router.post(
     }
 
     const { name, email, password } = req.body;
+
     try {
       //check if user already exists
       let user = await User.findOne({ email });
@@ -54,13 +55,9 @@ router.post(
         };
         //2nd sign it
         //const token
-        const token = await jwt.sign(
-          payload,
-          config.get("jwtSecretKeyRegister"),
-          {
-            expiresIn: "1d",
-          }
-        );
+        const token = await jwt.sign(payload, config.get("jwtSecretKey"), {
+          expiresIn: "1d",
+        });
 
         // (error, token) => {
         //   if (error) throw error;
@@ -79,7 +76,7 @@ router.post(
               
         <h4><a href=${config.get(
           "CLIENT_URL"
-        )}/api/users/activate/${token}> Click here to Activate Account </a> </h4>
+        )}/api/users/activate/${token} > Click here to Activate Account </a> </h4>
         <hr />
         <hr />
           <p> For more information, Visit ${config.get(
@@ -122,7 +119,7 @@ router.post(
         };
         //2nd sign it
         //const token
-        const token = jwt.sign(payload, config.get("jwtSecretKeyRegister"), {
+        const token = jwt.sign(payload, config.get("jwtSecretKey"), {
           expiresIn: "1d",
         });
 
@@ -171,17 +168,16 @@ router.post(
 ///api/users/activate
 router.post("/activate", async (req, res) => {
   const { token } = req.body;
+  if (!token) {
+    return res.status(401).json({
+      msg: "There is no valid token!",
+    });
+  }
 
   try {
-    if (!token) {
-      return res.status(401).json({
-        msg: "There is no valid token!",
-      });
-    }
-
     await jwt.verify(
       token,
-      config.get("jwtSecretKeyRegister"),
+      config.get("jwtSecretKey"),
       async (err, decoded) => {
         if (err) {
           return res.json({
@@ -190,6 +186,7 @@ router.post("/activate", async (req, res) => {
         }
 
         const user = await User.findById(decoded.user.id);
+
         if (!user) {
           return res
             .status(400)
@@ -200,6 +197,7 @@ router.post("/activate", async (req, res) => {
         //await User.updateOne({ active: true });
         //save user to database
         await user.save();
+
         res.json({
           token,
           msg: "Successfully signed up! please sign in to continue...",
@@ -246,7 +244,7 @@ router.put(
       };
       //2nd sign it
       //const token
-      const token = jwt.sign(payload, config.get("jwtSecretKeyForgot"), {
+      const token = jwt.sign(payload, config.get("jwtSecretKey"), {
         expiresIn: "1d",
       });
 
@@ -322,7 +320,7 @@ router.put(
 
       await jwt.verify(
         token,
-        config.get("jwtSecretKeyForgot"),
+        config.get("jwtSecretKey"),
         async (err, decoded) => {
           if (err) {
             return res.json({

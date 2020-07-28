@@ -51,16 +51,16 @@ export const loadUser = () => async (dispatch) => {
     });
   } catch (error) {
     console.log(error);
-    // const errList = error.response.data.errors;
-    // if (errList) {
-    //   errList.forEach((err) => toast.error(err.msg));
-    // }
+    const errList = error.response.data.errors;
+    if (errList) {
+      errList.forEach((err) => toast.error(err.msg));
+    }
     // toast.error(error.response.data.msg);
     dispatch({ type: constants.AUTHENTICATE_ERROR });
   }
 };
 
-export const activateAccount = (token) => async (dispatch) => {
+export const activateAccount = ({ token }) => async (dispatch) => {
   const userInfo = { token };
   const config = {
     headers: {
@@ -77,10 +77,12 @@ export const activateAccount = (token) => async (dispatch) => {
       type: constants.ACCTIVATE_SUCCESS,
       payload: response.data,
     });
-    toast.success(response.data.msg);
+
     dispatch(loadUser());
+    toast.success(response.data.msg);
     // console.log(response.data);
   } catch (error) {
+    console.log(error);
     const errList = error.response.data.errors;
     if (errList) {
       errList.forEach((err) => toast.error(err.msg));

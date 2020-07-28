@@ -19,7 +19,10 @@ const HelpItem = ({ faq, index, toggle }) => {
     >
       <div className="faq-question ">
         {faq.question}
-        <p className="float-right" style={{ transition: "all 0.5s ease" }}>
+        <p
+          className="float-right"
+          style={{ transition: "all 0.5s ease-in-out" }}
+        >
           {arrow}
         </p>
       </div>

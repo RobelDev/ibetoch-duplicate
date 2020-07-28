@@ -103,7 +103,7 @@ router.post(
 // @access public
 const client = new OAuth2Client(config.get("GOOGLE_OAUTH_CLIENT_ID"));
 router.post("/google", async (req, res) => {
-  const { idToken } = req.body;
+  const { idToken } = await req.body;
 
   const response = await client.verifyIdToken({
     idToken,

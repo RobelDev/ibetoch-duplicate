@@ -54,7 +54,7 @@ const App = () => {
       <Router>
         <Fragment>
           <NavBar />
-          <Route exact path="/" component={Landing} />
+          <Route exact path="/home" component={Landing} />
           <Switch>
             <Route exact path="/auth" component={Auth}></Route>
             <Route
@@ -73,7 +73,7 @@ const App = () => {
             <Route exact path="/terms" component={Terms} />
             <Route exact path="/privacypolicy" component={Privacy} />
 
-            <Route exact path="/propertys" component={PropertysBoard} />
+            <Route exact path="/" component={PropertysBoard} />
             <PrivateRoute
               exact
               path="/propertys/viewproperty/:prop_id"

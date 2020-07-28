@@ -26,20 +26,16 @@ const NavBar = ({ history, authState: { isAuth, loading, user }, logout }) => {
 
   const guestLinks = (
     <ul className="navbar-nav ml-auto mt-2 mb-n1">
-      <li className="nav-item">
-        <Link to="/" className="nav-link mr-3" style={isActive("/")}>
+      {/* <li className="nav-item">
+        <Link to="/home" className="nav-link mr-3" style={isActive("/")}>
           {" "}
           <i className="fa fa-home" /> Home
         </Link>
-      </li>
+      </li> */}
       <li className="nav-item">
-        <Link
-          to="/propertys"
-          className="nav-link mr-3"
-          style={isActive("/propertys")}
-        >
+        <Link to="/" className="nav-link mr-3" style={isActive("/")}>
           {" "}
-          <i className="fa fa-building " /> Betoch Posts
+          <i className="fa fa-home " /> Betoch Posts
         </Link>
       </li>
 
@@ -71,20 +67,16 @@ const NavBar = ({ history, authState: { isAuth, loading, user }, logout }) => {
 
   const authLinks = (
     <ul className="navbar-nav ml-auto mt-2 mb-n1">
-      <li className="nav-item">
+      {/* <li className="nav-item">
         <Link to="/" className="nav-link mr-3" style={isActive("/")}>
           {" "}
           <i className="fa fa-home" /> Home
         </Link>
-      </li>
+      </li> */}
       <li className="nav-item">
-        <Link
-          to="/propertys"
-          className="nav-link mr-3"
-          style={isActive("/propertys")}
-        >
+        <Link to="/" className="nav-link mr-3" style={isActive("/")}>
           {" "}
-          <i className="fa fa-building " /> Betoch Posts
+          <i className="fa fa-home " /> Betoch Posts
         </Link>
       </li>
 
@@ -149,7 +141,7 @@ const NavBar = ({ history, authState: { isAuth, loading, user }, logout }) => {
       <li className="nav-item">
         <div className=" nav-link text-secondary mr-3">
           {" "}
-          Hello {user && user.name.toLowerCase()}
+          Hi, {user && user.name.toLowerCase()}
         </div>
       </li>
 
@@ -192,17 +184,17 @@ const NavBar = ({ history, authState: { isAuth, loading, user }, logout }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
       <h2 className="navbar-brand ">
-        {/* <Link to="/" className="navbar-brand text-primary mb-n2"> */}{" "}
-        <img src={logo} alt="logo" style={{ width: "32px", height: "32px" }} />{" "}
-        iBetoch
-        {/* </Link> */}
-        <p className="text-danger">
+        <Link to="/home" className="navbar-brand text-primary mb-n2">
           {" "}
-          <small>
-            Official release Aug 2020. <br /> Sample/test data/properties.
-          </small>
-        </p>
+          <img
+            src={logo}
+            alt="logo"
+            style={{ width: "32px", height: "32px" }}
+          />{" "}
+          iBetoch
+        </Link>
       </h2>
+      <small className="text-danger">official release Aug 2020.</small>
       <button className="navbar-toggler" type="button" onClick={onToggle}>
         {" "}
         <span className="navbar-toggler-icon"></span>

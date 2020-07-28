@@ -120,7 +120,7 @@ img {
 .faqs .faq .faq-question {
   position: relative;
   font-size: 21px;
-  padding-right: 75px;
+  padding-right: 5px;
   transition: all 0.5s ease;
 }
 

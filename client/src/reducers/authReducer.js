@@ -26,6 +26,7 @@ export default function (state = initialState, action) {
     case constants.FACEBOOK_LOGIN_SUCCESS:
       // case constants.USER_LOADED:
       localStorage.setItem("token", action.payload.token);
+
       return {
         ...state,
         // ...action.payload,
