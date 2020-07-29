@@ -33,7 +33,7 @@ const CardItems = () => {
                   houses is easier with iBetoch no need to waste your precious
                   time.
                 </Card.Text>
-                <Card.Link href="/propertys">Find Properties</Card.Link>
+                <Card.Link href="/">Find Properties</Card.Link>
               </Card.Body>
             </Card>
           </div>
