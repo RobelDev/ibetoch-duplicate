@@ -5,7 +5,7 @@ config/default.json
 
 # prod
 
-config/production.json
+# config/production.json
 
 # package-lock.json
 
