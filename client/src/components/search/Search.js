@@ -245,7 +245,12 @@ const Search = ({ getSearchedPropertys, page: { next } }) => {
             ))}
         </ul>
       </nav>
-
+      <small className="text-primary center">
+        {" "}
+        Double click to open a listing and see the key details, owner info,
+        Google map and report button.
+      </small>
+      <br />
       <MySearchedPropertys />
 
       <nav aria-label="Page navigation example">
