@@ -194,7 +194,7 @@ const NavBar = ({ history, authState: { isAuth, loading, user }, logout }) => {
           iBetoch
         </Link>
       </h2>
-      <small className="text-danger">Official: end of Aug 2020. </small>
+      <small className="text-danger">Official: end of Aug 2020 </small>
 
       <button className="navbar-toggler" type="button" onClick={onToggle}>
         {" "}
