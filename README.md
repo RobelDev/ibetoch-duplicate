@@ -7,6 +7,6 @@ This a Hosing/Apartment/Condo finder for Ethiopian.
 - Signed-in users can like properties.
 - Please visit my web-app at
 
-https://WWW.iBetoch.com
+https://www.iBetoch.com
 
 Contact me at Linkedin: https://www.linkedin.com/in/robel-tegegne/
