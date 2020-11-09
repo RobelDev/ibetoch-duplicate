@@ -1,4 +1,4 @@
-This a Hosing/Apartment/Condo finder for Ethiopian.
+This a Housing/Apartment/Condo finder for Ethiopian.
 
 - Anyone can sign-up.
 - Anyone can post vacant properties.
